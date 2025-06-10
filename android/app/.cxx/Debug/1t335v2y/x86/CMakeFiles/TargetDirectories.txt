@@ -1,0 +1,2 @@
+/Users/paste/Dev/dex_collection/android/app/.cxx/Debug/1t335v2y/x86/CMakeFiles/edit_cache.dir
+/Users/paste/Dev/dex_collection/android/app/.cxx/Debug/1t335v2y/x86/CMakeFiles/rebuild_cache.dir

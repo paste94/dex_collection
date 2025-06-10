@@ -1,0 +1,21 @@
+{
+  "@@locale": "en",
+  "title": "Dex Collection",
+  "@title": {
+    "description": "Main app title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "homeTitle": "Home",
+  "@homeTitle": {
+    "description": "Title for home screen",
+    "type": "text",
+    "placeholders": {}
+  },
+  "createCollectionTitle": "Create Collection",
+  "@createCollectionTitle": {
+    "description": "Create collection screen title",
+    "type": "text",
+    "placeholders": {}
+  }
+}
