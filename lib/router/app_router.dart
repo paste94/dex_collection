@@ -24,23 +24,26 @@ final routerProvider = Provider<GoRouter>((ref) {
         builder: (context, state) => CreateCollectionScreen(),
       ),
       GoRoute(
-        path: '/collection/:index',
+        path: '/collection',
+        // path: '/collection/:index',
         builder: (context, state) {
-          final index =
-              state.pathParameters['index'] != null
-                  ? int.tryParse(state.pathParameters['index']!)
-                  : null;
-          return CollectionDetailsScreen(index: index);
+          // final index =
+          //     state.pathParameters['index'] != null
+          //         ? int.tryParse(state.pathParameters['index']!)
+          //         : null;
+          // return CollectionDetailsScreen(index: index);
+          return CollectionDetailsScreen();
         },
         routes: [
           GoRoute(
             path: 'search',
             builder: (context, state) {
-              final index =
-                  state.pathParameters['index'] != null
-                      ? int.tryParse(state.pathParameters['index']!)
-                      : null;
-              return SearchScreen(index: index);
+              // final index =
+              //     state.pathParameters['index'] != null
+              //         ? int.tryParse(state.pathParameters['index']!)
+              //         : null;
+              // return SearchScreen(index: index);
+              return SearchScreen();
             },
           ),
         ],

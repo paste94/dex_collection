@@ -9,9 +9,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 class SearchScreen extends ConsumerStatefulWidget {
-  int? index;
+  // int? index;
 
-  SearchScreen({super.key, required this.index});
+  SearchScreen({
+    super.key,
+    // required this.index,
+  });
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _SearchScreenState();

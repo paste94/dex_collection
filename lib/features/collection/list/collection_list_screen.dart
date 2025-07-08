@@ -1,6 +1,5 @@
 import 'package:dex_collection/Hive/collection/provider/collection_provider.dart';
 import 'package:dex_collection/features/collection/list/widgets/collection_tile.dart';
-import 'package:dex_collection/main.dart';
 import 'package:dex_collection/Hive/collection/model/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

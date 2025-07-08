@@ -4,12 +4,12 @@ import 'package:dex_collection/Hive/pokemon_collection/model/pokemon_collection.
 import 'package:dex_collection/features/collection/details/provider/index_provider.dart';
 import 'package:dex_collection/main.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'pokemon_list_provider.g.dart';
+// part 'pokemon_list_provider.g.dart';
 
-@riverpod
-List<PokemonCollection> PokemonList(Ref ref) {
+final pokemonCollectionProvider = StateProvider<List<PokemonCollection>>((
+  Ref ref,
+) {
   final index = ref.watch(indexProvider);
   logger.d(
     '[pokemon_list_provider.dart] Fetching PokemonCollection for index: $index',
@@ -24,4 +24,4 @@ List<PokemonCollection> PokemonList(Ref ref) {
         return e;
       }).toList() ??
       [];
-}
+});

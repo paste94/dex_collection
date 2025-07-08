@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dex_collection/Hive/collection/provider/collection_provider.dart';
 import 'package:dex_collection/Hive/collection/model/collection.dart';
 import 'package:dex_collection/Hive/pokemon/provider/db_pokemon_provider.dart';
+import 'package:dex_collection/Hive/pokemon_collection/model/pokemon_collection.dart';
 import 'package:dex_collection/features/collection/details/provider/index_provider.dart';
 import 'package:dex_collection/features/collection/details/provider/pokemon_list_provider.dart';
 import 'package:dex_collection/main.dart';
@@ -11,22 +12,29 @@ import 'package:go_router/go_router.dart';
 
 // ignore: must_be_immutable
 class CollectionDetailsScreen extends ConsumerWidget {
-  int? index;
-  CollectionDetailsScreen({super.key, required this.index});
+  // int? index;
+  const CollectionDetailsScreen({
+    super.key,
+    // required this.index,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // final index = ref.watch(indexProvider);
-    if (index == null) {
+    final providedIndex = ref.watch(indexProvider);
+    logger.d(
+      '[collection_details_screen.dart] Collection index: $providedIndex',
+    );
+    if (providedIndex == null) {
       // Se l'indice non è fornito, mostra un errore o una schermata vuota
       return Scaffold(
         appBar: AppBar(title: Text('Error')),
-        body: Center(child: Text('Collection index is not provided')),
+        body: Center(child: Text('Collection providedIndex is not provided')),
       );
     }
-    final Collection collection = ref.watch(collectionStateProvider)[index!];
+    final Collection collection =
+        ref.watch(collectionStateProvider)[providedIndex];
     logger.d(
-      '[collection_details_screen.dart] Collection details for index $index: ${collection.pokemons?.length}',
+      '[collection_details_screen.dart] Collection details for providedIndex $providedIndex: ${collection.pokemons?.length}',
     );
     // final pokemonCollection = ref.watch(pokemonListProvider);
     final pokemonCollection =
@@ -38,7 +46,7 @@ class CollectionDetailsScreen extends ConsumerWidget {
         }).toList() ??
         [];
     logger.d(
-      '[collection_details_screen.dart] Collection details for index $index: ${pokemonCollection.length}',
+      '[collection_details_screen.dart] Collection details for providedIndex $providedIndex: ${pokemonCollection.length}',
     );
     return Scaffold(
       appBar: AppBar(
@@ -76,11 +84,7 @@ class CollectionDetailsScreen extends ConsumerWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // Naviga alla schermata di ricerca
-          // context.push('/create_collection');
-          context.push('/collection/$index/search');
-        },
+        onPressed: () => context.push('/collection/search'),
         tooltip: 'Add new collection',
         child: Icon(Icons.add),
       ),

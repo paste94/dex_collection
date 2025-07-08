@@ -1,5 +1,6 @@
 import 'package:dex_collection/Hive/collection/provider/collection_provider.dart';
 import 'package:dex_collection/Hive/collection/model/collection.dart';
+import 'package:dex_collection/features/collection/details/provider/index_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -12,7 +13,11 @@ class CollectionTile extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final Collection item = ref.watch(collectionStateProvider)[index];
     return GestureDetector(
-      onTap: () => context.push('/collection/$index', extra: index),
+      onTap: () {
+        ref.read(indexProvider.notifier).state = index;
+        context.push('/collection');
+        // context.push('/collection/$index', extra: index);
+      },
       child: Card.outlined(
         color: Color(item.color),
         child: Padding(
