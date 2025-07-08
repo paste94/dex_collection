@@ -16,4 +16,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get createCollectionTitle => 'Create Collection';
+
+  @override
+  String get pokemon_search_hint => 'Search by name or form';
 }

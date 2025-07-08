@@ -112,6 +112,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Create Collection'**
   String get createCollectionTitle;
+
+  /// Search hint for Pokémon
+  ///
+  /// In en, this message translates to:
+  /// **'Search by name or form'**
+  String get pokemon_search_hint;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

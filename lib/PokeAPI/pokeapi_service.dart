@@ -1,21 +1,30 @@
 import 'dart:convert';
-
 import 'package:dex_collection/PokeAPI/pokeapi_repository.dart';
-import 'package:dex_collection/models/pokemon.dart';
+import 'package:dex_collection/Hive/pokemon/model/pokemon.dart';
 
 class PokeapiService {
-  static Future<List<Pokemon>> getAllPokemons() async {
-    final response = await PokeapiRepository.getAllPokemons();
-    List<Map<String, dynamic>> data = List.from(
-      json.decode(response.body)['results'],
-    );
-    List<Pokemon> pokemonList =
-        data.asMap().entries.map<Pokemon>((element) {
-          element.value['id'] = element.key + 1;
-          element.value['img'] =
-              "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${element.key + 1}.png";
-          return Pokemon.fromJson(element.value);
-        }).toList();
+  static Future<List<Pokemon>> getAllPokemons({
+    Function(double progress)? progressCalback,
+  }) async {
+    final response = await PokeapiRepository.getAllPokemonForms(50);
+    final data = json.decode(response.body);
+    List result = data['results'];
+    List<Pokemon> pokemonList = [];
+    for (final elem in result) {
+      // logger.i('Fetching form: $elem');
+      Pokemon pokemon = await getPokemonForm(elem['url']);
+      pokemonList.add(pokemon);
+      if (progressCalback != null) {
+        progressCalback(pokemonList.length / result.length);
+      }
+    }
     return pokemonList;
+  }
+
+  static Future<Pokemon> getPokemonForm(String url) async {
+    final response = await PokeapiRepository.getPokemonForm(url);
+    final data = json.decode(response.body);
+
+    return Pokemon.fromJson(data);
   }
 }

@@ -1,5 +1,5 @@
-import 'package:dex_collection/Hive/collection/collection_provider.dart';
-import 'package:dex_collection/models/collection.dart';
+import 'package:dex_collection/Hive/collection/provider/collection_provider.dart';
+import 'package:dex_collection/Hive/collection/model/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';

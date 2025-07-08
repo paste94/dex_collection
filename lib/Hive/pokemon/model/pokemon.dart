@@ -17,7 +17,7 @@ class Pokemon {
   Pokemon.fromJson(Map<String, dynamic> data)
     : id = data['id'],
       name = data['name'],
-      img = data['img'];
+      img = data['sprites']['front_default'];
   Map<String, dynamic> toJson() => {'id': id, 'name': name, 'img': img};
 
   @override

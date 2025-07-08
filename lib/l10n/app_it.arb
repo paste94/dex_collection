@@ -1,4 +1,5 @@
 {
   "@@locale": "it",
-  "createCollectionTitle": "Crea Collezione"
+  "createCollectionTitle": "Crea Collezione",
+  "pokemon_search_hint": "Cerca per nome o forma"
 }

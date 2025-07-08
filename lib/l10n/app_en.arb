@@ -17,5 +17,11 @@
     "description": "Create collection screen title",
     "type": "text",
     "placeholders": {}
+  },
+  "pokemon_search_hint": "Search by name or form",
+  "@pokemon_search_hint": {
+    "description": "Search hint for Pokémon",
+    "type": "text",
+    "placeholders": {}
   }
 }
