@@ -19,4 +19,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get pokemon_search_hint => 'Cerca per nome o forma';
+
+  @override
+  String get edit_collection_name_hint => 'Modifica nome collezione';
 }

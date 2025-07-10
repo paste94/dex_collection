@@ -1,7 +1,7 @@
 class UISearchModel<T> {
   final T item;
-  final bool isSelected;
-  final bool isVisible;
+  bool isSelected;
+  bool isVisible;
 
   UISearchModel({
     required this.item,

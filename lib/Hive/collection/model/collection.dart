@@ -18,8 +18,18 @@ class Collection extends HiveObject {
   @HiveField(3)
   List<PokemonCollection>? pokemons;
 
-  Collection({required this.name, this.color = 0xff03a9f4, this.pokemons})
-    : id = Uuid().v4();
+  Collection({
+    required this.name,
+    this.color = 0xff03a9f4,
+    this.pokemons = const [],
+  }) : id = Uuid().v4();
+
+  Collection._({
+    required this.id,
+    required this.name,
+    this.color = 0xff03a9f4,
+    this.pokemons = const [],
+  });
 
   @override
   String toString() => 'Collection - name: $name';
@@ -29,7 +39,8 @@ class Collection extends HiveObject {
     int? color,
     List<PokemonCollection>? pokemons,
   }) {
-    return Collection(
+    return Collection._(
+      id: id,
       name: name ?? this.name,
       color: color ?? this.color,
       pokemons: pokemons ?? this.pokemons,

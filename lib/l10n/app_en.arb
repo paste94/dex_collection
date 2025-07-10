@@ -23,5 +23,11 @@
     "description": "Search hint for Pokémon",
     "type": "text",
     "placeholders": {}
+  },
+  "edit_collection_name_hint": "Edit collection name",
+  "@edit_collection_name_hint": {
+    "description": "Edit collection name hint",
+    "type": "text",
+    "placeholders": {}
   }
 }

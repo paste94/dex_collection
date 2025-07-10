@@ -10,6 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+// ref.read(indexProvider.notifier).state = null; // Reset index
+
 // ignore: must_be_immutable
 class CollectionDetailsScreen extends ConsumerWidget {
   // int? index;
@@ -48,45 +50,56 @@ class CollectionDetailsScreen extends ConsumerWidget {
     logger.d(
       '[collection_details_screen.dart] Collection details for providedIndex $providedIndex: ${pokemonCollection.length}',
     );
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('${collection.name}'),
-        backgroundColor: Color(collection.color),
-      ),
-      body: Column(
-        children: [
-          Expanded(
-            child:
-                pokemonCollection.isNotEmpty
-                    ? ListView.builder(
-                      itemCount: pokemonCollection.length,
-                      itemBuilder: (context, i) {
-                        final pokemon = pokemonCollection[i];
-                        return ListTile(
-                          title: Text(
-                            pokemon.pokemon?.name ?? 'Unknown Pokémon',
-                          ),
-                          leading: CachedNetworkImage(
-                            imageUrl: pokemon.pokemon?.img ?? '',
-                            placeholder:
-                                (context, url) => CircularProgressIndicator(),
-                            errorWidget:
-                                (context, url, error) => Icon(Icons.error),
-                          ),
-                          onTap: () {
-                            // Naviga alla schermata di dettaglio del Pokémon
-                          },
-                        );
-                      },
-                    )
-                    : Center(child: Text('No Pokémon in this collection')),
-          ),
-        ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => context.push('/collection/search'),
-        tooltip: 'Add new collection',
-        child: Icon(Icons.add),
+    return PopScope(
+      onPopInvokedWithResult: (context, result) {
+        ref.read(indexProvider.notifier).state = null;
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('${collection.name}'),
+          backgroundColor: Color(collection.color),
+          actions: [
+            IconButton(
+              onPressed: () => context.push('/collection/edit'),
+              icon: Icon(Icons.edit),
+            ),
+          ],
+        ),
+        body: Column(
+          children: [
+            Expanded(
+              child:
+                  pokemonCollection.isNotEmpty
+                      ? ListView.builder(
+                        itemCount: pokemonCollection.length,
+                        itemBuilder: (context, i) {
+                          final pokemon = pokemonCollection[i];
+                          return ListTile(
+                            title: Text(
+                              pokemon.pokemon?.name ?? 'Unknown Pokémon',
+                            ),
+                            leading: CachedNetworkImage(
+                              imageUrl: pokemon.pokemon?.img ?? '',
+                              placeholder:
+                                  (context, url) => CircularProgressIndicator(),
+                              errorWidget:
+                                  (context, url, error) => Icon(Icons.error),
+                            ),
+                            onTap: () {
+                              // Naviga alla schermata di dettaglio del Pokémon
+                            },
+                          );
+                        },
+                      )
+                      : Center(child: Text('No Pokémon in this collection')),
+            ),
+          ],
+        ),
+        // floatingActionButton: FloatingActionButton(
+        //   onPressed: () => context.push('/collection/search'),
+        //   tooltip: 'Add new collection',
+        //   child: Icon(Icons.add),
+        // ),
       ),
     );
   }

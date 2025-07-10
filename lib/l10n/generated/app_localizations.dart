@@ -118,6 +118,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Search by name or form'**
   String get pokemon_search_hint;
+
+  /// Edit collection name hint
+  ///
+  /// In en, this message translates to:
+  /// **'Edit collection name'**
+  String get edit_collection_name_hint;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

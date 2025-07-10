@@ -1,7 +1,7 @@
 import 'package:dex_collection/features/collection/details/colleciton_details_screen.dart';
 import 'package:dex_collection/features/collection/create/create_collection_screen.dart';
 import 'package:dex_collection/features/collection/list/collection_list_screen.dart';
-import 'package:dex_collection/features/collection/search/search_screen.dart';
+import 'package:dex_collection/features/collection/edit_collection/edit_collection_screen.dart';
 import 'package:dex_collection/features/settings/settings_view.dart';
 import 'package:dex_collection/utility/router_observer.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -20,8 +20,8 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
 
       GoRoute(
-        path: '/create_collection',
-        builder: (context, state) => CreateCollectionScreen(),
+        path: '/create-collection',
+        builder: (context, state) => EditCollectionScreen(),
       ),
       GoRoute(
         path: '/collection',
@@ -36,14 +36,14 @@ final routerProvider = Provider<GoRouter>((ref) {
         },
         routes: [
           GoRoute(
-            path: 'search',
+            path: 'edit',
             builder: (context, state) {
               // final index =
               //     state.pathParameters['index'] != null
               //         ? int.tryParse(state.pathParameters['index']!)
               //         : null;
               // return SearchScreen(index: index);
-              return SearchScreen();
+              return EditCollectionScreen();
             },
           ),
         ],

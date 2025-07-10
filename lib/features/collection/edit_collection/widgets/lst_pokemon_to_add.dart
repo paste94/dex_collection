@@ -1,0 +1,51 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dex_collection/Hive/pokemon/model/pokemon.dart';
+import 'package:dex_collection/features/collection/edit_collection/provider/UIModel/ui_search_model.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+class LstPokemonToAdd extends ConsumerWidget {
+  final List<UISearchModel<Pokemon>> visibleItems;
+  final Function(UISearchModel<Pokemon>) toggle;
+  const LstPokemonToAdd({
+    super.key,
+    required this.visibleItems,
+    required this.toggle,
+  });
+
+  String formatName(String name) {
+    return name
+        .replaceAll('-', ' ')
+        .replaceAll('alola', 'Alola')
+        .replaceAll('galar', 'Galar')
+        .replaceAll('hisui', 'Hisui')
+        .replaceAll('paldea', 'Paldea')
+        .replaceAllMapped(
+          RegExp(r'(^\w|\s\w)'),
+          (match) => match.group(0)!.toUpperCase(),
+        );
+  }
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return ListView.builder(
+      itemCount: visibleItems.length,
+      itemBuilder: (context, index) {
+        final pokemon = visibleItems[index];
+        return ListTile(
+          leading: CachedNetworkImage(
+            imageUrl: pokemon.item.img,
+            placeholder: (context, url) => CircularProgressIndicator(),
+            errorWidget: (context, url, error) => Icon(Icons.error),
+          ),
+          title: Text(formatName(pokemon.item.name)),
+          trailing:
+              pokemon.isSelected
+                  ? Icon(Icons.check_circle, color: Colors.green)
+                  : Icon(Icons.circle_outlined),
+          onTap: () => toggle(pokemon),
+        );
+      },
+    );
+  }
+}

@@ -14,7 +14,7 @@ class CollectionRepo {
     return _collections;
   }
 
-  List<Collection> addCollection(Collection collection) {
+  List<Collection> putCollection(Collection collection) {
     _box.put(collection.id, collection);
     logger.i(
       '[collection_repo.dart - addCollection] Added, returning ${_box.values.toList()}',

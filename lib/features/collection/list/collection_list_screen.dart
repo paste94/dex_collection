@@ -54,7 +54,7 @@ class CollectionListScreen extends ConsumerWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           // Naviga alla schermata di ricerca
-          context.push('/create_collection');
+          context.push('/create-collection');
           // context.push('/search');
         },
         tooltip: 'Add new collection',

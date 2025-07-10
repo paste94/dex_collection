@@ -1,5 +1,5 @@
 import 'package:dex_collection/Hive/pokemon/provider/db_pokemon_provider.dart';
-import 'package:dex_collection/features/collection/search/provider/UIModel/ui_search_model.dart';
+import 'package:dex_collection/features/collection/edit_collection/provider/UIModel/ui_search_model.dart';
 import 'package:dex_collection/Hive/pokemon/model/pokemon.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -62,10 +62,10 @@ class FilteredPokemonList extends _$FilteredPokemonList {
     // state = filtered;
   }
 
-  void toggleSelection(UISearchModel<Pokemon> item) {
+  void toggleSelection(int id) {
     state =
         state.map((uiModel) {
-          if (uiModel.item.id == item.item.id) {
+          if (uiModel.item.id == id) {
             return uiModel.copyWith(isSelected: !uiModel.isSelected);
           }
           return uiModel;
