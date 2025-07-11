@@ -92,35 +92,7 @@ class _EditCollectionScreenState extends ConsumerState<EditCollectionScreen> {
                       .map((e) => PokemonCollection(id: e.item.id))
                       .toList(),
             ),
-            // Collection(
-            //   name: _collectionNameController.text,
-            //   color: selectedColor.toARGB32(),
-            //   pokemons:
-            //       pokemonList
-            //           .where((item) => item.isSelected)
-            //           .map((e) => PokemonCollection(id: e.item.id))
-            //           .toList(),
-            // ),
           );
-      // ref
-      //     .read(collectionStateProvider.notifier)
-      //     .addPokemonListToCollection(
-      //       collection.id,
-      //       pokemonList
-      //           .where((item) => item.isSelected)
-      //           .map((e) => e.item)
-      //           .toList(),
-      //     );
-      // if (collection.name != _collectionNameController.text) {
-      //   ref
-      //       .read(collectionStateProvider.notifier)
-      //       .updateName(collection.id, _collectionNameController.text);
-      // }
-      // if (collection.color != selectedColor.toARGB32()) {
-      //   ref
-      //       .read(collectionStateProvider.notifier)
-      //       .updateColor(collection.id, selectedColor);
-      // }
       if (mounted) {
         context.pop();
       }

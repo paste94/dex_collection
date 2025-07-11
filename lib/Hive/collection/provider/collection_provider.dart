@@ -18,65 +18,31 @@ class CollectionState extends _$CollectionState {
     return repo.getCollections();
   }
 
-  void fetchCollection() {
-    state = repo.getCollections();
-  }
-
-  void addCollection(Collection collection) {
-    logger.i('[collection_provider.dart - addCollection] Adding ${collection}');
-    state = repo.putCollection(collection);
-  }
-
-  void removeCollection(String id) {
-    state = repo.removeCollection(id);
-  }
-
   void clearCollection() async {
     await repo.clearCollection();
     state = repo.getCollections();
   }
 
   Future<void> addOrUpdateCollection(Collection collection) async {
-    logger.i(
-      '[collection_provider.dart - addOrUpdateCollection] Adding or updating collection with id: ${collection.id}',
-    );
-
-    // final existingCollection = state.firstWhere(
-    //   (element) => element.id == collectionId,
-    //   orElse: () => Collection(name: '', color: 0),
-    // );
-
-    // final updatedCollection = Collection(
-    //   name: name.isNotEmpty ? name : existingCollection.name,
-    //   color: color.toARGB32(),
-    //   pokemons: existingCollection.pokemons,
-    // );
-
     state = repo.putCollection(collection);
   }
 
-  Future<void> addPokemonListToCollection(
-    String collectionId,
-    List<Pokemon> pokemonList,
-  ) async {
-    logger.i(
-      '[collection_provider.dart - addPokemonListToCollection] Adding ${pokemonList.length} pokemons to collection $collectionId',
+  void hideCollectionById(String id) {
+    state = repo.putCollection(
+      state.firstWhere((element) => element.id == id).copyWith(isHidden: true),
     );
-    await repo.updateCollection(
-      id: collectionId,
-      pokemons:
-          pokemonList.map((item) => PokemonCollection(id: item.id)).toList(),
-    );
-    fetchCollection();
   }
 
-  Future<void> updateName(String collectionId, String newName) async {
-    await repo.updateCollection(id: collectionId, name: newName);
-    fetchCollection();
+  void unhideCollectionById(String id) {
+    state = repo.putCollection(
+      state.firstWhere((element) => element.id == id).copyWith(isHidden: false),
+    );
   }
 
-  Future<void> updateColor(String collectionId, Color color) async {
-    await repo.updateCollection(id: collectionId, color: color.toARGB32());
-    fetchCollection();
+  void deleteHiddenCollections() {
+    state
+        .where((element) => element.isHidden == true)
+        .forEach((element) => repo.removeCollection(element.id));
+    state = repo.getCollections();
   }
 }

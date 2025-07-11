@@ -22,4 +22,16 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get edit_collection_name_hint => 'Modifica nome collezione';
+
+  @override
+  String get no_pokemon_in_collection => 'Non ci sono pokémon in questa collezione';
+
+  @override
+  String get edit => 'Modifica';
+
+  @override
+  String get delete => 'Cancella';
+
+  @override
+  String get unknown_pokemon => 'Pokémon sconosciuto';
 }

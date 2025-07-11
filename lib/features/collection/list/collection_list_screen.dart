@@ -1,19 +1,29 @@
 import 'package:dex_collection/Hive/collection/provider/collection_provider.dart';
 import 'package:dex_collection/features/collection/list/widgets/collection_tile.dart';
 import 'package:dex_collection/Hive/collection/model/collection.dart';
+import 'package:dex_collection/main.dart';
+import 'package:dex_collection/router/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-class CollectionListScreen extends ConsumerWidget {
+class CollectionListScreen extends ConsumerStatefulWidget {
   const CollectionListScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _CollectionListScreenState();
+}
+
+class _CollectionListScreenState extends ConsumerState<CollectionListScreen> {
+  @override
+  Widget build(BuildContext context) {
     final List<Collection> collectionList = ref.watch(collectionStateProvider);
-    // logger.i(
-    //   '[collection_list_screen.dart] Collection list length: ${collectionList.length}',
-    // );
+    final List<Collection> collectionListToShow =
+        collectionList
+            .where((collection) => collection.isHidden != true)
+            .toList();
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Collections'),
@@ -28,22 +38,12 @@ class CollectionListScreen extends ConsumerWidget {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            // ElevatedButton(
-            //   onPressed: () async {
-            //     final result = await context.push<String>('/search');
-            //     if (result != null) {
-            //       if (context.mounted) context.go('/', extra: result);
-            //     }
-            //   },
-            //   child: Text('Vai alla ricerca'),
-            // ),
             Expanded(
               child: ListView.builder(
-                itemCount: collectionList.length,
+                itemCount: collectionListToShow.length,
                 itemBuilder: (context, index) {
-                  final item = collectionList[index];
-                  // logger.i('[home_screen.dart] Collection item: ${item.name}');
-                  return CollectionTile(index: index);
+                  final item = collectionListToShow[index];
+                  return CollectionTile(index: index, item: item);
                 },
               ),
             ),

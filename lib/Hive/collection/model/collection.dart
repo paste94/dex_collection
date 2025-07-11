@@ -18,17 +18,22 @@ class Collection extends HiveObject {
   @HiveField(3)
   List<PokemonCollection>? pokemons;
 
+  @HiveField(4)
+  bool? isHidden;
+
   Collection({
     required this.name,
     this.color = 0xff03a9f4,
     this.pokemons = const [],
-  }) : id = Uuid().v4();
+  }) : id = Uuid().v4(),
+       isHidden = false;
 
   Collection._({
     required this.id,
     required this.name,
     this.color = 0xff03a9f4,
     this.pokemons = const [],
+    this.isHidden = false,
   });
 
   @override
@@ -38,12 +43,14 @@ class Collection extends HiveObject {
     String? name,
     int? color,
     List<PokemonCollection>? pokemons,
+    bool? isHidden,
   }) {
     return Collection._(
       id: id,
       name: name ?? this.name,
       color: color ?? this.color,
       pokemons: pokemons ?? this.pokemons,
+      isHidden: isHidden ?? this.isHidden,
     );
   }
 }

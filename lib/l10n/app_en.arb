@@ -29,5 +29,29 @@
     "description": "Edit collection name hint",
     "type": "text",
     "placeholders": {}
+  },
+  "no_pokemon_in_collection": "No Pokémon in this collection",
+  "@no_pokemon_in_collection": {
+    "description": "Message shown when there are no Pokémon in a collection",
+    "type": "text",
+    "placeholders": {}
+  },
+  "edit": "Edit",
+  "@edit": {
+    "description": "Edit action label",
+    "type": "text",
+    "placeholders": {}
+  },
+  "delete": "Delete",
+  "@delete": {
+    "description": "Delete action label",
+    "type": "text",
+    "placeholders": {}
+  },
+  "unknown_pokemon": "Unknown Pokémon",
+  "@unknown_pokemon": {
+    "description": "Label for unknown Pokémon",
+    "type": "text",
+    "placeholders": {}
   }
 }

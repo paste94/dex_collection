@@ -7,7 +7,7 @@ part of 'search_provider.dart';
 // **************************************************************************
 
 String _$filteredPokemonListHash() =>
-    r'e4a86d465f803d081d4aec012d837ad33432d656';
+    r'fc043437da475bcccb587b5cddf703942ac07c34';
 
 /// See also [FilteredPokemonList].
 @ProviderFor(FilteredPokemonList)

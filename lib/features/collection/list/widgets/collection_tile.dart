@@ -1,22 +1,21 @@
-import 'package:dex_collection/Hive/collection/provider/collection_provider.dart';
 import 'package:dex_collection/Hive/collection/model/collection.dart';
 import 'package:dex_collection/features/collection/details/provider/index_provider.dart';
+import 'package:dex_collection/router/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 class CollectionTile extends ConsumerWidget {
   final int index;
-  const CollectionTile({super.key, required this.index});
+  final Collection item;
+  const CollectionTile({super.key, required this.index, required this.item});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final Collection item = ref.watch(collectionStateProvider)[index];
     return GestureDetector(
       onTap: () {
         ref.read(indexProvider.notifier).state = index;
-        context.push('/collection');
-        // context.push('/collection/$index', extra: index);
+        context.push(ROUTES.collectionDetails);
       },
       child: Card.outlined(
         color: Color(item.color),
@@ -31,7 +30,7 @@ class CollectionTile extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                item.name ?? 'NONE',
+                "${item.name ?? 'NONE'} - ${item.isHidden ?? 'NONE'}",
                 style: Theme.of(context).textTheme.headlineSmall,
               ),
             ],

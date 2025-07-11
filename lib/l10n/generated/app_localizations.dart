@@ -124,6 +124,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Edit collection name'**
   String get edit_collection_name_hint;
+
+  /// Message shown when there are no Pokémon in a collection
+  ///
+  /// In en, this message translates to:
+  /// **'No Pokémon in this collection'**
+  String get no_pokemon_in_collection;
+
+  /// Edit action label
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get edit;
+
+  /// Delete action label
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get delete;
+
+  /// Label for unknown Pokémon
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown Pokémon'**
+  String get unknown_pokemon;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -18,17 +18,17 @@ class _CreateCollectionScreenState
   TextEditingController nameController = TextEditingController();
 
   saveCollection() async {
-    ref
-        .read(collectionStateProvider.notifier)
-        .addCollection(
-          Collection(
-            name: nameController.text,
-            color: availableColors[selectedColorIndex].toARGB32(),
-          ),
-        );
-    if (mounted) {
-      context.pop();
-    }
+    // ref
+    //     .read(collectionStateProvider.notifier)
+    //     .addCollection(
+    //       Collection(
+    //         name: nameController.text,
+    //         color: availableColors[selectedColorIndex].toARGB32(),
+    //       ),
+    //     );
+    // if (mounted) {
+    //   context.pop();
+    // }
   }
 
   // Lista di 10 colori disponibili

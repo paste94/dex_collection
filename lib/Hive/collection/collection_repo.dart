@@ -29,42 +29,60 @@ class CollectionRepo {
     return _box.values.toList();
   }
 
+  void hideColletionById(String id) {
+    logger.i(
+      '[collection_repo.dart - hideColletionById] Hiding collection with id: $id',
+    );
+    Collection? item = _box.get(id);
+    if (item != null) {
+      item.isHidden = true;
+      item.save();
+      logger.i(
+        '[collection_repo.dart - hideColletionById] Collection hidden: $item',
+      );
+    } else {
+      logger.w(
+        '[collection_repo.dart - hideColletionById] No collection found with id: $id',
+      );
+    }
+  }
+
   Future<void> clearCollection() async {
     await _box.clear();
   }
 
-  Future<void> updateCollection({
-    required id,
-    String? name,
-    int? color,
-    List<PokemonCollection>? pokemons,
-  }) async {
-    logger.i(
-      '[collection_repo.dart - updateCollection] Updating collection with id: $id',
-    );
-    _box = Hive.box(COLLECTION_BOX);
-    Collection? item = _box.get(id);
+  // Future<void> updateCollection({
+  //   required id,
+  //   String? name,
+  //   int? color,
+  //   List<PokemonCollection>? pokemons,
+  // }) async {
+  //   logger.i(
+  //     '[collection_repo.dart - updateCollection] Updating collection with id: $id',
+  //   );
+  //   _box = Hive.box(COLLECTION_BOX);
+  //   Collection? item = _box.get(id);
 
-    if (item == null) {
-      logger.w(
-        '[collection_repo.dart - updateCollection] No collection found with id: $id',
-      );
-      return;
-    }
-    logger.i(
-      '[collection_repo.dart - updateCollection] Found collection: $item',
-    );
-    item.name = name ?? item.name;
-    item.color = color ?? item.color;
-    item.pokemons = pokemons ?? item.pokemons;
+  //   if (item == null) {
+  //     logger.w(
+  //       '[collection_repo.dart - updateCollection] No collection found with id: $id',
+  //     );
+  //     return;
+  //   }
+  //   logger.i(
+  //     '[collection_repo.dart - updateCollection] Found collection: $item',
+  //   );
+  //   item.name = name ?? item.name;
+  //   item.color = color ?? item.color;
+  //   item.pokemons = pokemons ?? item.pokemons;
 
-    await item.save();
+  //   await item.save();
 
-    logger.i('''[collection_repo.dart - updateCollection] Updated collection: {
-        id: ${item.id},
-        name: ${item.name},
-        color: ${item.color},
-        pokemons: ${item.pokemons?.map((e) => e.id).toList()},
-      }''');
-  }
+  //   logger.i('''[collection_repo.dart - updateCollection] Updated collection: {
+  //       id: ${item.id},
+  //       name: ${item.name},
+  //       color: ${item.color},
+  //       pokemons: ${item.pokemons?.map((e) => e.id).toList()},
+  //     }''');
+  // }
 }
