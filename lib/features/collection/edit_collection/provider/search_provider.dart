@@ -28,38 +28,6 @@ class FilteredPokemonList extends _$FilteredPokemonList {
           final matches = uiModel.item.name.toLowerCase().contains(term);
           return uiModel.copyWith(isVisible: matches);
         }).toList();
-    // if (query.isEmpty) {
-    //   state =
-    //       ref
-    //           .read(dbPokemonProvider)
-    //           .map(
-    //             (e) => UISearchModel<Pokemon>(
-    //               item: e,
-    //               isSelected: false,
-    //               isVisible: true,
-    //             ),
-    //           )
-    //           .toList();
-    //   return;
-    // }
-
-    // final filtered =
-    //     ref
-    //         .read(dbPokemonProvider)
-    //         .where(
-    //           (pokemon) =>
-    //               !pokemon.name.toLowerCase().contains(query.toLowerCase()),
-    //         )
-    //         .map(
-    //           (e) => UISearchModel<Pokemon>(
-    //             item: e,
-    //             isSelected: false,
-    //             isVisible: true,
-    //           ),
-    //         )
-    //         .toList();
-
-    // state = filtered;
   }
 
   void toggleSelection(int id) {

@@ -12,10 +12,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get title => 'Dex Collection';
 
   @override
-  String get homeTitle => 'Home';
+  String get home_title => 'Home';
 
   @override
-  String get createCollectionTitle => 'Create Collection';
+  String get create_collection => 'Create Collection';
 
   @override
   String get pokemon_search_hint => 'Search by name or form';
@@ -34,4 +34,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get unknown_pokemon => 'Unknown Pokémon';
+
+  @override
+  String get edit_collection => 'Edit collection';
 }

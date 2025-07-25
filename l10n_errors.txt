@@ -1,6 +1,6 @@
 {
   "it": [
     "title",
-    "homeTitle"
+    "home_title"
   ]
 }

@@ -13,8 +13,8 @@ class LstPokemonToAdd extends ConsumerWidget {
     required this.toggle,
   });
 
-  String formatName(String name) {
-    return name
+  String formatName(Pokemon pokemon) {
+    final formattedName = pokemon.name
         .replaceAll('-', ' ')
         .replaceAll('alola', 'Alola')
         .replaceAll('galar', 'Galar')
@@ -24,6 +24,7 @@ class LstPokemonToAdd extends ConsumerWidget {
           RegExp(r'(^\w|\s\w)'),
           (match) => match.group(0)!.toUpperCase(),
         );
+    return '# ${pokemon.id} - $formattedName';
   }
 
   @override
@@ -34,11 +35,12 @@ class LstPokemonToAdd extends ConsumerWidget {
         final pokemon = visibleItems[index];
         return ListTile(
           leading: CachedNetworkImage(
-            imageUrl: pokemon.item.img,
+            imageUrl: pokemon.item.img ?? '',
             placeholder: (context, url) => CircularProgressIndicator(),
             errorWidget: (context, url, error) => Icon(Icons.error),
           ),
-          title: Text(formatName(pokemon.item.name)),
+          title: Text(formatName(pokemon.item)),
+          subtitle: Text(pokemon.item.generation ?? ''),
           trailing:
               pokemon.isSelected
                   ? Icon(Icons.check_circle, color: Colors.green)

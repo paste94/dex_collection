@@ -1,9 +1,6 @@
-import 'package:dex_collection/Hive/collection/provider/collection_provider.dart';
 import 'package:dex_collection/l10n/generated/app_localizations.dart';
-import 'package:dex_collection/Hive/collection/model/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 
 class CreateCollectionScreen extends ConsumerStatefulWidget {
   const CreateCollectionScreen({super.key});
@@ -51,7 +48,7 @@ class _CreateCollectionScreenState
     return Scaffold(
       appBar: AppBar(
         backgroundColor: availableColors[selectedColorIndex],
-        title: Text(AppLocalizations.of(context)!.createCollectionTitle),
+        title: Text(AppLocalizations.of(context)!.create_collection),
         actions: [
           IconButton(onPressed: saveCollection, icon: Icon(Icons.check)),
         ],

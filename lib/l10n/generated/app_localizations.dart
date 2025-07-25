@@ -105,13 +105,13 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Home'**
-  String get homeTitle;
+  String get home_title;
 
   /// Create collection screen title
   ///
   /// In en, this message translates to:
   /// **'Create Collection'**
-  String get createCollectionTitle;
+  String get create_collection;
 
   /// Search hint for Pokémon
   ///
@@ -148,6 +148,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Unknown Pokémon'**
   String get unknown_pokemon;
+
+  /// Label for edit collection title screen
+  ///
+  /// In en, this message translates to:
+  /// **'Edit collection'**
+  String get edit_collection;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

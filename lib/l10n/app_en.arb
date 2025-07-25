@@ -6,14 +6,14 @@
     "type": "text",
     "placeholders": {}
   },
-  "homeTitle": "Home",
-  "@homeTitle": {
+  "home_title": "Home",
+  "@home_title": {
     "description": "Title for home screen",
     "type": "text",
     "placeholders": {}
   },
-  "createCollectionTitle": "Create Collection",
-  "@createCollectionTitle": {
+  "create_collection": "Create Collection",
+  "@create_collection": {
     "description": "Create collection screen title",
     "type": "text",
     "placeholders": {}
@@ -51,6 +51,12 @@
   "unknown_pokemon": "Unknown Pokémon",
   "@unknown_pokemon": {
     "description": "Label for unknown Pokémon",
+    "type": "text",
+    "placeholders": {}
+  },
+  "edit_collection": "Edit collection",
+  "@edit_collection": {
+    "description": "Label for edit collection title screen",
     "type": "text",
     "placeholders": {}
   }
