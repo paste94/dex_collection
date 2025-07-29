@@ -1,4 +1,5 @@
-import 'package:dex_collection/main.dart';
+import 'package:dex_collection/Hive/collection/model/collection.dart';
+import 'package:dex_collection/Hive/collection/provider/collection_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final indexProvider = StateProvider<int?>((ref) {

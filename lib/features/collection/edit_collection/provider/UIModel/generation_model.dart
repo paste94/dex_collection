@@ -2,7 +2,7 @@ class Generation {
   final String name;
   bool isSelected;
 
-  Generation(this.name, this.isSelected);
+  Generation({required this.name, required this.isSelected});
 
   @override
   bool operator ==(Object other) {
@@ -13,4 +13,11 @@ class Generation {
 
   @override
   int get hashCode => name.hashCode ^ isSelected.hashCode;
+
+  Generation copyWith({String? name, bool? isSelected}) {
+    return Generation(
+      name: name ?? this.name,
+      isSelected: isSelected ?? this.isSelected,
+    );
+  }
 }

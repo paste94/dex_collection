@@ -1,16 +1,17 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dex_collection/Hive/pokemon/model/pokemon.dart';
 import 'package:dex_collection/features/collection/edit_collection/provider/UIModel/ui_search_model.dart';
+import 'package:dex_collection/features/collection/edit_collection/provider/pokemon_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class LstPokemonToAdd extends ConsumerWidget {
   final List<UISearchModel<Pokemon>> visibleItems;
-  final Function(UISearchModel<Pokemon>) toggle;
+  // final Function(UISearchModel<Pokemon>) toggle;
   const LstPokemonToAdd({
     super.key,
     required this.visibleItems,
-    required this.toggle,
+    // required this.toggle,
   });
 
   String formatName(Pokemon pokemon) {
@@ -45,7 +46,7 @@ class LstPokemonToAdd extends ConsumerWidget {
               pokemon.isSelected
                   ? Icon(Icons.check_circle, color: Colors.green)
                   : Icon(Icons.circle_outlined),
-          onTap: () => toggle(pokemon),
+          onTap: () => ref.read(pokemonListProvider.notifier).toggle(pokemon),
         );
       },
     );
