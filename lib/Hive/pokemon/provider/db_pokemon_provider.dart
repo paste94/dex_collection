@@ -1,5 +1,4 @@
 import 'package:dex_collection/Hive/pokemon/pokemon_repo.dart';
-import 'package:dex_collection/main.dart';
 import 'package:dex_collection/Hive/pokemon/model/pokemon.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

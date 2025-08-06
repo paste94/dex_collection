@@ -21,7 +21,7 @@ class RiverpodLogger extends ProviderObserver {
     Object? value,
     ProviderContainer container,
   ) {
-    print('Provider ${provider} was initialized with $value');
+    logger.d('Provider ${provider.name ?? provider} was initialized');
   }
 
   @override
@@ -29,6 +29,6 @@ class RiverpodLogger extends ProviderObserver {
     ProviderBase<Object?> provider,
     ProviderContainer container,
   ) {
-    print('Provider ${provider} was disposed');
+    logger.d('Provider ${provider.name} was disposed');
   }
 }

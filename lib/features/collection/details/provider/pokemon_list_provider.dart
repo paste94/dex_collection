@@ -7,9 +7,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // part 'pokemon_list_provider.g.dart';
 
-final pokemonCollectionProvider = StateProvider<List<PokemonCollection>>((
-  Ref ref,
-) {
+final pokemonCollectionProvider = StateProvider.autoDispose<
+  List<PokemonCollection>
+>((Ref ref) {
   final index = ref.watch(indexProvider);
   logger.d(
     '[pokemon_list_provider.dart] Fetching PokemonCollection for index: $index',

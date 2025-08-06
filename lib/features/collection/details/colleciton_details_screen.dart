@@ -5,7 +5,6 @@ import 'package:dex_collection/features/collection/details/provider/index_provid
 import 'package:dex_collection/features/collection/details/widgets/list_item.dart';
 import 'package:dex_collection/features/error_screen/error_screen.dart';
 import 'package:dex_collection/l10n/generated/app_localizations.dart';
-import 'package:dex_collection/main.dart';
 import 'package:dex_collection/router/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

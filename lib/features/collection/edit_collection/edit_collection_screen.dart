@@ -1,8 +1,9 @@
 import 'package:dex_collection/Hive/collection/provider/collection_provider.dart';
-import 'package:dex_collection/Hive/pokemon_collection/model/pokemon_collection.dart';
 import 'package:dex_collection/features/collection/details/provider/index_provider.dart';
-import 'package:dex_collection/features/collection/edit_collection/provider/filter_variables.dart';
+import 'package:dex_collection/features/collection/edit_collection/provider/generation_filter_provider.dart';
+import 'package:dex_collection/features/collection/edit_collection/provider/name_filter_provider.dart';
 import 'package:dex_collection/features/collection/edit_collection/provider/pokemon_list.dart';
+import 'package:dex_collection/features/collection/edit_collection/provider/region_filter_provider.dart';
 import 'package:dex_collection/features/collection/edit_collection/provider/selected_collection.dart';
 import 'package:dex_collection/features/collection/edit_collection/widgets/btn_color_picker.dart';
 import 'package:dex_collection/features/collection/edit_collection/widgets/chk_select_all.dart';
@@ -11,7 +12,6 @@ import 'package:dex_collection/features/collection/edit_collection/widgets/lst_p
 import 'package:dex_collection/features/collection/edit_collection/widgets/txt_collection_name.dart';
 import 'package:dex_collection/features/collection/edit_collection/widgets/txt_search_bar.dart';
 import 'package:dex_collection/l10n/generated/app_localizations.dart';
-import 'package:dex_collection/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -48,11 +48,17 @@ class _EditCollectionScreenState extends ConsumerState<EditCollectionScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final visibleItems = ref.watch(visiblePokemonListProvider);
+    // final visibleItems = ref.watch(visiblePokemonListProvider);
+    final visibleItems =
+        ref
+            .watch(pokemonListProvider)
+            .where((pokemon) => pokemon.isVisible)
+            .toList();
     final index = ref.read(indexProvider);
     final collection = ref.watch(selectedCollectionProvider);
     // DEVE RIMANERE QUA sennò il filtro non funziona
-    ref.watch(generationsProvider);
+    ref.watch(generationFilterProvider);
+    ref.watch(regionFilterProvider);
 
     final isAllSelected = visibleItems.every((element) => element.isSelected);
     final howManySelected =

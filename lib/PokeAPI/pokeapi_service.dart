@@ -27,6 +27,21 @@ class PokeapiService {
     return pokemonList;
   }
 
+  static bool checkIsValidVariety(variety) {
+    bool isValid = false;
+    if (variety['is_default']) {
+      isValid = true;
+    } else if (REGIONAL_FORMS.any(
+          (region) => variety['pokemon']['name'].contains(region),
+        ) &&
+        !NON_VALID_REGIONAL_FORM.any(
+          (region) => variety['pokemon']['name'].contains(region),
+        )) {
+      isValid = true;
+    }
+    return isValid;
+  }
+
   static Future<List<Pokemon>> getPokemonsFromSpecie(String url) async {
     final List<Pokemon> pokemonList = [];
     final specieResponse = await PokeapiRepository.getUrl(url);
@@ -35,19 +50,22 @@ class PokeapiService {
     final varietiesList = pokemonSpecie['varieties'] as List;
 
     for (final variety in varietiesList) {
-      final pokemonResponse = await PokeapiRepository.getUrl(
-        variety['pokemon']['url'],
-      );
-      final pokemon = json.decode(pokemonResponse.body);
+      bool isValid = checkIsValidVariety(variety);
+      if (isValid) {
+        final pokemonResponse = await PokeapiRepository.getUrl(
+          variety['pokemon']['url'],
+        );
+        final pokemon = json.decode(pokemonResponse.body);
 
-      pokemonList.add(
-        Pokemon(
-          id: pokemon['id'],
-          name: pokemon['name'],
-          img: pokemon['sprites']['front_default'],
-          generation: pokemonSpecie['generation']['name'],
-        ),
-      );
+        pokemonList.add(
+          Pokemon(
+            id: pokemon['id'],
+            name: pokemon['name'],
+            img: pokemon['sprites']['front_default'],
+            generation: pokemonSpecie['generation']['name'],
+          ),
+        );
+      }
     }
 
     return pokemonList;

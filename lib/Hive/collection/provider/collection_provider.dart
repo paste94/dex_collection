@@ -1,9 +1,5 @@
 import 'package:dex_collection/Hive/collection/collection_repo.dart';
-import 'package:dex_collection/Hive/pokemon/model/pokemon.dart';
-import 'package:dex_collection/Hive/pokemon_collection/model/pokemon_collection.dart';
-import 'package:dex_collection/main.dart';
 import 'package:dex_collection/Hive/collection/model/collection.dart';
-import 'package:flutter/widgets.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'collection_provider.g.dart';

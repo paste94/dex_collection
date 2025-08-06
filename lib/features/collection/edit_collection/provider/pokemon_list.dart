@@ -5,8 +5,12 @@ import 'package:dex_collection/Hive/pokemon/provider/db_pokemon_provider.dart';
 import 'package:dex_collection/Hive/pokemon_collection/model/pokemon_collection.dart';
 import 'package:dex_collection/features/collection/details/provider/index_provider.dart';
 import 'package:dex_collection/features/collection/edit_collection/provider/UIModel/generation_model.dart';
+import 'package:dex_collection/features/collection/edit_collection/provider/UIModel/region_model.dart';
 import 'package:dex_collection/features/collection/edit_collection/provider/UIModel/ui_search_model.dart';
-import 'package:dex_collection/features/collection/edit_collection/provider/filter_variables.dart';
+import 'package:dex_collection/features/collection/edit_collection/provider/generation_filter_provider.dart';
+import 'package:dex_collection/features/collection/edit_collection/provider/name_filter_provider.dart';
+import 'package:dex_collection/features/collection/edit_collection/provider/region_filter_provider.dart';
+import 'package:dex_collection/main.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'pokemon_list.g.dart';
@@ -36,23 +40,44 @@ class PokemonList extends _$PokemonList {
 
   void filter() {
     String name = ref.read(nameFilterProvider);
-    List<Generation> generations = ref.read(generationsProvider);
+    List<Generation> generations = ref.read(generationFilterProvider);
+    List<Region> regions = ref.read(regionFilterProvider);
 
     state =
-        state
-            .map((pokemon) {
-              bool nameMatch = pokemon.item.name.toLowerCase().contains(
-                name.toLowerCase(),
-              );
-              bool genMatch =
-                  generations
+        state.map((pokemon) {
+          bool nameMatch = pokemon.item.name.toLowerCase().contains(
+            name.toLowerCase(),
+          );
+          bool genMatch =
+              generations.every((item) => item.isSelected == false)
+                  ? true
+                  : generations
                       .where((gen) => pokemon.item.generation == gen.name)
                       .first
                       .isSelected;
-              return pokemon.copyWith(isVisible: nameMatch && genMatch);
-            })
-            // .where((pokemon) => pokemon.isVisible)
-            .toList();
+          bool regionMatch =
+              regions.every((item) => item.isSelected == false)
+                  ? true
+                  : regions.where((r) => r.isSelected).any(
+                    (Region r) {
+                      if (r.name == 'None') {
+                        if (pokemon.item.regions == null) {
+                          return true;
+                        } else if (pokemon.item.regions!.isEmpty) {
+                          return true;
+                        } else {
+                          return false;
+                        }
+                      } else {
+                        return pokemon.item.regions?.contains(r.name) ?? false;
+                      }
+                    },
+                    // pokemon.item.regions?.contains(r.name) ?? false,
+                  );
+          return pokemon.copyWith(
+            isVisible: nameMatch && genMatch && regionMatch,
+          );
+        }).toList();
   }
 
   void toggle(UISearchModel<Pokemon> pokemon) {
@@ -79,10 +104,10 @@ class PokemonList extends _$PokemonList {
   }
 }
 
-final visiblePokemonListProvider = Provider<List<UISearchModel<Pokemon>>>(
-  (ref) =>
-      ref
-          .watch(pokemonListProvider)
-          .where((pokemon) => pokemon.isVisible)
-          .toList(),
-);
+// final visiblePokemonListProvider =
+//     Provider.autoDispose<List<UISearchModel<Pokemon>>>((ref) {
+//       return ref
+//           .watch(pokemonListProvider)
+//           .where((pokemon) => pokemon.isVisible)
+//           .toList();
+//     });

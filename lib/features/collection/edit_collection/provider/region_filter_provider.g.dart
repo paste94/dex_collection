@@ -1,25 +1,25 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'filter_variables.dart';
+part of 'region_filter_provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$generationsHash() => r'6ac8d63cb95df5efcf9eda527f99e3c71e36c4ba';
+String _$regionFilterHash() => r'adfcbd70207419d6cf6c225b5a7e50e5c85e9f9c';
 
-/// See also [Generations].
-@ProviderFor(Generations)
-final generationsProvider =
-    AutoDisposeNotifierProvider<Generations, List<Generation>>.internal(
-  Generations.new,
-  name: r'generationsProvider',
+/// See also [RegionFilter].
+@ProviderFor(RegionFilter)
+final regionFilterProvider =
+    AutoDisposeNotifierProvider<RegionFilter, List<Region>>.internal(
+  RegionFilter.new,
+  name: r'regionFilterProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$generationsHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$regionFilterHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$Generations = AutoDisposeNotifier<List<Generation>>;
+typedef _$RegionFilter = AutoDisposeNotifier<List<Region>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

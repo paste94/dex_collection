@@ -1,14 +1,11 @@
 import 'package:dex_collection/features/collection/edit_collection/provider/UIModel/generation_model.dart';
 import 'package:dex_collection/features/collection/edit_collection/provider/pokemon_list.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'filter_variables.g.dart';
-
-final nameFilterProvider = StateProvider<String>((ref) => '');
+part 'generation_filter_provider.g.dart';
 
 @riverpod
-class Generations extends _$Generations {
+class GenerationFilter extends _$GenerationFilter {
   @override
   List<Generation> build() {
     return ref
@@ -16,7 +13,7 @@ class Generations extends _$Generations {
         .map(
           (element) => Generation(
             name: element.item.generation ?? 'NULL',
-            isSelected: true,
+            isSelected: false,
           ),
         )
         .toSet()
@@ -30,12 +27,3 @@ class Generations extends _$Generations {
         }).toList();
   }
 }
-
-// final generationsProvider = StateProvider<List<Generation>>(
-//   (ref) =>
-//       ref
-//           .read(pokemonListProvider)
-//           .map((element) => Generation(element.item.generation ?? 'NULL', true))
-//           .toSet()
-//           .toList(),
-// );
