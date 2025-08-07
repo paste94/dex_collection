@@ -1,4 +1,4 @@
-import 'package:dex_collection/Hive/pokemon_collection/model/pokemon_collection.dart';
+import 'package:dex_collection/Hive/collected_pokemon/model/collected_pokemon.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:uuid/uuid.dart';
 
@@ -16,7 +16,7 @@ class Collection extends HiveObject {
   int color;
 
   @HiveField(3)
-  List<PokemonCollection>? pokemons;
+  List<CollectedPokemon>? pokemons;
 
   @HiveField(4)
   bool? isHidden;
@@ -42,7 +42,7 @@ class Collection extends HiveObject {
   Collection copyWith({
     String? name,
     int? color,
-    List<PokemonCollection>? pokemons,
+    List<CollectedPokemon>? pokemons,
     bool? isHidden,
   }) {
     return Collection._(

@@ -1,3 +1,4 @@
+import 'package:dex_collection/Hive/collected_pokemon/model/collected_pokemon.dart';
 import 'package:dex_collection/Hive/collection/provider/collection_provider.dart';
 import 'package:dex_collection/Hive/collection/model/collection.dart';
 import 'package:dex_collection/Hive/pokemon/provider/db_pokemon_provider.dart';
@@ -22,11 +23,12 @@ class _CollectionDetailsScreenState
     extends ConsumerState<CollectionDetailsScreen> {
   @override
   Widget build(BuildContext context) {
-    final index = ref.watch(indexProvider);
-    if (index == null) {
+    final collectionIndex = ref.watch(collectionIndexProvider);
+    if (collectionIndex == null) {
       return ErrorScreen();
     }
-    final Collection collection = ref.watch(collectionStateProvider)[index];
+    final Collection collection =
+        ref.watch(collectionStateProvider)[collectionIndex];
     final pokemonCollection =
         collection.pokemons?.map((e) {
           e.pokemon = ref
@@ -70,7 +72,7 @@ class _CollectionDetailsScreenState
       onPopInvokedWithResult: (context, result) {
         Future.delayed(
           Duration(milliseconds: 100),
-          () => ref.read(indexProvider.notifier).state = null,
+          () => ref.read(collectionIndexProvider.notifier).state = null,
         );
       },
       // canPop: false,
@@ -112,9 +114,14 @@ class _CollectionDetailsScreenState
             Expanded(
               child:
                   pokemonCollection.isNotEmpty
-                      ? ListView.builder(
-                        itemCount: pokemonCollection.length,
-                        itemBuilder: listItemBuilder,
+                      ? GridView.count(
+                        crossAxisCount: 2,
+                        children:
+                            pokemonCollection.map((
+                              CollectedPokemon collectedPokemon,
+                            ) {
+                              return ListItem(pokemon: collectedPokemon);
+                            }).toList(),
                       )
                       : Center(
                         child: Text(
@@ -123,6 +130,18 @@ class _CollectionDetailsScreenState
                           )!.no_pokemon_in_collection,
                         ),
                       ),
+              // pokemonCollection.isNotEmpty
+              //     ? ListView.builder(
+              //       itemCount: pokemonCollection.length,
+              //       itemBuilder: listItemBuilder,
+              //     )
+              //     : Center(
+              //       child: Text(
+              //         AppLocalizations.of(
+              //           context,
+              //         )!.no_pokemon_in_collection,
+              //       ),
+              //     ),
             ),
           ],
         ),

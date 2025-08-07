@@ -19,7 +19,7 @@ class CollectionAdapter extends TypeAdapter<Collection> {
     return Collection(
       name: fields[1] as String?,
       color: fields[2] as int,
-      pokemons: (fields[3] as List?)?.cast<PokemonCollection>(),
+      pokemons: (fields[3] as List?)?.cast<CollectedPokemon>(),
     )
       ..id = fields[0] as String
       ..isHidden = fields[4] as bool?;

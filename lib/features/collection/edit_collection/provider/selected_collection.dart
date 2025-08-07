@@ -4,7 +4,7 @@ import 'package:dex_collection/features/collection/details/provider/index_provid
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final selectedCollectionProvider = StateProvider.autoDispose<Collection>((ref) {
-  final index = ref.watch(indexProvider);
+  final index = ref.watch(collectionIndexProvider);
   return index == null
       ? Collection(name: '')
       : ref.read(collectionStateProvider)[index];

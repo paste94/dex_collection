@@ -49,4 +49,25 @@ class CollectionRepo {
   Future<void> clearCollection() async {
     await _box.clear();
   }
+
+  List<Collection> toggleCaptured(int collectionIndex, int pokemonId) {
+    final collection = _box.getAt(collectionIndex);
+
+    if (collection != null) {
+      final collected =
+          collection.pokemons?.where((p) => p.id == pokemonId).first;
+      if (collected == null) {
+        logger.w(
+          '[collection_repo.dart - toggleCaptured] No collected Pokemon found with id: $pokemonId',
+        );
+      } else {
+        collected.isCaptured = !collected.isCaptured;
+        collection.save();
+        logger.i(
+          '[collection_repo.dart - toggleCaptured] Toggled captured state for Pokemon with id: $pokemonId',
+        );
+      }
+    }
+    return _box.values.toList();
+  }
 }

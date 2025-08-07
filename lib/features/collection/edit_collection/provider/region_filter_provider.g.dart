@@ -6,7 +6,7 @@ part of 'region_filter_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$regionFilterHash() => r'adfcbd70207419d6cf6c225b5a7e50e5c85e9f9c';
+String _$regionFilterHash() => r'f04506a57d1495e362176ee054333a69648b17c1';
 
 /// See also [RegionFilter].
 @ProviderFor(RegionFilter)

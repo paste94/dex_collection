@@ -1,5 +1,5 @@
 import 'package:dex_collection/Hive/box_const.dart';
-import 'package:dex_collection/Hive/pokemon_collection/model/pokemon_collection.dart';
+import 'package:dex_collection/Hive/collected_pokemon/model/collected_pokemon.dart';
 import 'package:dex_collection/l10n/generated/app_localizations.dart';
 import 'package:dex_collection/Hive/collection/model/collection.dart';
 import 'package:dex_collection/Hive/pokemon/model/pokemon.dart';
@@ -22,7 +22,7 @@ void main() async {
     Hive.registerAdapter(PokemonAdapter());
   }
   if (!Hive.isAdapterRegistered(2)) {
-    Hive.registerAdapter(PokemonCollectionAdapter());
+    Hive.registerAdapter(CollectedPokemonAdapter());
   }
 
   await Hive.openBox<Collection>(COLLECTION_BOX);

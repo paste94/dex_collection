@@ -54,7 +54,7 @@ class _EditCollectionScreenState extends ConsumerState<EditCollectionScreen> {
             .watch(pokemonListProvider)
             .where((pokemon) => pokemon.isVisible)
             .toList();
-    final index = ref.read(indexProvider);
+    final index = ref.read(collectionIndexProvider);
     final collection = ref.watch(selectedCollectionProvider);
     // DEVE RIMANERE QUA sennò il filtro non funziona
     ref.watch(generationFilterProvider);

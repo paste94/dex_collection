@@ -1,17 +1,17 @@
 import 'package:dex_collection/Hive/pokemon/model/pokemon.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-part 'pokemon_collection.g.dart';
+part 'collected_pokemon.g.dart';
 
 @HiveType(typeId: 2)
-class PokemonCollection {
+class CollectedPokemon {
   @HiveField(0)
   final int id;
 
   @HiveField(1)
-  final bool isCaptured = false;
+  bool isCaptured;
 
   Pokemon? pokemon;
 
-  PokemonCollection({required this.id});
+  CollectedPokemon({required this.id, this.isCaptured = false});
 }

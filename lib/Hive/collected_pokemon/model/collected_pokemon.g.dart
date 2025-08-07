@@ -1,28 +1,28 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'pokemon_collection.dart';
+part of 'collected_pokemon.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class PokemonCollectionAdapter extends TypeAdapter<PokemonCollection> {
+class CollectedPokemonAdapter extends TypeAdapter<CollectedPokemon> {
   @override
   final int typeId = 2;
 
   @override
-  PokemonCollection read(BinaryReader reader) {
+  CollectedPokemon read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return PokemonCollection(
+    return CollectedPokemon(
       id: fields[0] as int,
     );
   }
 
   @override
-  void write(BinaryWriter writer, PokemonCollection obj) {
+  void write(BinaryWriter writer, CollectedPokemon obj) {
     writer
       ..writeByte(2)
       ..writeByte(0)
@@ -37,7 +37,7 @@ class PokemonCollectionAdapter extends TypeAdapter<PokemonCollection> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is PokemonCollectionAdapter &&
+      other is CollectedPokemonAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

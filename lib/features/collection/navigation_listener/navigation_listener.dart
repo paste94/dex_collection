@@ -17,7 +17,7 @@ class _NavigationListenerState extends ConsumerState<NavigationListener> {
   void initState() {
     super.initState();
 
-    ref.listen<int?>(indexProvider, (previous, next) {
+    ref.listen<int?>(collectionIndexProvider, (previous, next) {
       if (next != null) {
         context.go(ROUTES.collectionDetails); // vai a pagina B
       } else {

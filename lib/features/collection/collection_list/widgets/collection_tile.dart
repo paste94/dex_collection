@@ -14,7 +14,7 @@ class CollectionTile extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return GestureDetector(
       onTap: () {
-        ref.read(indexProvider.notifier).state = index;
+        ref.read(collectionIndexProvider.notifier).state = index;
         context.push(ROUTES.collectionDetails);
       },
       child: Card.outlined(

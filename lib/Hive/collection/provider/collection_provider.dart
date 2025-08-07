@@ -41,4 +41,8 @@ class CollectionState extends _$CollectionState {
         .forEach((element) => repo.removeCollection(element.id));
     state = repo.getCollections();
   }
+
+  void togglePokemon(int collectionIndex, int pokemonId) {
+    state = repo.toggleCaptured(collectionIndex, pokemonId);
+  }
 }

@@ -1,6 +1,6 @@
 import 'package:dex_collection/Hive/collection/provider/collection_provider.dart';
 import 'package:dex_collection/Hive/pokemon/provider/db_pokemon_provider.dart';
-import 'package:dex_collection/Hive/pokemon_collection/model/pokemon_collection.dart';
+import 'package:dex_collection/Hive/collected_pokemon/model/collected_pokemon.dart';
 import 'package:dex_collection/features/collection/details/provider/index_provider.dart';
 import 'package:dex_collection/main.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,9 +8,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 // part 'pokemon_list_provider.g.dart';
 
 final pokemonCollectionProvider = StateProvider.autoDispose<
-  List<PokemonCollection>
+  List<CollectedPokemon>
 >((Ref ref) {
-  final index = ref.watch(indexProvider);
+  final index = ref.watch(collectionIndexProvider);
   logger.d(
     '[pokemon_list_provider.dart] Fetching PokemonCollection for index: $index',
   );

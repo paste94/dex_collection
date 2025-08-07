@@ -6,7 +6,7 @@ part of 'generation_filter_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$generationFilterHash() => r'8be1cfc00693c1ba8f58f31d7f30c850cda4ac93';
+String _$generationFilterHash() => r'a292602e21c84cf8a7fb68331ee041d12dc45c78';
 
 /// See also [GenerationFilter].
 @ProviderFor(GenerationFilter)

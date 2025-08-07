@@ -2,7 +2,7 @@ import 'package:dex_collection/Hive/collection/model/collection.dart';
 import 'package:dex_collection/Hive/collection/provider/collection_provider.dart';
 import 'package:dex_collection/Hive/pokemon/model/pokemon.dart';
 import 'package:dex_collection/Hive/pokemon/provider/db_pokemon_provider.dart';
-import 'package:dex_collection/Hive/pokemon_collection/model/pokemon_collection.dart';
+import 'package:dex_collection/Hive/collected_pokemon/model/collected_pokemon.dart';
 import 'package:dex_collection/features/collection/details/provider/index_provider.dart';
 import 'package:dex_collection/features/collection/edit_collection/provider/UIModel/generation_model.dart';
 import 'package:dex_collection/features/collection/edit_collection/provider/UIModel/region_model.dart';
@@ -19,7 +19,7 @@ part 'pokemon_list.g.dart';
 class PokemonList extends _$PokemonList {
   @override
   List<UISearchModel<Pokemon>> build() {
-    int? index = ref.read(indexProvider);
+    int? index = ref.read(collectionIndexProvider);
     Collection collection =
         index == null
             ? Collection(name: '')
@@ -96,10 +96,10 @@ class PokemonList extends _$PokemonList {
         }).toList();
   }
 
-  List<PokemonCollection> getAlllSelected() {
+  List<CollectedPokemon> getAlllSelected() {
     return state
         .where((item) => item.isSelected)
-        .map((e) => PokemonCollection(id: e.item.id))
+        .map((e) => CollectedPokemon(id: e.item.id))
         .toList();
   }
 }
