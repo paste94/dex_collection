@@ -99,7 +99,7 @@ class PokemonList extends _$PokemonList {
   List<CollectedPokemon> getAlllSelected() {
     return state
         .where((item) => item.isSelected)
-        .map((e) => CollectedPokemon(id: e.item.id))
+        .map((e) => CollectedPokemon(id: e.item.id, isCaptured: false))
         .toList();
   }
 }

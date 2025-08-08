@@ -18,6 +18,7 @@ class CollectedPokemonAdapter extends TypeAdapter<CollectedPokemon> {
     };
     return CollectedPokemon(
       id: fields[0] as int,
+      isCaptured: fields[1] as bool,
     );
   }
 

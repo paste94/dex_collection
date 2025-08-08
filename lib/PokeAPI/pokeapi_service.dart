@@ -4,6 +4,7 @@ import 'package:dex_collection/Hive/pokemon/model/pokemon.dart';
 import 'package:dex_collection/config/config.dart';
 // ignore: unused_import
 import 'package:dex_collection/main.dart';
+import 'package:flutter/material.dart';
 
 class PokeapiService {
   static Future<List<Pokemon>> getAllPokemons({
@@ -63,6 +64,8 @@ class PokeapiService {
             name: pokemon['name'],
             img: pokemon['sprites']['front_default'],
             generation: pokemonSpecie['generation']['name'],
+            color:
+                (POKEAPI_COLORS[pokemon['color']] ?? Colors.white).toARGB32(),
           ),
         );
       }
@@ -71,11 +74,11 @@ class PokeapiService {
     return pokemonList;
   }
 
-  static Future<Pokemon> getPokemonForm(String url) async {
-    final response = await PokeapiRepository.getUrl(url);
-    final data = json.decode(response.body);
-    logger.i('Fetched form: $data');
+  // static Future<Pokemon> getPokemonForm(String url) async {
+  //   final response = await PokeapiRepository.getUrl(url);
+  //   final data = json.decode(response.body);
+  //   logger.i('Fetched form: $data');
 
-    return Pokemon.fromJson(data);
-  }
+  //   return Pokemon.fromJson(data);
+  // }
 }

@@ -13,5 +13,9 @@ class CollectedPokemon {
 
   Pokemon? pokemon;
 
-  CollectedPokemon({required this.id, this.isCaptured = false});
+  CollectedPokemon({required this.id, required this.isCaptured});
+
+  @override
+  String toString() =>
+      'CollectedPokemon - id: $id, name: ${pokemon?.name}, isCaptured: $isCaptured';
 }

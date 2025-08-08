@@ -62,7 +62,11 @@ class CollectionRepo {
         );
       } else {
         collected.isCaptured = !collected.isCaptured;
-        collection.save();
+        logger.i(
+          '[collection_repo.dart - toggleCaptured] collection: ${collection}',
+        );
+        _box.putAt(collectionIndex, collection);
+        // collection.save();
         logger.i(
           '[collection_repo.dart - toggleCaptured] Toggled captured state for Pokemon with id: $pokemonId',
         );

@@ -37,7 +37,7 @@ class Collection extends HiveObject {
   });
 
   @override
-  String toString() => 'Collection - name: $name';
+  String toString() => 'Collection - id: $id, name: $name, pokemons: $pokemons';
 
   Collection copyWith({
     String? name,

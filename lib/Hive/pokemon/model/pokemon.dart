@@ -19,15 +19,23 @@ class Pokemon {
   @HiveField(4)
   List<String>? regions;
 
-  Pokemon({required this.id, required this.name, this.img, this.generation})
-    : regions = getRegionsFromName(name);
+  @HiveField(5)
+  int? color;
 
-  Pokemon.fromJson(Map<String, dynamic> data)
-    : id = data['id'],
-      name = data['name'],
-      img = data['sprites']['front_default'],
-      generation = data['generation']['name'],
-      regions = getRegionsFromName(data['name']);
+  Pokemon({
+    required this.id,
+    required this.name,
+    this.img,
+    this.generation,
+    this.color,
+  }) : regions = getRegionsFromName(name);
+
+  // Pokemon.fromJson(Map<String, dynamic> data)
+  //   : id = data['id'],
+  //     name = data['name'],
+  //     img = data['sprites']['front_default'],
+  //     generation = data['generation']['name'],
+  //     regions = getRegionsFromName(data['name']);
 
   Map<String, dynamic> toJson() => {'id': id, 'name': name, 'img': img};
 
