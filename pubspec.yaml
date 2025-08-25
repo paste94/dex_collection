@@ -52,6 +52,7 @@ dependencies:
   cached_network_image: ^3.4.1
   flex_color_picker: ^3.7.1
   flutter_download_manager: ^0.5.5
+  flutter_svg: ^2.2.0
   
 
 dev_dependencies:
@@ -81,6 +82,9 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   generate: true
+  flutter:
+  assets:
+    - assets/icons/
 
 
   # To add assets to your application, add an assets section, like this:

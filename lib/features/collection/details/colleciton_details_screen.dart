@@ -63,10 +63,10 @@ class _CollectionDetailsScreenState
       context.pop();
     }
 
-    listItemBuilder(BuildContext context, int i) {
-      final pokemon = pokemonCollection[i];
-      return ListItem(pokemon: pokemon);
-    }
+    // listItemBuilder(BuildContext context, int i) {
+    //   final pokemon = pokemonCollection[i];
+    //   return ListItem(pokemon: pokemon);
+    // }
 
     return PopScope(
       onPopInvokedWithResult: (context, result) {

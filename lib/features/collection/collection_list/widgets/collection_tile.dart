@@ -29,12 +29,16 @@ class CollectionTile extends ConsumerWidget {
             top: 24.0,
             bottom: 24.0,
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: Row(
             children: [
-              Text(
-                "${item.name ?? 'NONE'} - ${item.isHidden ?? 'NONE'}",
-                style: Theme.of(context).textTheme.headlineSmall,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "${item.name ?? 'NONE'}",
+                    style: Theme.of(context).textTheme.headlineSmall,
+                  ),
+                ],
               ),
             ],
           ),
