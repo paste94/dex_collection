@@ -1,7 +1,7 @@
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
 import 'package:flutter/material.dart';
 
-const int POKEMON_LIMIT = 10;
+const int POKEMON_LIMIT = 2000;
 
 /// Allowed form list
 const List<String> REGIONAL_FORMS = ['alola', 'galar', 'hisui', 'paldea'];
@@ -22,3 +22,9 @@ final Map<String, Color> POKEAPI_COLORS = {
   'white': Colors.white,
   'yellow': Colors.yellow.shade300,
 };
+
+const GITHUB_USERNAME = "paste94";
+const GITHUB_REPO = "dex_collector_downloader";
+const ASSET_NAME = "pokemon_list.json";
+const URL_REPO =
+    "https://api.github.com/repos/$GITHUB_USERNAME/$GITHUB_REPO/releases/latest";

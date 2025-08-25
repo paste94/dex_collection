@@ -1,4 +1,5 @@
 import 'package:dex_collection/config/config.dart';
+import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 part 'pokemon.g.dart';
 
@@ -22,19 +23,42 @@ class Pokemon {
   @HiveField(5)
   int? color;
 
+  @HiveField(6)
+  String? shinyImg;
+
   Pokemon({
     required this.id,
     required this.name,
     this.img,
     this.generation,
     this.color,
+    this.shinyImg,
   }) : regions = getRegionsFromName(name);
+
+  factory Pokemon.fromJson(Map<String, dynamic> data) {
+    var jsonId = data['id'];
+    var jsonName = data['name'];
+    var jsonImg = data['img'];
+    var shinyImg = data['img_shiny'];
+    var generation = data['generation'];
+    var color = (POKEAPI_COLORS[data['color']] ?? Colors.white).toARGB32();
+    return Pokemon(
+      id: jsonId,
+      name: jsonName,
+      img: jsonImg,
+      generation: generation,
+      color: color,
+      shinyImg: shinyImg,
+    );
+  }
 
   // Pokemon.fromJson(Map<String, dynamic> data)
   //   : id = data['id'],
   //     name = data['name'],
-  //     img = data['sprites']['front_default'],
-  //     generation = data['generation']['name'],
+  //     img = data['img'],
+  //     shinyImg = data['img_shiny'],
+  //     generation = data['generation'],
+  //     color = (POKEAPI_COLORS[data['color']] ?? Colors.white).toARGB32(),
   //     regions = getRegionsFromName(data['name']);
 
   Map<String, dynamic> toJson() => {'id': id, 'name': name, 'img': img};

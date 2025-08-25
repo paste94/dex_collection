@@ -3,6 +3,7 @@ import 'package:dex_collection/Hive/pokemon/model/pokemon.dart';
 import 'package:dex_collection/config/config.dart';
 import 'package:dex_collection/features/collection/edit_collection/provider/UIModel/ui_search_model.dart';
 import 'package:dex_collection/features/collection/edit_collection/provider/pokemon_list.dart';
+import 'package:dex_collection/utility/common_funcions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -14,19 +15,6 @@ class LstPokemonToAdd extends ConsumerWidget {
     required this.visibleItems,
     // required this.toggle,
   });
-
-  String formatName(Pokemon pokemon) {
-    var formattedName = pokemon.name;
-
-    for (var form in REGIONAL_FORMS) {
-      formattedName = formattedName.replaceAll('-$form', ' $form');
-    }
-    formattedName = formattedName.replaceAllMapped(
-      RegExp(r'(^\w|\s\w)'),
-      (match) => match.group(0)!.toUpperCase(),
-    );
-    return '# ${pokemon.id} - $formattedName';
-  }
 
   // String formatName(Pokemon pokemon) {
   //   final formattedName = pokemon.name
@@ -54,7 +42,7 @@ class LstPokemonToAdd extends ConsumerWidget {
             placeholder: (context, url) => CircularProgressIndicator(),
             errorWidget: (context, url, error) => Icon(Icons.error),
           ),
-          title: Text(formatName(pokemon.item)),
+          title: Text('#${pokemon.item.id} - ${formatName(pokemon.item)}'),
           subtitle: Text(pokemon.item.name),
           trailing:
               pokemon.isSelected

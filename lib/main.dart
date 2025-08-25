@@ -12,9 +12,6 @@ import 'package:logger/logger.dart';
 
 void main() async {
   await Hive.initFlutter();
-  // await Hive.deleteBoxFromDisk(COLLECTION_BOX);
-  // await Hive.deleteBoxFromDisk(POKEMON_BOX);
-
   if (!Hive.isAdapterRegistered(0)) {
     Hive.registerAdapter(CollectionAdapter());
   }
@@ -39,9 +36,6 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(routerProvider);
-
-    // Downlods all pokemons from pokeAPI. Saves it in Hive
-    // fetchPokemon();
 
     return MaterialApp.router(
       title: 'Dex Collection',

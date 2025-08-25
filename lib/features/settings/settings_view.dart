@@ -13,25 +13,42 @@ class SettingsView extends ConsumerStatefulWidget {
 
 class _SettingsViewState extends ConsumerState<SettingsView>
     with TickerProviderStateMixin {
-  double _progress = 0.0;
-  bool _isDownloading = false;
+  // double _progress = 0.0;
+  // bool _isDownloading = false;
 
-  void progressCallback(double progress) =>
-      setState(() => _progress = progress);
+  // void progressCallback(double progress) =>
+  //     setState(() => _progress = progress);
 
   void downloadPokemon() async {
-    setState(() {
-      _isDownloading = true;
-      _progress = 0.0;
-    });
-    final pokemonList = await PokeapiService.getAllPokemons(
-      progressCalback: progressCallback,
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Attendere"),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: const [
+              Text(
+                "L’operazione può richiedere fino a un minuto.\n"
+                "Non uscire dall’app.",
+              ),
+              SizedBox(height: 20),
+              CircularProgressIndicator(),
+            ],
+          ),
+        );
+      },
     );
+    await ref.read(dbPokemonProvider.notifier).clearCollection();
+    final pokemonList = await PokeapiService.getAllPokemons();
     ref.read(dbPokemonProvider.notifier).addAllPokemons(pokemonList);
-    setState(() {
-      _isDownloading = false;
-      _progress = 0.0;
-    });
+    // Chiudo il dialog
+    if (mounted) {
+      Navigator.of(context).pop();
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text("Operazione completata!")));
+    }
   }
 
   @override
@@ -57,32 +74,92 @@ class _SettingsViewState extends ConsumerState<SettingsView>
                     child: Text('Database', style: sectionStyle),
                   ),
                   const SizedBox(height: 8),
+
+                  // ListTile(
+                  //   leading: const Icon(Icons.update),
+                  //   title: const Text('Aggiorna database Pokémon'),
+                  //   trailing: Row(
+                  //     children: [
+                  //       Text(
+                  //         _progress > 0
+                  //             ? '${(_progress * 100).toStringAsFixed(0)}%'
+                  //             : '',
+                  //       ),
+                  //       _progress > 0
+                  //           ? IconButton(
+                  //             onPressed: () {},
+                  //             icon: const Icon(Icons.cancel),
+                  //           )
+                  //           : const SizedBox.shrink(),
+                  //     ],
+                  //   ),
+                  //   onTap: downloadPokemon,
+                  // ),
                   ListTile(
-                    leading: const Icon(Icons.update),
-                    title: const Text('Aggiorna database Pokémon'),
-                    trailing: Text(
-                      _progress > 0
-                          ? '${(_progress * 100).toStringAsFixed(0)}%'
-                          : '',
-                    ),
+                    leading: const Icon(Icons.download),
+                    title: const Text('Scarica nuovo DB Pokémon'),
+                    // trailing: Text(
+                    //   _progress > 0
+                    //       ? '${(_progress * 100).toStringAsFixed(0)}%'
+                    //       : '',
+                    // ),
                     onTap: downloadPokemon,
                   ),
 
-                  _isDownloading
-                      ? LinearProgressIndicator(value: _progress)
-                      : const Padding(
-                        padding: EdgeInsets.only(left: 16.0),
-                        child: Divider(height: 0),
-                      ),
-
+                  // _isDownloading
+                  //     ? LinearProgressIndicator(value: _progress)
+                  //     : const Padding(
+                  //       padding: EdgeInsets.only(left: 16.0),
+                  //       child: Divider(height: 0),
+                  //     ),
                   ListTile(
                     leading: const Icon(Icons.delete),
                     title: const Text('Cancella database esistente'),
                     onTap: () {
-                      ref.read(dbPokemonProvider.notifier).clearCollection();
-                      ref
-                          .read(collectionStateProvider.notifier)
-                          .clearCollection();
+                      showDialog(
+                        context: context,
+                        builder:
+                            (context) => Dialog(
+                              child: Padding(
+                                padding: const EdgeInsets.all(16.0),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    const Text(
+                                      'Sei sicuro di voler cancellare il database esistente?',
+                                    ),
+                                    const SizedBox(height: 16),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        TextButton(
+                                          onPressed:
+                                              () => Navigator.of(context).pop(),
+                                          child: const Text('Annulla'),
+                                        ),
+                                        TextButton(
+                                          onPressed: () {
+                                            ref
+                                                .read(
+                                                  dbPokemonProvider.notifier,
+                                                )
+                                                .clearCollection();
+                                            ref
+                                                .read(
+                                                  collectionStateProvider
+                                                      .notifier,
+                                                )
+                                                .clearCollection();
+                                          },
+                                          child: const Text('Conferma'),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                      );
                       // TODO: implement delete database logic
                     },
                   ),

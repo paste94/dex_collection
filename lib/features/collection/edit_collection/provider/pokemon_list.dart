@@ -97,10 +97,33 @@ class PokemonList extends _$PokemonList {
   }
 
   List<CollectedPokemon> getAlllSelected() {
-    return state
-        .where((item) => item.isSelected)
-        .map((e) => CollectedPokemon(id: e.item.id, isCaptured: false))
-        .toList();
+    int? collectionIndex = ref.read(collectionIndexProvider);
+    if (collectionIndex == null) {
+      return state
+          .where((item) => item.isSelected)
+          .map((e) => CollectedPokemon(id: e.item.id, isCaptured: false))
+          .toList();
+    } else {
+      Collection collection =
+          ref.read(collectionStateProvider)[collectionIndex];
+
+      /// List of all captured IDS
+      List<int> capturedPokemons =
+          collection.pokemons
+              ?.where((collectedPokemon) => collectedPokemon.isCaptured)
+              .map((collectedPokemon) => collectedPokemon.id)
+              .toList() ??
+          [];
+      return state
+          .where((item) => item.isSelected)
+          .map(
+            (e) => CollectedPokemon(
+              id: e.item.id,
+              isCaptured: capturedPokemons.contains(e.item.id),
+            ),
+          )
+          .toList();
+    }
   }
 }
 

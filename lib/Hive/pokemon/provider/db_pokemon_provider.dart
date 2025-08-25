@@ -23,7 +23,7 @@ class DbPokemon extends _$DbPokemon {
     state = repo.getPokemons();
   }
 
-  void clearCollection() async {
+  Future<void> clearCollection() async {
     await repo.clearCollection();
     state = repo.getPokemons();
   }
