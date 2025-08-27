@@ -3,7 +3,7 @@ import 'package:dex_collection/Hive/collection/provider/collection_provider.dart
 import 'package:dex_collection/Hive/collection/model/collection.dart';
 import 'package:dex_collection/Hive/pokemon/provider/db_pokemon_provider.dart';
 import 'package:dex_collection/features/collection/details/provider/index_provider.dart';
-import 'package:dex_collection/features/collection/details/widgets/list_item.dart';
+import 'package:dex_collection/features/collection/details/widgets/list_item/list_item.dart';
 import 'package:dex_collection/features/error_screen/error_screen.dart';
 import 'package:dex_collection/l10n/generated/app_localizations.dart';
 import 'package:dex_collection/router/app_router.dart';
