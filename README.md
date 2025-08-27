@@ -22,3 +22,5 @@ Special Thanks
 <a href="https://pokeapi.co" title="PokeApi">Pokemon informations and images comes from PokeAPI</a>
 
 <a href="https://www.flaticon.com/free-icons/pokeball" title="pokeball icons">Pokeball icons created by Saepul Nahwan - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/pokedex" title="pokedex icons">Pokedex icons created by pocike - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/shine" title="shine icons">Shine icons created by Freepik - Flaticon</a>

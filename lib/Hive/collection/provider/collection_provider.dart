@@ -45,4 +45,8 @@ class CollectionState extends _$CollectionState {
   void togglePokemon(int collectionIndex, int pokemonId) {
     state = repo.toggleCaptured(collectionIndex, pokemonId);
   }
+
+  void toggleShiny(int collectionIndex, int pokemonId) {
+    state = repo.toggleShiny(collectionIndex, pokemonId);
+  }
 }

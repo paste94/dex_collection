@@ -1,6 +1,6 @@
 import 'package:dex_collection/Hive/box_const.dart';
 import 'package:dex_collection/Hive/pokemon/model/pokemon.dart';
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hive_ce_flutter/hive_flutter.dart';
 
 class PokemonRepo {
   late Box<Pokemon> _box;

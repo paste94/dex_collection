@@ -20,10 +20,9 @@ class PokemonList extends _$PokemonList {
   @override
   List<UISearchModel<Pokemon>> build() {
     int? index = ref.read(collectionIndexProvider);
-    Collection collection =
-        index == null
-            ? Collection(name: '')
-            : ref.read(collectionStateProvider)[index];
+    Collection collection = index == null
+        ? Collection(name: '')
+        : ref.read(collectionStateProvider)[index];
     final inCollectionIds =
         collection.pokemons?.map((e) => e.id).toList() ?? [];
     return ref
@@ -43,57 +42,50 @@ class PokemonList extends _$PokemonList {
     List<Generation> generations = ref.read(generationFilterProvider);
     List<Region> regions = ref.read(regionFilterProvider);
 
-    state =
-        state.map((pokemon) {
-          bool nameMatch = pokemon.item.name.toLowerCase().contains(
-            name.toLowerCase(),
-          );
-          bool genMatch =
-              generations.every((item) => item.isSelected == false)
-                  ? true
-                  : generations
-                      .where((gen) => pokemon.item.generation == gen.name)
-                      .first
-                      .isSelected;
-          bool regionMatch =
-              regions.every((item) => item.isSelected == false)
-                  ? true
-                  : regions.where((r) => r.isSelected).any(
-                    (Region r) {
-                      if (r.name == 'None') {
-                        if (pokemon.item.regions == null) {
-                          return true;
-                        } else if (pokemon.item.regions!.isEmpty) {
-                          return true;
-                        } else {
-                          return false;
-                        }
-                      } else {
-                        return pokemon.item.regions?.contains(r.name) ?? false;
-                      }
-                    },
-                    // pokemon.item.regions?.contains(r.name) ?? false,
-                  );
-          return pokemon.copyWith(
-            isVisible: nameMatch && genMatch && regionMatch,
-          );
-        }).toList();
+    state = state.map((pokemon) {
+      bool nameMatch = pokemon.item.name.toLowerCase().contains(
+        name.toLowerCase(),
+      );
+      bool genMatch = generations.every((item) => item.isSelected == false)
+          ? true
+          : generations
+                .where((gen) => pokemon.item.generation == gen.name)
+                .first
+                .isSelected;
+      bool regionMatch = regions.every((item) => item.isSelected == false)
+          ? true
+          : regions.where((r) => r.isSelected).any(
+              (Region r) {
+                if (r.name == 'None') {
+                  if (pokemon.item.regions == null) {
+                    return true;
+                  } else if (pokemon.item.regions!.isEmpty) {
+                    return true;
+                  } else {
+                    return false;
+                  }
+                } else {
+                  return pokemon.item.regions?.contains(r.name) ?? false;
+                }
+              },
+              // pokemon.item.regions?.contains(r.name) ?? false,
+            );
+      return pokemon.copyWith(isVisible: nameMatch && genMatch && regionMatch);
+    }).toList();
   }
 
   void toggle(UISearchModel<Pokemon> pokemon) {
-    state =
-        state.map((elem) {
-          return pokemon.item.id == elem.item.id
-              ? elem.copyWith(isSelected: !elem.isSelected)
-              : elem;
-        }).toList();
+    state = state.map((elem) {
+      return pokemon.item.id == elem.item.id
+          ? elem.copyWith(isSelected: !elem.isSelected)
+          : elem;
+    }).toList();
   }
 
   void selectAllVisible(bool value) {
-    state =
-        state.map((elem) {
-          return elem.isVisible ? elem.copyWith(isSelected: value) : elem;
-        }).toList();
+    state = state.map((elem) {
+      return elem.isVisible ? elem.copyWith(isSelected: value) : elem;
+    }).toList();
   }
 
   List<CollectedPokemon> getAlllSelected() {
@@ -101,16 +93,23 @@ class PokemonList extends _$PokemonList {
     if (collectionIndex == null) {
       return state
           .where((item) => item.isSelected)
-          .map((e) => CollectedPokemon(id: e.item.id, isCaptured: false))
+          .map((e) => CollectedPokemon(id: e.item.id))
           .toList();
     } else {
-      Collection collection =
-          ref.read(collectionStateProvider)[collectionIndex];
+      Collection collection = ref.read(
+        collectionStateProvider,
+      )[collectionIndex];
 
       /// List of all captured IDS
       List<int> capturedPokemons =
           collection.pokemons
               ?.where((collectedPokemon) => collectedPokemon.isCaptured)
+              .map((collectedPokemon) => collectedPokemon.id)
+              .toList() ??
+          [];
+      List<int> shinyPokemons =
+          collection.pokemons
+              ?.where((collectedPokemon) => collectedPokemon.isShiny ?? false)
               .map((collectedPokemon) => collectedPokemon.id)
               .toList() ??
           [];
@@ -120,6 +119,7 @@ class PokemonList extends _$PokemonList {
             (e) => CollectedPokemon(
               id: e.item.id,
               isCaptured: capturedPokemons.contains(e.item.id),
+              isShiny: shinyPokemons.contains(e.item.id),
             ),
           )
           .toList();

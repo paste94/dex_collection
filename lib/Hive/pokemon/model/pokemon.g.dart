@@ -8,7 +8,7 @@ part of 'pokemon.dart';
 
 class PokemonAdapter extends TypeAdapter<Pokemon> {
   @override
-  final int typeId = 1;
+  final typeId = 1;
 
   @override
   Pokemon read(BinaryReader reader) {
@@ -17,11 +17,11 @@ class PokemonAdapter extends TypeAdapter<Pokemon> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Pokemon(
-      id: fields[0] as int,
+      id: (fields[0] as num).toInt(),
       name: fields[1] as String,
       img: fields[2] as String?,
       generation: fields[3] as String?,
-      color: fields[5] as int?,
+      color: (fields[5] as num?)?.toInt(),
       shinyImg: fields[6] as String?,
     )..regions = (fields[4] as List?)?.cast<String>();
   }

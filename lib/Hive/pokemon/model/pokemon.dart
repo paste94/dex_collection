@@ -1,6 +1,7 @@
 import 'package:dex_collection/config/config.dart';
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
+import 'package:hive_ce_flutter/hive_flutter.dart';
+
 part 'pokemon.g.dart';
 
 @HiveType(typeId: 1)

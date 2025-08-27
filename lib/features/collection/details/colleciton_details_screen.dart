@@ -27,8 +27,9 @@ class _CollectionDetailsScreenState
     if (collectionIndex == null) {
       return ErrorScreen();
     }
-    final Collection collection =
-        ref.watch(collectionStateProvider)[collectionIndex];
+    final Collection collection = ref.watch(
+      collectionStateProvider,
+    )[collectionIndex];
     final pokemonCollection =
         collection.pokemons?.map((e) {
           e.pokemon = ref
@@ -112,36 +113,20 @@ class _CollectionDetailsScreenState
         body: Column(
           children: [
             Expanded(
-              child:
-                  pokemonCollection.isNotEmpty
-                      ? GridView.count(
-                        crossAxisCount: 2,
-                        children:
-                            pokemonCollection.map((
-                              CollectedPokemon collectedPokemon,
-                            ) {
-                              return ListItem(pokemon: collectedPokemon);
-                            }).toList(),
-                      )
-                      : Center(
-                        child: Text(
-                          AppLocalizations.of(
-                            context,
-                          )!.no_pokemon_in_collection,
-                        ),
+              child: pokemonCollection.isNotEmpty
+                  ? GridView.count(
+                      crossAxisCount: 2,
+                      children: pokemonCollection.map((
+                        CollectedPokemon collectedPokemon,
+                      ) {
+                        return ListItem(pokemon: collectedPokemon);
+                      }).toList(),
+                    )
+                  : Center(
+                      child: Text(
+                        AppLocalizations.of(context)!.no_pokemon_in_collection,
                       ),
-              // pokemonCollection.isNotEmpty
-              //     ? ListView.builder(
-              //       itemCount: pokemonCollection.length,
-              //       itemBuilder: listItemBuilder,
-              //     )
-              //     : Center(
-              //       child: Text(
-              //         AppLocalizations.of(
-              //           context,
-              //         )!.no_pokemon_in_collection,
-              //       ),
-              //     ),
+                    ),
             ),
           ],
         ),

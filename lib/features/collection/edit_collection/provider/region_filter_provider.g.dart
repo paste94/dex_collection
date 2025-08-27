@@ -12,13 +12,14 @@ String _$regionFilterHash() => r'f04506a57d1495e362176ee054333a69648b17c1';
 @ProviderFor(RegionFilter)
 final regionFilterProvider =
     AutoDisposeNotifierProvider<RegionFilter, List<Region>>.internal(
-  RegionFilter.new,
-  name: r'regionFilterProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$regionFilterHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      RegionFilter.new,
+      name: r'regionFilterProvider',
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$regionFilterHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 typedef _$RegionFilter = AutoDisposeNotifier<List<Region>>;
 // ignore_for_file: type=lint

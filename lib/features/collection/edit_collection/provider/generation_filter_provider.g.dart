@@ -12,14 +12,14 @@ String _$generationFilterHash() => r'a292602e21c84cf8a7fb68331ee041d12dc45c78';
 @ProviderFor(GenerationFilter)
 final generationFilterProvider =
     AutoDisposeNotifierProvider<GenerationFilter, List<Generation>>.internal(
-  GenerationFilter.new,
-  name: r'generationFilterProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$generationFilterHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      GenerationFilter.new,
+      name: r'generationFilterProvider',
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$generationFilterHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 typedef _$GenerationFilter = AutoDisposeNotifier<List<Generation>>;
 // ignore_for_file: type=lint

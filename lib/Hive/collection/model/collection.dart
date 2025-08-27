@@ -1,5 +1,5 @@
 import 'package:dex_collection/Hive/collected_pokemon/model/collected_pokemon.dart';
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hive_ce_flutter/hive_flutter.dart';
 import 'package:uuid/uuid.dart';
 
 part 'collection.g.dart';

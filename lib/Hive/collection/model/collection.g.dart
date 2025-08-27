@@ -8,7 +8,7 @@ part of 'collection.dart';
 
 class CollectionAdapter extends TypeAdapter<Collection> {
   @override
-  final int typeId = 0;
+  final typeId = 0;
 
   @override
   Collection read(BinaryReader reader) {
@@ -17,10 +17,12 @@ class CollectionAdapter extends TypeAdapter<Collection> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Collection(
-      name: fields[1] as String?,
-      color: fields[2] as int,
-      pokemons: (fields[3] as List?)?.cast<CollectedPokemon>(),
-    )
+        name: fields[1] as String?,
+        color: fields[2] == null ? 0xff03a9f4 : (fields[2] as num).toInt(),
+        pokemons: fields[3] == null
+            ? const []
+            : (fields[3] as List?)?.cast<CollectedPokemon>(),
+      )
       ..id = fields[0] as String
       ..isHidden = fields[4] as bool?;
   }

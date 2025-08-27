@@ -1,7 +1,7 @@
 import 'package:dex_collection/Hive/box_const.dart';
 import 'package:dex_collection/main.dart';
 import 'package:dex_collection/Hive/collection/model/collection.dart';
-import 'package:hive/hive.dart';
+import 'package:hive_ce/hive.dart';
 
 class CollectionRepo {
   late Box<Collection> _box;
@@ -54,8 +54,9 @@ class CollectionRepo {
     final collection = _box.getAt(collectionIndex);
 
     if (collection != null) {
-      final collected =
-          collection.pokemons?.where((p) => p.id == pokemonId).first;
+      final collected = collection.pokemons
+          ?.where((p) => p.id == pokemonId)
+          .first;
       if (collected == null) {
         logger.w(
           '[collection_repo.dart - toggleCaptured] No collected Pokemon found with id: $pokemonId',
@@ -69,6 +70,32 @@ class CollectionRepo {
         // collection.save();
         logger.i(
           '[collection_repo.dart - toggleCaptured] Toggled captured state for Pokemon with id: $pokemonId',
+        );
+      }
+    }
+    return _box.values.toList();
+  }
+
+  List<Collection> toggleShiny(int collectionIndex, int pokemonId) {
+    final collection = _box.getAt(collectionIndex);
+
+    if (collection != null) {
+      final collected = collection.pokemons
+          ?.where((p) => p.id == pokemonId)
+          .first;
+      if (collected == null) {
+        logger.w(
+          '[collection_repo.dart - toggleShiny] No collected Pokemon found with id: $pokemonId',
+        );
+      } else {
+        collected.isShiny = !(collected.isShiny ?? false);
+        logger.i(
+          '[collection_repo.dart - toggleShiny] collection: ${collection}',
+        );
+        _box.putAt(collectionIndex, collection);
+        // collection.save();
+        logger.i(
+          '[collection_repo.dart - toggleShiny] Toggled shiny state for Pokemon with id: $pokemonId',
         );
       }
     }

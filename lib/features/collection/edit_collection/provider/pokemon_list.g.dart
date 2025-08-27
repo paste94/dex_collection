@@ -6,19 +6,23 @@ part of 'pokemon_list.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$pokemonListHash() => r'fe245facccbc83dc3f5327388461fa915ecea8f5';
+String _$pokemonListHash() => r'a2e523745f5e7ce7dbe404a281f2f794c4e255b2';
 
 /// See also [PokemonList].
 @ProviderFor(PokemonList)
-final pokemonListProvider = AutoDisposeNotifierProvider<PokemonList,
-    List<UISearchModel<Pokemon>>>.internal(
-  PokemonList.new,
-  name: r'pokemonListProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$pokemonListHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+final pokemonListProvider =
+    AutoDisposeNotifierProvider<
+      PokemonList,
+      List<UISearchModel<Pokemon>>
+    >.internal(
+      PokemonList.new,
+      name: r'pokemonListProvider',
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$pokemonListHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 typedef _$PokemonList = AutoDisposeNotifier<List<UISearchModel<Pokemon>>>;
 // ignore_for_file: type=lint

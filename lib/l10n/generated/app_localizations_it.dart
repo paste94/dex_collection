@@ -24,7 +24,8 @@ class AppLocalizationsIt extends AppLocalizations {
   String get edit_collection_name_hint => 'Modifica nome collezione';
 
   @override
-  String get no_pokemon_in_collection => 'Non ci sono pokémon in questa collezione';
+  String get no_pokemon_in_collection =>
+      'Non ci sono pokémon in questa collezione';
 
   @override
   String get edit => 'Modifica';

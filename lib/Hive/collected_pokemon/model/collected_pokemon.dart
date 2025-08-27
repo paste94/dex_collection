@@ -1,5 +1,5 @@
 import 'package:dex_collection/Hive/pokemon/model/pokemon.dart';
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hive_ce_flutter/hive_flutter.dart';
 
 part 'collected_pokemon.g.dart';
 
@@ -11,11 +11,18 @@ class CollectedPokemon {
   @HiveField(1)
   bool isCaptured;
 
+  @HiveField(2)
+  bool? isShiny;
+
   Pokemon? pokemon;
 
-  CollectedPokemon({required this.id, required this.isCaptured});
+  CollectedPokemon({
+    required this.id,
+    this.isCaptured = false,
+    this.isShiny = false,
+  });
 
   @override
   String toString() =>
-      'CollectedPokemon - id: $id, name: ${pokemon?.name}, isCaptured: $isCaptured';
+      'CollectedPokemon - id: $id, name: ${pokemon?.name}, isCaptured: $isCaptured, isShiny: $isShiny';
 }

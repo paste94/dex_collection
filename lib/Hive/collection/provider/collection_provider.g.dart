@@ -12,14 +12,14 @@ String _$collectionStateHash() => r'5a74651afbb5c4d4e05d8ae3b4f90112b6395f92';
 @ProviderFor(CollectionState)
 final collectionStateProvider =
     AutoDisposeNotifierProvider<CollectionState, List<Collection>>.internal(
-  CollectionState.new,
-  name: r'collectionStateProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$collectionStateHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      CollectionState.new,
+      name: r'collectionStateProvider',
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$collectionStateHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 typedef _$CollectionState = AutoDisposeNotifier<List<Collection>>;
 // ignore_for_file: type=lint

@@ -8,7 +8,7 @@ part of 'collected_pokemon.dart';
 
 class CollectedPokemonAdapter extends TypeAdapter<CollectedPokemon> {
   @override
-  final int typeId = 2;
+  final typeId = 2;
 
   @override
   CollectedPokemon read(BinaryReader reader) {
@@ -17,19 +17,22 @@ class CollectedPokemonAdapter extends TypeAdapter<CollectedPokemon> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return CollectedPokemon(
-      id: fields[0] as int,
+      id: (fields[0] as num).toInt(),
       isCaptured: fields[1] as bool,
+      isShiny: fields[2] as dynamic,
     );
   }
 
   @override
   void write(BinaryWriter writer, CollectedPokemon obj) {
     writer
-      ..writeByte(2)
+      ..writeByte(3)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.isCaptured);
+      ..write(obj.isCaptured)
+      ..writeByte(2)
+      ..write(obj.isShiny);
   }
 
   @override

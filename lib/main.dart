@@ -7,7 +7,7 @@ import 'package:dex_collection/router/app_router.dart';
 import 'package:dex_collection/utility/riverpod_observer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hive_ce_flutter/hive_flutter.dart';
 import 'package:logger/logger.dart';
 
 void main() async {

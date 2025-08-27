@@ -6,19 +6,20 @@ part of 'db_pokemon_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$dbPokemonHash() => r'41d392eeb0cbf38d41ccbdb3119397e237ea8c3b';
+String _$dbPokemonHash() => r'40a2c1fbc5eee00f84b442a880ce9ede4a14c4b7';
 
 /// See also [DbPokemon].
 @ProviderFor(DbPokemon)
 final dbPokemonProvider =
     AutoDisposeNotifierProvider<DbPokemon, List<Pokemon>>.internal(
-  DbPokemon.new,
-  name: r'dbPokemonProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$dbPokemonHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      DbPokemon.new,
+      name: r'dbPokemonProvider',
+      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+          ? null
+          : _$dbPokemonHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 typedef _$DbPokemon = AutoDisposeNotifier<List<Pokemon>>;
 // ignore_for_file: type=lint
