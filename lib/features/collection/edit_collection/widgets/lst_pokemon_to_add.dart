@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dex_collection/Hive/pokemon/model/pokemon.dart';
-import 'package:dex_collection/config/config.dart';
 import 'package:dex_collection/features/collection/edit_collection/provider/UIModel/ui_search_model.dart';
 import 'package:dex_collection/features/collection/edit_collection/provider/pokemon_list.dart';
 import 'package:dex_collection/utility/common_funcions.dart';
@@ -44,10 +43,9 @@ class LstPokemonToAdd extends ConsumerWidget {
           ),
           title: Text('#${pokemon.item.id} - ${formatName(pokemon.item)}'),
           subtitle: Text(pokemon.item.name),
-          trailing:
-              pokemon.isSelected
-                  ? Icon(Icons.check_circle, color: Colors.green)
-                  : Icon(Icons.circle_outlined),
+          trailing: pokemon.isSelected
+              ? Icon(Icons.check_circle, color: Colors.green)
+              : Icon(Icons.circle_outlined),
           onTap: () => ref.read(pokemonListProvider.notifier).toggle(pokemon),
         );
       },

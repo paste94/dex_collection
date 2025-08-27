@@ -10,7 +10,6 @@ import 'package:dex_collection/features/collection/edit_collection/provider/UIMo
 import 'package:dex_collection/features/collection/edit_collection/provider/generation_filter_provider.dart';
 import 'package:dex_collection/features/collection/edit_collection/provider/name_filter_provider.dart';
 import 'package:dex_collection/features/collection/edit_collection/provider/region_filter_provider.dart';
-import 'package:dex_collection/main.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'pokemon_list.g.dart';

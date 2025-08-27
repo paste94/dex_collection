@@ -1,8 +1,3 @@
-import 'package:dex_collection/features/collection/edit_collection/provider/UIModel/generation_model.dart';
-import 'package:dex_collection/features/collection/edit_collection/provider/UIModel/region_model.dart';
-import 'package:dex_collection/features/collection/edit_collection/provider/generation_filter_provider.dart';
-import 'package:dex_collection/features/collection/edit_collection/provider/pokemon_list.dart';
-import 'package:dex_collection/features/collection/edit_collection/provider/region_filter_provider.dart';
 import 'package:dex_collection/features/collection/edit_collection/widgets/filter/gen_filter.dart';
 import 'package:dex_collection/features/collection/edit_collection/widgets/filter/reg_filter.dart';
 import 'package:flutter/material.dart';
@@ -15,65 +10,64 @@ class BtnFilter extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return IconButton(
       icon: Icon(Icons.filter_alt),
-      onPressed:
-          () => showModalBottomSheet(
-            context: context,
-            showDragHandle: true,
-            isScrollControlled: true,
-            builder: (context) {
-              return Consumer(
-                builder: (context, ref, _) {
-                  return Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [GenFilter(), RegFilter()],
-                  );
-                  // return Column(
-                  //   children: [
-                  //     Flexible(flex: 1, child: GenFilter()),
-                  //     // Text('Generation'),
-                  //     // Expanded(
-                  //     //   child: GridView.count(
-                  //     //     crossAxisCount: 2,
-                  //     //     children:
-                  //     //         generations
-                  //     //             .map(
-                  //     //               (gen) => ChoiceChip(
-                  //     //                 label: Text(gen.name),
-                  //     //                 selected: gen.isSelected,
-                  //     //                 onSelected:
-                  //     //                     (selected) => handleGenerationTap(
-                  //     //                       gen,
-                  //     //                       selected,
-                  //     //                     ),
-                  //     //               ),
-                  //     //             )
-                  //     //             .toList(),
-                  //     //   ),
-                  //     // ),
-                  //     Text('Regional'),
-                  //     Expanded(
-                  //       child: GridView.count(
-                  //         crossAxisCount: 2,
-                  //         children:
-                  //             regions
-                  //                 .map(
-                  //                   (reg) => ChoiceChip(
-                  //                     label: Text(reg.name),
-                  //                     selected: reg.isSelected,
-                  //                     onSelected:
-                  //                         (selected) =>
-                  //                             handleRegionTap(reg, selected),
-                  //                   ),
-                  //                 )
-                  //                 .toList(),
-                  //       ),
-                  //     ),
-                  //   ],
-                  // );
-                },
+      onPressed: () => showModalBottomSheet(
+        context: context,
+        showDragHandle: true,
+        isScrollControlled: true,
+        builder: (context) {
+          return Consumer(
+            builder: (context, ref, _) {
+              return Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [GenFilter(), RegFilter()],
               );
+              // return Column(
+              //   children: [
+              //     Flexible(flex: 1, child: GenFilter()),
+              //     // Text('Generation'),
+              //     // Expanded(
+              //     //   child: GridView.count(
+              //     //     crossAxisCount: 2,
+              //     //     children:
+              //     //         generations
+              //     //             .map(
+              //     //               (gen) => ChoiceChip(
+              //     //                 label: Text(gen.name),
+              //     //                 selected: gen.isSelected,
+              //     //                 onSelected:
+              //     //                     (selected) => handleGenerationTap(
+              //     //                       gen,
+              //     //                       selected,
+              //     //                     ),
+              //     //               ),
+              //     //             )
+              //     //             .toList(),
+              //     //   ),
+              //     // ),
+              //     Text('Regional'),
+              //     Expanded(
+              //       child: GridView.count(
+              //         crossAxisCount: 2,
+              //         children:
+              //             regions
+              //                 .map(
+              //                   (reg) => ChoiceChip(
+              //                     label: Text(reg.name),
+              //                     selected: reg.isSelected,
+              //                     onSelected:
+              //                         (selected) =>
+              //                             handleRegionTap(reg, selected),
+              //                   ),
+              //                 )
+              //                 .toList(),
+              //       ),
+              //     ),
+              //   ],
+              // );
             },
-          ),
+          );
+        },
+      ),
     );
   }
 }
