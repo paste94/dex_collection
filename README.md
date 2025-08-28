@@ -18,6 +18,8 @@ samples, guidance on mobile development, and a full API reference.
 # TODO
 - Add search on collection details
 - Add custom ID on details
+- Sort collections
+- Change color to bkìlack pokemons (sneasel)
 
 # Icon
 flutter pub run flutter_launcher_icons:main
