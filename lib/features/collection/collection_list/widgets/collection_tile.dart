@@ -9,14 +9,19 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
 class CollectionTile extends ConsumerWidget {
-  final int index;
-  final Collection item;
-  const CollectionTile({super.key, required this.index, required this.item});
+  // final int index;
+  final Collection collection;
+  const CollectionTile({
+    super.key,
+    // required this.index,
+    required this.collection,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Card.outlined(
-      color: Color(item.color),
+      key: Key(collection.id),
+      color: Color(collection.color),
       child: ClipRRect(
         child: Stack(
           children: [
@@ -48,7 +53,7 @@ class CollectionTile extends ConsumerWidget {
             ),
             InkWell(
               onTap: () {
-                ref.read(collectionIndexProvider.notifier).state = index;
+                ref.read(collectionIdProvider.notifier).state = collection.id;
                 context.push(ROUTES.collectionDetails);
               },
               borderRadius: BorderRadius.circular(getCardCornerRadius(context)),
@@ -73,15 +78,16 @@ class CollectionTile extends ConsumerWidget {
                     //   crossAxisAlignment: CrossAxisAlignment.start,
                     //   children: [
                     Text(
-                      "${item.name ?? 'NONE'}",
+                      "${collection.name ?? 'NONE'}",
                       style: Theme.of(context).textTheme.headlineSmall,
 
                       // ),
                       // ],
                     ),
                     Spacer(),
+                    Text('${collection.order} - '),
                     Text(
-                      '${item.pokemons?.where((pokemon) => pokemon.isCaptured).length}/${item.pokemons?.length ?? 0}',
+                      '${collection.pokemons?.where((pokemon) => pokemon.isCaptured).length}/${collection.pokemons?.length ?? 0}',
                     ),
                     SizedBox(width: 16),
                   ],

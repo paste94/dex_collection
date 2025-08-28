@@ -18,8 +18,8 @@ class CollectedPokemonAdapter extends TypeAdapter<CollectedPokemon> {
     };
     return CollectedPokemon(
       id: (fields[0] as num).toInt(),
-      isCaptured: fields[1] as bool,
-      isShiny: fields[2] as dynamic,
+      isCaptured: fields[1] == null ? false : fields[1] as bool,
+      isShiny: fields[2] == null ? false : fields[2] as bool?,
     );
   }
 

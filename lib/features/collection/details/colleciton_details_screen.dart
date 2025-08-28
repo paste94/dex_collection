@@ -23,13 +23,30 @@ class _CollectionDetailsScreenState
     extends ConsumerState<CollectionDetailsScreen> {
   @override
   Widget build(BuildContext context) {
-    final collectionIndex = ref.watch(collectionIndexProvider);
-    if (collectionIndex == null) {
+    // final collectionIndex = ref.watch(collectionIndexProvider);
+    final collectionId = ref.watch(collectionIdProvider);
+    // if (collectionIndex == null) {
+    //   return ErrorScreen();
+    // }
+    if (collectionId == null) {
       return ErrorScreen();
     }
-    final Collection collection = ref.watch(
-      collectionStateProvider,
-    )[collectionIndex];
+    // final Collection collection = ref.watch(
+    //   collectionStateProvider,
+    // )[collectionIndex];
+    // final pokemonCollection =
+    //     collection.pokemons?.map((e) {
+    //       e.pokemon = ref
+    //           .watch(dbPokemonProvider)
+    //           .firstWhere((pokemon) => pokemon.id == e.id);
+    //       return e;
+    //     }).toList() ??
+    //     [];
+
+    final Collection collection = ref
+        .watch(collectionStateProvider)
+        .where((element) => element.id == collectionId)
+        .first;
     final pokemonCollection =
         collection.pokemons?.map((e) {
           e.pokemon = ref
@@ -73,7 +90,8 @@ class _CollectionDetailsScreenState
       onPopInvokedWithResult: (context, result) {
         Future.delayed(
           Duration(milliseconds: 100),
-          () => ref.read(collectionIndexProvider.notifier).state = null,
+          // () => ref.read(collectionIndexProvider.notifier).state = null,
+          () => ref.read(collectionIdProvider.notifier).state = null,
         );
       },
       // canPop: false,

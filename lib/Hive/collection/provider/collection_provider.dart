@@ -1,5 +1,8 @@
+import 'package:dex_collection/Hive/collected_pokemon/model/collected_pokemon.dart';
 import 'package:dex_collection/Hive/collection/collection_repo.dart';
 import 'package:dex_collection/Hive/collection/model/collection.dart';
+import 'package:dex_collection/features/collection/details/provider/index_provider.dart';
+import 'package:dex_collection/main.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'collection_provider.g.dart';
@@ -14,6 +17,19 @@ class CollectionState extends _$CollectionState {
     return repo.getCollections();
   }
 
+  Collection _getCollectionById(String id) {
+    return state.firstWhere((element) => element.id == id);
+  }
+
+  Collection getSelectedCollection() {
+    String? id = ref.watch(collectionIdProvider);
+    if (id != null) {
+      return _getCollectionById(id);
+    } else {
+      return Collection(name: '');
+    }
+  }
+
   void clearCollection() async {
     await repo.clearCollection();
     state = repo.getCollections();
@@ -24,29 +40,62 @@ class CollectionState extends _$CollectionState {
   }
 
   void hideCollectionById(String id) {
-    state = repo.putCollection(
-      state.firstWhere((element) => element.id == id).copyWith(isHidden: true),
-    );
+    final collection = _getCollectionById(id);
+    addOrUpdateCollection(collection.copyWith(isHidden: true));
   }
 
   void unhideCollectionById(String id) {
-    state = repo.putCollection(
-      state.firstWhere((element) => element.id == id).copyWith(isHidden: false),
-    );
+    final collection = _getCollectionById(id);
+    addOrUpdateCollection(collection.copyWith(isHidden: false));
   }
 
   void deleteHiddenCollections() {
     state
         .where((element) => element.isHidden == true)
-        .forEach((element) => repo.removeCollection(element.id));
+        .forEach((element) => repo.removeCollection(element));
     state = repo.getCollections();
   }
 
-  void togglePokemon(int collectionIndex, int pokemonId) {
-    state = repo.toggleCaptured(collectionIndex, pokemonId);
+  void toggleCaptured(String collectionId, int pokemonId) {
+    Collection collection = _getCollectionById(collectionId);
+    CollectedPokemon? pokemon = collection.pokemons
+        ?.where((p) => p.id == pokemonId)
+        .first;
+
+    if (pokemon == null) {
+      logger.w(
+        '[collection_provider.dart - toggleCaptured] No collected Pokemon found in collection [${collection.id}] with id [$pokemonId]',
+      );
+      return;
+    }
+    pokemon.isCaptured = !pokemon.isCaptured;
+    addOrUpdateCollection(collection);
   }
 
-  void toggleShiny(int collectionIndex, int pokemonId) {
-    state = repo.toggleShiny(collectionIndex, pokemonId);
+  void toggleShiny(String collectionId, int pokemonId) {
+    Collection collection = _getCollectionById(collectionId);
+    CollectedPokemon? pokemon = collection.pokemons
+        ?.where((p) => p.id == pokemonId)
+        .first;
+
+    if (pokemon == null) {
+      logger.w(
+        '[collection_provider.dart - toggleShiny] No collected Pokemon found in collection [${collection.id}] with id [$pokemonId]',
+      );
+      return;
+    }
+    pokemon.isShiny = !(pokemon.isShiny ?? false);
+    addOrUpdateCollection(collection);
+  }
+
+  void updateOrder(Map<String, int> idIndex) {
+    /// idIndex contains a map <CollectionID - newIndex>
+    idIndex.forEach((collectionId, newOrder) {
+      Collection collection = _getCollectionById(collectionId);
+      if (collection.order != newOrder) {
+        repo.putCollection(collection.copyWith(order: newOrder));
+      }
+    });
+    state = repo.getCollections();
   }
 }

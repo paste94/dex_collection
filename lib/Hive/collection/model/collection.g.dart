@@ -24,13 +24,14 @@ class CollectionAdapter extends TypeAdapter<Collection> {
             : (fields[3] as List?)?.cast<CollectedPokemon>(),
       )
       ..id = fields[0] as String
-      ..isHidden = fields[4] as bool?;
+      ..isHidden = fields[4] as bool?
+      ..order = fields[5] == null ? -1 : (fields[5] as num).toInt();
   }
 
   @override
   void write(BinaryWriter writer, Collection obj) {
     writer
-      ..writeByte(5)
+      ..writeByte(6)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -40,7 +41,9 @@ class CollectionAdapter extends TypeAdapter<Collection> {
       ..writeByte(3)
       ..write(obj.pokemons)
       ..writeByte(4)
-      ..write(obj.isHidden);
+      ..write(obj.isHidden)
+      ..writeByte(5)
+      ..write(obj.order);
   }
 
   @override

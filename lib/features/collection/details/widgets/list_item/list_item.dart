@@ -15,7 +15,8 @@ class ListItem extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     /// Providers
-    final collectionIndex = ref.watch(collectionIndexProvider)!;
+    // final collectionIndex = ref.watch(collectionIndexProvider)!;
+    String? collectionId = ref.watch(collectionIdProvider)!;
 
     /// Functions
     Color? cardColorFromPokemon() => pokemon.isCaptured
@@ -25,11 +26,11 @@ class ListItem extends ConsumerWidget {
     /// Handlers
     onCapturedTap() => ref
         .read(collectionStateProvider.notifier)
-        .togglePokemon(collectionIndex, pokemon.id);
+        .toggleCaptured(collectionId, pokemon.id);
 
     onShinyTap() => ref
         .read(collectionStateProvider.notifier)
-        .toggleShiny(collectionIndex, pokemon.id);
+        .toggleShiny(collectionId, pokemon.id);
 
     return AnimatedSwitcher(
       duration: Duration(milliseconds: 600),

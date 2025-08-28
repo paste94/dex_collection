@@ -10,6 +10,7 @@ import 'package:dex_collection/features/collection/edit_collection/provider/UIMo
 import 'package:dex_collection/features/collection/edit_collection/provider/generation_filter_provider.dart';
 import 'package:dex_collection/features/collection/edit_collection/provider/name_filter_provider.dart';
 import 'package:dex_collection/features/collection/edit_collection/provider/region_filter_provider.dart';
+import 'package:dex_collection/features/collection/edit_collection/provider/selected_collection.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'pokemon_list.g.dart';
@@ -18,10 +19,18 @@ part 'pokemon_list.g.dart';
 class PokemonList extends _$PokemonList {
   @override
   List<UISearchModel<Pokemon>> build() {
-    int? index = ref.read(collectionIndexProvider);
-    Collection collection = index == null
-        ? Collection(name: '')
-        : ref.read(collectionStateProvider)[index];
+    // int? index = ref.read(collectionIndexProvider);
+    // String? collectionId = ref.read(collectionIdProvider);
+    Collection collection = ref
+        .read(collectionStateProvider.notifier)
+        .getSelectedCollection();
+
+    // Collection collection = collectionId == null
+    //     ? Collection(name: '')
+    //     : ref
+    //           .read(collectionStateProvider)
+    //           .where((element) => collectionId == element.id)
+    //           .first;
     final inCollectionIds =
         collection.pokemons?.map((e) => e.id).toList() ?? [];
     return ref
@@ -88,16 +97,17 @@ class PokemonList extends _$PokemonList {
   }
 
   List<CollectedPokemon> getAlllSelected() {
-    int? collectionIndex = ref.read(collectionIndexProvider);
-    if (collectionIndex == null) {
+    // int? collectionIndex = ref.read(collectionIndexProvider);
+    String? collectionId = ref.read(collectionIdProvider);
+    if (collectionId == null) {
       return state
           .where((item) => item.isSelected)
           .map((e) => CollectedPokemon(id: e.item.id))
           .toList();
     } else {
-      Collection collection = ref.read(
-        collectionStateProvider,
-      )[collectionIndex];
+      Collection collection = ref
+          .read(collectionStateProvider.notifier)
+          .getSelectedCollection();
 
       /// List of all captured IDS
       List<int> capturedPokemons =

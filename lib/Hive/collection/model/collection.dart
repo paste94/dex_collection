@@ -21,6 +21,9 @@ class Collection extends HiveObject {
   @HiveField(4)
   bool? isHidden;
 
+  @HiveField(5, defaultValue: 0)
+  int? order;
+
   Collection({
     required this.name,
     this.color = 0xff03a9f4,
@@ -34,16 +37,18 @@ class Collection extends HiveObject {
     this.color = 0xff03a9f4,
     this.pokemons = const [],
     this.isHidden = false,
+    this.order,
   });
 
   @override
-  String toString() => 'Collection - id: $id, name: $name, pokemons: $pokemons';
+  String toString() => 'Collection - id: $id, name: $name, order: $order';
 
   Collection copyWith({
     String? name,
     int? color,
     List<CollectedPokemon>? pokemons,
     bool? isHidden,
+    int? order,
   }) {
     return Collection._(
       id: id,
@@ -51,6 +56,7 @@ class Collection extends HiveObject {
       color: color ?? this.color,
       pokemons: pokemons ?? this.pokemons,
       isHidden: isHidden ?? this.isHidden,
+      order: order ?? this.order,
     );
   }
 }

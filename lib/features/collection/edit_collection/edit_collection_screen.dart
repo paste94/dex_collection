@@ -1,3 +1,4 @@
+import 'package:dex_collection/Hive/collection/model/collection.dart';
 import 'package:dex_collection/Hive/collection/provider/collection_provider.dart';
 import 'package:dex_collection/features/collection/details/provider/index_provider.dart';
 import 'package:dex_collection/features/collection/edit_collection/provider/generation_filter_provider.dart';
@@ -31,7 +32,9 @@ class _EditCollectionScreenState extends ConsumerState<EditCollectionScreen> {
 
   @override
   void initState() {
-    final collection = ref.read(selectedCollectionProvider);
+    Collection collection = ref
+        .read(collectionStateProvider.notifier)
+        .getSelectedCollection();
     setState(() {
       selectedColor = Color(collection.color);
     });
@@ -49,20 +52,22 @@ class _EditCollectionScreenState extends ConsumerState<EditCollectionScreen> {
   @override
   Widget build(BuildContext context) {
     // final visibleItems = ref.watch(visiblePokemonListProvider);
-    final visibleItems =
-        ref
-            .watch(pokemonListProvider)
-            .where((pokemon) => pokemon.isVisible)
-            .toList();
-    final index = ref.read(collectionIndexProvider);
-    final collection = ref.watch(selectedCollectionProvider);
+    final visibleItems = ref
+        .watch(pokemonListProvider)
+        .where((pokemon) => pokemon.isVisible)
+        .toList();
+    String? collectionId = ref.read(collectionIdProvider);
+    final collection = ref
+        .read(collectionStateProvider.notifier)
+        .getSelectedCollection();
     // DEVE RIMANERE QUA sennò il filtro non funziona
     ref.watch(generationFilterProvider);
     ref.watch(regionFilterProvider);
 
     final isAllSelected = visibleItems.every((element) => element.isSelected);
-    final howManySelected =
-        visibleItems.where((element) => element.isSelected).length;
+    final howManySelected = visibleItems
+        .where((element) => element.isSelected)
+        .length;
 
     void handleSelectColor(newColor) =>
         setState(() => selectedColor = newColor);
@@ -77,8 +82,9 @@ class _EditCollectionScreenState extends ConsumerState<EditCollectionScreen> {
             collection.copyWith(
               name: _collectionNameController.text,
               color: selectedColor.toARGB32(),
-              pokemons:
-                  ref.read(pokemonListProvider.notifier).getAlllSelected(),
+              pokemons: ref
+                  .read(pokemonListProvider.notifier)
+                  .getAlllSelected(),
             ),
           );
       if (mounted) {
@@ -94,7 +100,7 @@ class _EditCollectionScreenState extends ConsumerState<EditCollectionScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          index == null
+          collectionId == null
               ? AppLocalizations.of(context)!.create_collection
               : AppLocalizations.of(context)!.edit_collection,
         ),
@@ -139,10 +145,10 @@ class _EditCollectionScreenState extends ConsumerState<EditCollectionScreen> {
             Expanded(child: SizedBox()),
             howManySelected != 0
                 ? Chip(
-                  onDeleted: handleDeleteChip,
-                  deleteIcon: Icon(Icons.close),
-                  label: Text('$howManySelected'),
-                )
+                    onDeleted: handleDeleteChip,
+                    deleteIcon: Icon(Icons.close),
+                    label: Text('$howManySelected'),
+                  )
                 : SizedBox.shrink(),
           ],
         ),
