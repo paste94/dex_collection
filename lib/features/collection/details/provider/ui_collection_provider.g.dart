@@ -1,29 +1,30 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'pokemon_list.dart';
+part of 'ui_collection_provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$pokemonListHash() => r'0ed121b22622e693db38ca503582e2cf649a0356';
+String _$uICollectionStateHash() => r'dc763a164658ad94c8d2a5920c71113416e51941';
 
-/// See also [PokemonList].
-@ProviderFor(PokemonList)
-final pokemonListProvider =
+/// See also [UICollectionState].
+@ProviderFor(UICollectionState)
+final uICollectionStateProvider =
     AutoDisposeNotifierProvider<
-      PokemonList,
-      List<UISearchModel<Pokemon>>
+      UICollectionState,
+      List<UICollection<CollectedPokemon>>
     >.internal(
-      PokemonList.new,
-      name: r'pokemonListProvider',
+      UICollectionState.new,
+      name: r'uICollectionStateProvider',
       debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
           ? null
-          : _$pokemonListHash,
+          : _$uICollectionStateHash,
       dependencies: null,
       allTransitiveDependencies: null,
     );
 
-typedef _$PokemonList = AutoDisposeNotifier<List<UISearchModel<Pokemon>>>;
+typedef _$UICollectionState =
+    AutoDisposeNotifier<List<UICollection<CollectedPokemon>>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

@@ -1,6 +1,7 @@
 import 'package:dex_collection/Hive/collected_pokemon/model/collected_pokemon.dart';
 import 'package:dex_collection/Hive/collection/collection_repo.dart';
 import 'package:dex_collection/Hive/collection/model/collection.dart';
+import 'package:dex_collection/Hive/pokemon/provider/db_pokemon_provider.dart';
 import 'package:dex_collection/features/collection/details/provider/index_provider.dart';
 import 'package:dex_collection/main.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -28,6 +29,16 @@ class CollectionState extends _$CollectionState {
     } else {
       return Collection(name: '');
     }
+  }
+
+  List<CollectedPokemon> getSelectedCollectionPokemons() {
+    return getSelectedCollection().pokemons?.map((e) {
+          e.pokemon = ref
+              .watch(dbPokemonProvider)
+              .firstWhere((pokemon) => pokemon.id == e.id);
+          return e;
+        }).toList() ??
+        [];
   }
 
   void clearCollection() async {

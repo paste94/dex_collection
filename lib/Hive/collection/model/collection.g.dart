@@ -25,7 +25,7 @@ class CollectionAdapter extends TypeAdapter<Collection> {
       )
       ..id = fields[0] as String
       ..isHidden = fields[4] as bool?
-      ..order = fields[5] == null ? -1 : (fields[5] as num).toInt();
+      ..order = fields[5] == null ? 0 : (fields[5] as num?)?.toInt();
   }
 
   @override

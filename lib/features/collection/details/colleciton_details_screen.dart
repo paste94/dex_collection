@@ -1,9 +1,9 @@
-import 'package:dex_collection/Hive/collected_pokemon/model/collected_pokemon.dart';
 import 'package:dex_collection/Hive/collection/provider/collection_provider.dart';
 import 'package:dex_collection/Hive/collection/model/collection.dart';
-import 'package:dex_collection/Hive/pokemon/provider/db_pokemon_provider.dart';
+import 'package:dex_collection/features/collection/details/provider/details_search_provider.dart';
 import 'package:dex_collection/features/collection/details/provider/index_provider.dart';
-import 'package:dex_collection/features/collection/details/widgets/list_item/list_item.dart';
+import 'package:dex_collection/features/collection/details/widgets/details_grid_view.dart';
+import 'package:dex_collection/features/collection/details/widgets/details_search_bar.dart';
 import 'package:dex_collection/features/error_screen/error_screen.dart';
 import 'package:dex_collection/l10n/generated/app_localizations.dart';
 import 'package:dex_collection/router/app_router.dart';
@@ -23,38 +23,15 @@ class _CollectionDetailsScreenState
     extends ConsumerState<CollectionDetailsScreen> {
   @override
   Widget build(BuildContext context) {
-    // final collectionIndex = ref.watch(collectionIndexProvider);
     final collectionId = ref.watch(collectionIdProvider);
-    // if (collectionIndex == null) {
-    //   return ErrorScreen();
-    // }
     if (collectionId == null) {
       return ErrorScreen();
     }
-    // final Collection collection = ref.watch(
-    //   collectionStateProvider,
-    // )[collectionIndex];
-    // final pokemonCollection =
-    //     collection.pokemons?.map((e) {
-    //       e.pokemon = ref
-    //           .watch(dbPokemonProvider)
-    //           .firstWhere((pokemon) => pokemon.id == e.id);
-    //       return e;
-    //     }).toList() ??
-    //     [];
 
     final Collection collection = ref
         .watch(collectionStateProvider)
         .where((element) => element.id == collectionId)
         .first;
-    final pokemonCollection =
-        collection.pokemons?.map((e) {
-          e.pokemon = ref
-              .watch(dbPokemonProvider)
-              .firstWhere((pokemon) => pokemon.id == e.id);
-          return e;
-        }).toList() ??
-        [];
 
     handleEdit() => context.push(ROUTES.editCollection);
     handleDelete() {
@@ -81,16 +58,10 @@ class _CollectionDetailsScreenState
       context.pop();
     }
 
-    // listItemBuilder(BuildContext context, int i) {
-    //   final pokemon = pokemonCollection[i];
-    //   return ListItem(pokemon: pokemon);
-    // }
-
     return PopScope(
       onPopInvokedWithResult: (context, result) {
         Future.delayed(
           Duration(milliseconds: 100),
-          // () => ref.read(collectionIndexProvider.notifier).state = null,
           () => ref.read(collectionIdProvider.notifier).state = null,
         );
       },
@@ -130,22 +101,9 @@ class _CollectionDetailsScreenState
         ),
         body: Column(
           children: [
-            Expanded(
-              child: pokemonCollection.isNotEmpty
-                  ? GridView.count(
-                      crossAxisCount: 2,
-                      children: pokemonCollection.map((
-                        CollectedPokemon collectedPokemon,
-                      ) {
-                        return ListItem(pokemon: collectedPokemon);
-                      }).toList(),
-                    )
-                  : Center(
-                      child: Text(
-                        AppLocalizations.of(context)!.no_pokemon_in_collection,
-                      ),
-                    ),
-            ),
+            Text('aaaa - ${ref.watch(detailsSearchProvider)}'),
+            DetailsSearchBar(),
+            Expanded(child: DetailsGridView()),
           ],
         ),
       ),
