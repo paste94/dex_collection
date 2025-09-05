@@ -37,4 +37,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get edit_collection => 'Edit collection';
+
+  @override
+  String get pokemon_details_search_hint => 'Search...';
 }

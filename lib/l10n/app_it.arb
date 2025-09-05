@@ -7,5 +7,7 @@
   "edit": "Modifica",
   "delete": "Cancella",
   "unknown_pokemon": "Pokémon sconosciuto",
-  "edit_collection": "Modifica collezione"
+  "edit_collection": "Modifica collezione",
+  "pokemon_details_search_hint": "Cerca..."
+
 }

@@ -157,6 +157,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Edit collection'**
   String get edit_collection;
+
+  /// Search hint for Pokémon details screen
+  ///
+  /// In en, this message translates to:
+  /// **'Search...'**
+  String get pokemon_details_search_hint;
 }
 
 class _AppLocalizationsDelegate

@@ -3,7 +3,7 @@ import 'package:dex_collection/Hive/collection/model/collection.dart';
 import 'package:dex_collection/features/collection/details/provider/details_search_provider.dart';
 import 'package:dex_collection/features/collection/details/provider/index_provider.dart';
 import 'package:dex_collection/features/collection/details/widgets/details_grid_view.dart';
-import 'package:dex_collection/features/collection/details/widgets/details_search_bar.dart';
+import 'package:dex_collection/features/collection/details/widgets/txt_search_bar.dart';
 import 'package:dex_collection/features/error_screen/error_screen.dart';
 import 'package:dex_collection/l10n/generated/app_localizations.dart';
 import 'package:dex_collection/router/app_router.dart';
@@ -99,12 +99,15 @@ class _CollectionDetailsScreenState
             ),
           ],
         ),
-        body: Column(
-          children: [
-            Text('aaaa - ${ref.watch(detailsSearchProvider)}'),
-            DetailsSearchBar(),
-            Expanded(child: DetailsGridView()),
-          ],
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              TxtSearchBar(),
+              SizedBox(height: 8),
+              Expanded(child: DetailsGridView()),
+            ],
+          ),
         ),
       ),
     );

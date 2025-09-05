@@ -59,5 +59,11 @@
     "description": "Label for edit collection title screen",
     "type": "text",
     "placeholders": {}
+  },
+  "pokemon_details_search_hint": "Search...",
+  "@pokemon_details_search_hint": {
+    "description": "Search hint for Pokémon details screen",
+    "type": "text",
+    "placeholders": {}
   }
 }

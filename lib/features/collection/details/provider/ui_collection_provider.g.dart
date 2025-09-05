@@ -6,7 +6,7 @@ part of 'ui_collection_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$uICollectionStateHash() => r'dc763a164658ad94c8d2a5920c71113416e51941';
+String _$uICollectionStateHash() => r'30e18f7813a4ef1717ded57cb97c72c6835330d3';
 
 /// See also [UICollectionState].
 @ProviderFor(UICollectionState)

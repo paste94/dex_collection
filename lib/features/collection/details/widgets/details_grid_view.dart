@@ -36,7 +36,12 @@ class DetailsGridView extends ConsumerWidget {
         ? GridView.count(
             crossAxisCount: 2,
             children: pokemonCollection
-                .map((p) => ListItem(pokemon: p.item))
+                .map(
+                  (p) => GridTile(
+                    key: ValueKey(p.item.id),
+                    child: ListItem(pokemon: p.item),
+                  ),
+                )
                 .toList(),
           )
         : Center(

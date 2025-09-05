@@ -38,4 +38,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get edit_collection => 'Modifica collezione';
+
+  @override
+  String get pokemon_details_search_hint => 'Cerca...';
 }

@@ -80,7 +80,7 @@ class ListItem extends ConsumerWidget {
               top: 0,
               right: 0,
               child: BtnCaptured(
-                isCaptured: pokemon.isCaptured,
+                collectedPokemon: pokemon,
                 onTap: onCapturedTap,
               ),
             ),
