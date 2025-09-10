@@ -20,19 +20,21 @@ class CollectedPokemonAdapter extends TypeAdapter<CollectedPokemon> {
       id: (fields[0] as num).toInt(),
       isCaptured: fields[1] == null ? false : fields[1] as bool,
       isShiny: fields[2] == null ? false : fields[2] as bool?,
-    );
+    )..customId = fields[3] as String?;
   }
 
   @override
   void write(BinaryWriter writer, CollectedPokemon obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(4)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
       ..write(obj.isCaptured)
       ..writeByte(2)
-      ..write(obj.isShiny);
+      ..write(obj.isShiny)
+      ..writeByte(3)
+      ..write(obj.customId);
   }
 
   @override

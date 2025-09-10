@@ -140,6 +140,12 @@ abstract class AppLocalizations {
   /// **'Edit'**
   String get edit;
 
+  /// Edit IDs label
+  ///
+  /// In en, this message translates to:
+  /// **'Edit IDs'**
+  String get edit_ids;
+
   /// Delete action label
   ///
   /// In en, this message translates to:

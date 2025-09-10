@@ -42,6 +42,12 @@
     "type": "text",
     "placeholders": {}
   },
+  "edit_ids": "Edit IDs",
+  "@edit_ids": {
+    "description": "Edit IDs label",
+    "type": "text",
+    "placeholders": {}
+  },
   "delete": "Delete",
   "@delete": {
     "description": "Delete action label",

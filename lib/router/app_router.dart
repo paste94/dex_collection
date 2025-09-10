@@ -2,7 +2,6 @@ import 'package:dex_collection/Hive/pokemon/provider/db_pokemon_provider.dart';
 import 'package:dex_collection/features/collection/details/colleciton_details_screen.dart';
 import 'package:dex_collection/features/collection/collection_list/collection_list_screen.dart';
 import 'package:dex_collection/features/collection/edit_collection/edit_collection_screen.dart';
-import 'package:dex_collection/features/collection/edit_collection/provider/pokemon_list.dart';
 import 'package:dex_collection/features/download_screen/download_screen.dart';
 import 'package:dex_collection/features/error_screen/error_screen.dart';
 import 'package:dex_collection/features/settings/settings_view.dart';

@@ -9,7 +9,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'ui_collection_provider.g.dart';
 
 @riverpod
-class UICollectionState extends _$UICollectionState {
+class UICollectionList extends _$UICollectionList {
   @override
   List<UICollection<CollectedPokemon>> build() {
     ref.listen(detailsSearchProvider, (oldValue, newValue) => filter(newValue));

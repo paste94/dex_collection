@@ -30,6 +30,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get edit => 'Edit';
 
   @override
+  String get edit_ids => 'Edit IDs';
+
+  @override
   String get delete => 'Delete';
 
   @override

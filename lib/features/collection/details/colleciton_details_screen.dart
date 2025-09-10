@@ -57,6 +57,36 @@ class _CollectionDetailsScreenState
       context.pop();
     }
 
+    handleEditIDs() {
+      showDialog(
+        context: context,
+        builder: (context) => Dialog(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  AppLocalizations.of(context)!.edit_ids,
+                  style: Theme.of(context).textTheme.headlineSmall,
+                ),
+                SizedBox(height: 16),
+                Text(
+                  'Feature not implemented yet',
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
+                SizedBox(height: 24),
+                ElevatedButton(
+                  onPressed: () => Navigator.of(context).pop(),
+                  child: Text('Close'),
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+    }
+
     return PopScope(
       onPopInvokedWithResult: (context, result) {
         Future.delayed(
@@ -80,6 +110,16 @@ class _CollectionDetailsScreenState
                         Icon(Icons.edit),
                         SizedBox(width: 8),
                         Text(AppLocalizations.of(context)!.edit),
+                      ],
+                    ),
+                  ),
+                  PopupMenuItem<String>(
+                    onTap: handleEditIDs,
+                    child: Row(
+                      children: [
+                        Icon(Icons.numbers),
+                        SizedBox(width: 8),
+                        Text(AppLocalizations.of(context)!.edit_ids),
                       ],
                     ),
                   ),

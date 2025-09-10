@@ -54,7 +54,7 @@ class ListItem extends ConsumerWidget {
 
                   /// ID
                   Text(
-                    '#${pokemon.pokemon?.id.toString().padLeft(4, '0')}',
+                    '${pokemon.customId}',
                     style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                       fontStyle: FontStyle.italic,
                     ),
