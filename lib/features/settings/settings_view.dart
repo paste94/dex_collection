@@ -19,37 +19,37 @@ class _SettingsViewState extends ConsumerState<SettingsView>
   // void progressCallback(double progress) =>
   //     setState(() => _progress = progress);
 
-  void downloadPokemon() async {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text("Attendere"),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: const [
-              Text(
-                "L’operazione può richiedere fino a un minuto.\n"
-                "Non uscire dall’app.",
-              ),
-              SizedBox(height: 20),
-              CircularProgressIndicator(),
-            ],
-          ),
-        );
-      },
-    );
-    await ref.read(dbPokemonProvider.notifier).clearCollection();
-    final pokemonList = await PokeapiService.getAllPokemons();
-    ref.read(dbPokemonProvider.notifier).addAllPokemons(pokemonList);
-    // Chiudo il dialog
-    if (mounted) {
-      Navigator.of(context).pop();
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(const SnackBar(content: Text("Operazione completata!")));
-    }
-  }
+  // void downloadPokemon() async {
+  //   showDialog(
+  //     context: context,
+  //     builder: (BuildContext context) {
+  //       return AlertDialog(
+  //         title: const Text("Attendere"),
+  //         content: Column(
+  //           mainAxisSize: MainAxisSize.min,
+  //           children: const [
+  //             Text(
+  //               "L’operazione può richiedere fino a un minuto.\n"
+  //               "Non uscire dall’app.",
+  //             ),
+  //             SizedBox(height: 20),
+  //             CircularProgressIndicator(),
+  //           ],
+  //         ),
+  //       );
+  //     },
+  //   );
+  //   await ref.read(dbPokemonProvider.notifier).clearCollection();
+  //   final pokemonList = await PokeapiService.getAllPokemons();
+  //   ref.read(dbPokemonProvider.notifier).addAllPokemons(pokemonList);
+  //   // Chiudo il dialog
+  //   if (mounted) {
+  //     Navigator.of(context).pop();
+  //     ScaffoldMessenger.of(
+  //       context,
+  //     ).showSnackBar(const SnackBar(content: Text("Operazione completata!")));
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -103,7 +103,7 @@ class _SettingsViewState extends ConsumerState<SettingsView>
                     //       ? '${(_progress * 100).toStringAsFixed(0)}%'
                     //       : '',
                     // ),
-                    onTap: downloadPokemon,
+                    // onTap: downloadPokemon,
                   ),
 
                   // _isDownloading
@@ -118,49 +118,44 @@ class _SettingsViewState extends ConsumerState<SettingsView>
                     onTap: () {
                       showDialog(
                         context: context,
-                        builder:
-                            (context) => Dialog(
-                              child: Padding(
-                                padding: const EdgeInsets.all(16.0),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
+                        builder: (context) => Dialog(
+                          child: Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                const Text(
+                                  'Sei sicuro di voler cancellare il database esistente?',
+                                ),
+                                const SizedBox(height: 16),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
-                                    const Text(
-                                      'Sei sicuro di voler cancellare il database esistente?',
+                                    TextButton(
+                                      onPressed: () =>
+                                          Navigator.of(context).pop(),
+                                      child: const Text('Annulla'),
                                     ),
-                                    const SizedBox(height: 16),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      children: [
-                                        TextButton(
-                                          onPressed:
-                                              () => Navigator.of(context).pop(),
-                                          child: const Text('Annulla'),
-                                        ),
-                                        TextButton(
-                                          onPressed: () {
-                                            ref
-                                                .read(
-                                                  dbPokemonProvider.notifier,
-                                                )
-                                                .clearCollection();
-                                            ref
-                                                .read(
-                                                  collectionStateProvider
-                                                      .notifier,
-                                                )
-                                                .clearCollection();
-                                          },
-                                          child: const Text('Conferma'),
-                                        ),
-                                      ],
+                                    TextButton(
+                                      onPressed: () {
+                                        ref
+                                            .read(dbPokemonProvider.notifier)
+                                            .clearCollection();
+                                        ref
+                                            .read(
+                                              collectionListProvider.notifier,
+                                            )
+                                            .clearCollection();
+                                      },
+                                      child: const Text('Conferma'),
                                     ),
                                   ],
                                 ),
-                              ),
+                              ],
                             ),
+                          ),
+                        ),
                       );
-                      // TODO: implement delete database logic
                     },
                   ),
                 ],

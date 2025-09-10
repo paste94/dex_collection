@@ -17,7 +17,7 @@ class CollectionListScreen extends ConsumerStatefulWidget {
 class _CollectionListScreenState extends ConsumerState<CollectionListScreen> {
   @override
   Widget build(BuildContext context) {
-    final List<Collection> collectionList = ref.watch(collectionStateProvider);
+    final List<Collection> collectionList = ref.watch(collectionListProvider);
     final List<Collection> collectionListToShow =
         collectionList
             .where((collection) => collection.isHidden != true)
@@ -41,16 +41,10 @@ class _CollectionListScreenState extends ConsumerState<CollectionListScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            Expanded(
-              child: ReorderableListView.builder(
+        child: collectionListToShow.isNotEmpty
+            ? ReorderableListView.builder(
                 itemBuilder: (context, index) {
                   final item = collectionListToShow[index];
-                  // return Card(
-                  //   key: Key('$index'),
-                  //   // title: Text('Item ${collectionListToShow[index].name}'),
-                  // );
                   return Container(
                     key: Key('$index'),
                     child: CollectionTile(collection: item),
@@ -65,34 +59,39 @@ class _CollectionListScreenState extends ConsumerState<CollectionListScreen> {
 
                   Map<String, int> idIndexMap = {};
 
-                  // collectionListToShow.asMap().map()
-
                   for (int i = 0; i < collectionListToShow.length; i++) {
                     idIndexMap[collectionListToShow[i].id] = i;
                   }
 
                   ref
-                      .read(collectionStateProvider.notifier)
+                      .read(collectionListProvider.notifier)
                       .updateOrder(idIndexMap);
                 },
+              )
+            : Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      'assets/app/no_data.png',
+                      height: 200, // altezza fissa
+                      width: 200, // opzionale, se vuoi proporzioni
+                      fit: BoxFit.contain,
+                    ),
+                    SizedBox(height: 16),
+                    Text(
+                      'No collections yet.\nTap the + button to create your first collection!',
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
               ),
-              // child: ListView.builder(
-              //   itemCount: collectionListToShow.length,
-              //   itemBuilder: (context, index) {
-              //     final item = collectionListToShow[index];
-              //     return CollectionTile(index: index, item: item);
-              //   },
-              // ),
-            ),
-          ],
-        ),
       ),
 
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           // Naviga alla schermata di ricerca
           context.push('/create-collection');
-          // context.push('/search');
         },
         tooltip: 'Add new collection',
         child: Icon(Icons.add),

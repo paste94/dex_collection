@@ -31,21 +31,25 @@ class _TxtSearchBarState extends ConsumerState<TxtSearchBar> {
   Widget build(BuildContext context) {
     final searchString = ref.watch(detailsSearchProvider);
 
-    return SearchBar(
+    return TextField(
       controller: controller,
-      leading: Padding(
-        padding: EdgeInsets.only(left: 8, right: 8),
-        child: Icon(Icons.search),
+      decoration: InputDecoration(
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(90.0)),
+        hintText: AppLocalizations.of(context)!.pokemon_details_search_hint,
+        prefixIcon: Padding(
+          padding: EdgeInsets.only(left: 16, right: 8),
+          child: Icon(Icons.search),
+        ),
+        suffixIcon: searchString.isNotEmpty
+            ? Padding(
+                padding: const EdgeInsets.only(right: 8.0),
+                child: IconButton(
+                  icon: Icon(Icons.clear),
+                  onPressed: () => controller.clear(),
+                ),
+              )
+            : null,
       ),
-      trailing: [
-        searchString.isEmpty
-            ? SizedBox.shrink()
-            : IconButton(
-                icon: Icon(Icons.clear),
-                onPressed: () => controller.clear(),
-              ),
-      ],
-      hintText: AppLocalizations.of(context)!.pokemon_details_search_hint,
     );
   }
 }

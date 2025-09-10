@@ -10,7 +10,6 @@ import 'package:dex_collection/features/collection/edit_collection/provider/UIMo
 import 'package:dex_collection/features/collection/edit_collection/provider/generation_filter_provider.dart';
 import 'package:dex_collection/features/collection/edit_collection/provider/name_filter_provider.dart';
 import 'package:dex_collection/features/collection/edit_collection/provider/region_filter_provider.dart';
-import 'package:dex_collection/features/collection/edit_collection/provider/selected_collection.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'pokemon_list.g.dart';
@@ -19,18 +18,9 @@ part 'pokemon_list.g.dart';
 class PokemonList extends _$PokemonList {
   @override
   List<UISearchModel<Pokemon>> build() {
-    // int? index = ref.read(collectionIndexProvider);
-    // String? collectionId = ref.read(collectionIdProvider);
-    Collection collection = ref
-        .read(collectionStateProvider.notifier)
-        .getSelectedCollection();
+    String? collectionId = ref.read(collectionIdProvider);
+    Collection collection = ref.read(collectionItemProvider(collectionId));
 
-    // Collection collection = collectionId == null
-    //     ? Collection(name: '')
-    //     : ref
-    //           .read(collectionStateProvider)
-    //           .where((element) => collectionId == element.id)
-    //           .first;
     final inCollectionIds =
         collection.pokemons?.map((e) => e.id).toList() ?? [];
     return ref
@@ -105,9 +95,7 @@ class PokemonList extends _$PokemonList {
           .map((e) => CollectedPokemon(id: e.item.id))
           .toList();
     } else {
-      Collection collection = ref
-          .read(collectionStateProvider.notifier)
-          .getSelectedCollection();
+      Collection collection = ref.read(collectionItemProvider(collectionId));
 
       /// List of all captured IDS
       List<int> capturedPokemons =
@@ -135,11 +123,3 @@ class PokemonList extends _$PokemonList {
     }
   }
 }
-
-// final visiblePokemonListProvider =
-//     Provider.autoDispose<List<UISearchModel<Pokemon>>>((ref) {
-//       return ref
-//           .watch(pokemonListProvider)
-//           .where((pokemon) => pokemon.isVisible)
-//           .toList();
-//     });

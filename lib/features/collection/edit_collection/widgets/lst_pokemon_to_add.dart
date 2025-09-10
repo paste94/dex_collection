@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dex_collection/Hive/pokemon/model/pokemon.dart';
 import 'package:dex_collection/features/collection/edit_collection/provider/UIModel/ui_search_model.dart';
 import 'package:dex_collection/features/collection/edit_collection/provider/pokemon_list.dart';
+import 'package:dex_collection/features/collection/edit_collection/widgets/list_item/itm_pokemon.dart';
 import 'package:dex_collection/utility/common_funcions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -35,19 +36,20 @@ class LstPokemonToAdd extends ConsumerWidget {
       itemCount: visibleItems.length,
       itemBuilder: (context, index) {
         final pokemon = visibleItems[index];
-        return ListTile(
-          leading: CachedNetworkImage(
-            imageUrl: pokemon.item.img ?? '',
-            placeholder: (context, url) => CircularProgressIndicator(),
-            errorWidget: (context, url, error) => Icon(Icons.error),
-          ),
-          title: Text('#${pokemon.item.id} - ${formatName(pokemon.item)}'),
-          subtitle: Text(pokemon.item.name),
-          trailing: pokemon.isSelected
-              ? Icon(Icons.check_circle, color: Colors.green)
-              : Icon(Icons.circle_outlined),
-          onTap: () => ref.read(pokemonListProvider.notifier).toggle(pokemon),
-        );
+        return ItemPokemon(uiPokemon: pokemon);
+        // ListTile(
+        //   leading: CachedNetworkImage(
+        //     imageUrl: pokemon.item.img ?? '',
+        //     placeholder: (context, url) => CircularProgressIndicator(),
+        //     errorWidget: (context, url, error) => Icon(Icons.error),
+        //   ),
+        //   title: Text('${formatName(pokemon.item)}'),
+        //   subtitle: Text('#${pokemon.item.id}'),
+        //   trailing: pokemon.isSelected
+        //       ? Icon(Icons.check_circle, color: Colors.green)
+        //       : Icon(Icons.circle_outlined),
+        //   onTap: () => ref.read(pokemonListProvider.notifier).toggle(pokemon),
+        // );
       },
     );
   }

@@ -19,12 +19,12 @@ class DetailsGridView extends ConsumerWidget {
     // final collectionId = ref.watch(collectionIdProvider);
 
     // final Collection collection = ref
-    //     .watch(collectionStateProvider)
+    //     .watch(collectionListProvider)
     //     .where((element) => element.id == collectionId)
     //     .first;
 
     final List<UICollection<CollectedPokemon>> pokemonCollection = ref
-        .watch(uICollectionStateProvider)
+        .watch(uIcollectionListProvider)
         .where((p) => p.isVisible)
         .toList();
 

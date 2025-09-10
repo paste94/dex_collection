@@ -6,17 +6,17 @@ part of 'ui_collection_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$uICollectionStateHash() => r'30e18f7813a4ef1717ded57cb97c72c6835330d3';
+String _$uICollectionStateHash() => r'86201f4bc253d1af5ec7d30a87f24923c70ddd39';
 
 /// See also [UICollectionState].
 @ProviderFor(UICollectionState)
-final uICollectionStateProvider =
+final uIcollectionListProvider =
     AutoDisposeNotifierProvider<
       UICollectionState,
       List<UICollection<CollectedPokemon>>
     >.internal(
       UICollectionState.new,
-      name: r'uICollectionStateProvider',
+      name: r'uIcollectionListProvider',
       debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
           ? null
           : _$uICollectionStateHash,

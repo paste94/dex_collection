@@ -3,6 +3,7 @@ import 'package:dex_collection/Hive/collection/provider/collection_provider.dart
 import 'package:dex_collection/Hive/pokemon/provider/db_pokemon_provider.dart';
 import 'package:dex_collection/features/collection/details/provider/UIModels/UI_collection.dart';
 import 'package:dex_collection/features/collection/details/provider/details_search_provider.dart';
+import 'package:dex_collection/features/collection/details/provider/index_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'ui_collection_provider.g.dart';
@@ -13,11 +14,21 @@ class UICollectionState extends _$UICollectionState {
   List<UICollection<CollectedPokemon>> build() {
     ref.listen(detailsSearchProvider, (oldValue, newValue) => filter(newValue));
 
-    return ref
-        .read(collectionStateProvider.notifier)
-        .getSelectedCollectionPokemons()
-        .map((p) => UICollection(item: p))
-        .toList();
+    List<CollectedPokemon>? pokemons = ref.watch(
+      collectionItemProvider(
+        ref.watch(collectionIdProvider),
+      ).select((c) => c.pokemons),
+    );
+
+    return pokemons?.map((CollectedPokemon e) {
+          final pokemon = e.copyWith(
+            pokemon: ref
+                .read(dbPokemonProvider)
+                .firstWhere((pokemon) => pokemon.id == e.id),
+          );
+          return UICollection(item: pokemon);
+        }).toList() ??
+        [];
   }
 
   void filter(String value) {

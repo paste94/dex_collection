@@ -22,6 +22,27 @@ class CollectedPokemon {
     this.isShiny = false,
   });
 
+  CollectedPokemon._({
+    required this.id,
+    required this.isCaptured,
+    this.isShiny,
+    this.pokemon,
+  });
+
+  CollectedPokemon copyWith({
+    int? id,
+    bool? isCaptured,
+    bool? isShiny,
+    Pokemon? pokemon,
+  }) {
+    return CollectedPokemon._(
+      id: id ?? this.id,
+      isCaptured: isCaptured ?? this.isCaptured,
+      isShiny: isShiny ?? this.isShiny,
+      pokemon: pokemon ?? this.pokemon,
+    );
+  }
+
   @override
   String toString() =>
       'CollectedPokemon - id: $id, name: ${pokemon?.name}, isCaptured: $isCaptured, isShiny: $isShiny';

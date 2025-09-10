@@ -13,17 +13,20 @@ class TxtSearchBar extends ConsumerWidget {
       controller: controller,
       decoration: InputDecoration(
         labelText: AppLocalizations.of(context)!.pokemon_search_hint,
-        prefixIcon: Icon(Icons.search),
-        border: OutlineInputBorder(),
-        suffixIcon:
-            controller.text.isNotEmpty
-                ? IconButton(
+        prefixIcon: Padding(
+          padding: EdgeInsets.only(left: 16, right: 8),
+          child: Icon(Icons.search),
+        ),
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(90.0)),
+        suffixIcon: controller.text.isNotEmpty
+            ? Padding(
+                padding: const EdgeInsets.only(right: 8.0),
+                child: IconButton(
                   icon: Icon(Icons.clear),
-                  onPressed: () {
-                    controller.clear();
-                  },
-                )
-                : null,
+                  onPressed: () => controller.clear(),
+                ),
+              )
+            : null,
       ),
     );
   }

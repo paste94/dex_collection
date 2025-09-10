@@ -14,7 +14,7 @@
 //       action: SnackBarAction(
 //         label: 'Undo',
 //         onPressed: () {
-//           ref.read(collectionStateProvider.notifier).hideCollectionById(id);
+//           ref.read(collectionListProvider.notifier).hideCollectionById(id);
 //         },
 //       ),
 //     );

@@ -25,11 +25,11 @@ class ListItem extends ConsumerWidget {
 
     /// Handlers
     onCapturedTap() => ref
-        .read(collectionStateProvider.notifier)
+        .read(collectionListProvider.notifier)
         .toggleCaptured(collectionId, pokemon.id);
 
     onShinyTap() => ref
-        .read(collectionStateProvider.notifier)
+        .read(collectionListProvider.notifier)
         .toggleShiny(collectionId, pokemon.id);
 
     return AnimatedSwitcher(

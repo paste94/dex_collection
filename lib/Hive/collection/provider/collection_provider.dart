@@ -1,15 +1,11 @@
-import 'package:dex_collection/Hive/collected_pokemon/model/collected_pokemon.dart';
 import 'package:dex_collection/Hive/collection/collection_repo.dart';
 import 'package:dex_collection/Hive/collection/model/collection.dart';
-import 'package:dex_collection/Hive/pokemon/provider/db_pokemon_provider.dart';
-import 'package:dex_collection/features/collection/details/provider/index_provider.dart';
-import 'package:dex_collection/main.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'collection_provider.g.dart';
 
 @riverpod
-class CollectionState extends _$CollectionState {
+class CollectionList extends _$CollectionList {
   late CollectionRepo repo;
 
   @override
@@ -20,25 +16,6 @@ class CollectionState extends _$CollectionState {
 
   Collection _getCollectionById(String id) {
     return state.firstWhere((element) => element.id == id);
-  }
-
-  Collection getSelectedCollection() {
-    String? id = ref.watch(collectionIdProvider);
-    if (id != null) {
-      return _getCollectionById(id);
-    } else {
-      return Collection(name: '');
-    }
-  }
-
-  List<CollectedPokemon> getSelectedCollectionPokemons() {
-    return getSelectedCollection().pokemons?.map((e) {
-          e.pokemon = ref
-              .watch(dbPokemonProvider)
-              .firstWhere((pokemon) => pokemon.id == e.id);
-          return e;
-        }).toList() ??
-        [];
   }
 
   void clearCollection() async {
@@ -69,34 +46,27 @@ class CollectionState extends _$CollectionState {
 
   void toggleCaptured(String collectionId, int pokemonId) {
     Collection collection = _getCollectionById(collectionId);
-    CollectedPokemon? pokemon = collection.pokemons
-        ?.where((p) => p.id == pokemonId)
-        .first;
 
-    if (pokemon == null) {
-      logger.w(
-        '[collection_provider.dart - toggleCaptured] No collected Pokemon found in collection [${collection.id}] with id [$pokemonId]',
-      );
-      return;
-    }
-    pokemon.isCaptured = !pokemon.isCaptured;
-    addOrUpdateCollection(collection);
+    final updatedPokemons = collection.pokemons?.map((p) {
+      if (p.id == pokemonId) {
+        return p.copyWith(isCaptured: !p.isCaptured);
+      }
+      return p;
+    }).toList();
+    addOrUpdateCollection(collection.copyWith(pokemons: updatedPokemons));
   }
 
   void toggleShiny(String collectionId, int pokemonId) {
     Collection collection = _getCollectionById(collectionId);
-    CollectedPokemon? pokemon = collection.pokemons
-        ?.where((p) => p.id == pokemonId)
-        .first;
 
-    if (pokemon == null) {
-      logger.w(
-        '[collection_provider.dart - toggleShiny] No collected Pokemon found in collection [${collection.id}] with id [$pokemonId]',
-      );
-      return;
-    }
-    pokemon.isShiny = !(pokemon.isShiny ?? false);
-    addOrUpdateCollection(collection);
+    final updatedPokemons = collection.pokemons?.map((p) {
+      if (p.id == pokemonId) {
+        return p.copyWith(isShiny: !(p.isShiny ?? false));
+      }
+      return p;
+    }).toList();
+
+    addOrUpdateCollection(collection.copyWith(pokemons: updatedPokemons));
   }
 
   void updateOrder(Map<String, int> idIndex) {
@@ -110,3 +80,12 @@ class CollectionState extends _$CollectionState {
     state = repo.getCollections();
   }
 }
+
+final collectionItemProvider = Provider.family<Collection, String?>((ref, id) {
+  return ref
+      .watch(collectionListProvider)
+      .firstWhere(
+        (element) => element.id == id,
+        orElse: () => Collection(name: ''),
+      );
+});

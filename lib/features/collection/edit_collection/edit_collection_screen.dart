@@ -1,11 +1,9 @@
-import 'package:dex_collection/Hive/collection/model/collection.dart';
 import 'package:dex_collection/Hive/collection/provider/collection_provider.dart';
 import 'package:dex_collection/features/collection/details/provider/index_provider.dart';
 import 'package:dex_collection/features/collection/edit_collection/provider/generation_filter_provider.dart';
 import 'package:dex_collection/features/collection/edit_collection/provider/name_filter_provider.dart';
 import 'package:dex_collection/features/collection/edit_collection/provider/pokemon_list.dart';
 import 'package:dex_collection/features/collection/edit_collection/provider/region_filter_provider.dart';
-import 'package:dex_collection/features/collection/edit_collection/provider/selected_collection.dart';
 import 'package:dex_collection/features/collection/edit_collection/widgets/btn_color_picker.dart';
 import 'package:dex_collection/features/collection/edit_collection/widgets/chk_select_all.dart';
 import 'package:dex_collection/features/collection/edit_collection/widgets/filter/btn_filter.dart';
@@ -32,13 +30,14 @@ class _EditCollectionScreenState extends ConsumerState<EditCollectionScreen> {
 
   @override
   void initState() {
-    Collection collection = ref
-        .read(collectionStateProvider.notifier)
-        .getSelectedCollection();
+    String? id = ref.read(collectionIdProvider);
+    int colorCode = ref.read(collectionItemProvider(id).select((c) => c.color));
+    String? name = ref.read(collectionItemProvider(id).select((c) => c.name));
+
     setState(() {
-      selectedColor = Color(collection.color);
+      selectedColor = Color(colorCode);
     });
-    _collectionNameController.text = collection.name ?? '';
+    _collectionNameController.text = name ?? '';
 
     super.initState();
   }
@@ -56,10 +55,8 @@ class _EditCollectionScreenState extends ConsumerState<EditCollectionScreen> {
         .watch(pokemonListProvider)
         .where((pokemon) => pokemon.isVisible)
         .toList();
-    String? collectionId = ref.read(collectionIdProvider);
-    final collection = ref
-        .read(collectionStateProvider.notifier)
-        .getSelectedCollection();
+    String? collectionId = ref.watch(collectionIdProvider);
+    final collection = ref.read(collectionItemProvider(collectionId));
     // DEVE RIMANERE QUA sennò il filtro non funziona
     ref.watch(generationFilterProvider);
     ref.watch(regionFilterProvider);
@@ -77,7 +74,7 @@ class _EditCollectionScreenState extends ConsumerState<EditCollectionScreen> {
 
     void handleAddPokemons() {
       ref
-          .read(collectionStateProvider.notifier)
+          .read(collectionListProvider.notifier)
           .addOrUpdateCollection(
             collection.copyWith(
               name: _collectionNameController.text,

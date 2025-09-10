@@ -1,6 +1,5 @@
 import 'package:dex_collection/Hive/collection/provider/collection_provider.dart';
 import 'package:dex_collection/Hive/collection/model/collection.dart';
-import 'package:dex_collection/features/collection/details/provider/details_search_provider.dart';
 import 'package:dex_collection/features/collection/details/provider/index_provider.dart';
 import 'package:dex_collection/features/collection/details/widgets/details_grid_view.dart';
 import 'package:dex_collection/features/collection/details/widgets/txt_search_bar.dart';
@@ -29,13 +28,13 @@ class _CollectionDetailsScreenState
     }
 
     final Collection collection = ref
-        .watch(collectionStateProvider)
+        .watch(collectionListProvider)
         .where((element) => element.id == collectionId)
         .first;
 
     handleEdit() => context.push(ROUTES.editCollection);
     handleDelete() {
-      final collectionNotifier = ref.read(collectionStateProvider.notifier);
+      final collectionNotifier = ref.read(collectionListProvider.notifier);
 
       ScaffoldMessenger.of(context)
           .showSnackBar(

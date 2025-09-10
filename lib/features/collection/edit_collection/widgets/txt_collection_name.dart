@@ -13,7 +13,7 @@ class TxtCollectionName extends ConsumerWidget {
       controller: controller,
       decoration: InputDecoration(
         labelText: AppLocalizations.of(context)!.edit_collection_name_hint,
-        border: OutlineInputBorder(),
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(90.0)),
       ),
     );
   }
