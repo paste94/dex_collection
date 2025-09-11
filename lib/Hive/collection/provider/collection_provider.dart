@@ -56,6 +56,23 @@ class CollectionList extends _$CollectionList {
     addOrUpdateCollection(collection.copyWith(pokemons: updatedPokemons));
   }
 
+  void updateCustomId(
+    String collectionId,
+    int pokemonId, [
+    String customId = '#',
+  ]) {
+    Collection collection = _getCollectionById(collectionId);
+
+    final updatedPokemons = collection.pokemons?.map((p) {
+      if (p.id == pokemonId) {
+        return p.copyWith(customId: customId);
+      }
+      return p;
+    }).toList();
+
+    addOrUpdateCollection(collection.copyWith(pokemons: updatedPokemons));
+  }
+
   void toggleShiny(String collectionId, int pokemonId) {
     Collection collection = _getCollectionById(collectionId);
 

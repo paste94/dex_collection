@@ -11,11 +11,12 @@ class RiverpodLogger extends ProviderObserver {
   ) {
     logger.d('''
 {
-  "provider": "${provider}",
+  "provider": "$provider",
   "newValue": "$newValue",
 }''');
   }
 
+  @override
   void didAddProvider(
     ProviderBase<Object?> provider,
     Object? value,

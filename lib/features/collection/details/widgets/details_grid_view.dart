@@ -26,7 +26,7 @@ class DetailsGridView extends ConsumerWidget {
                 .map(
                   (p) => GridTile(
                     key: ValueKey(p.item.id),
-                    child: ListItem(pokemon: p.item),
+                    child: ListItem(cPokemon: p.item),
                   ),
                 )
                 .toList(),

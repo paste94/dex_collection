@@ -78,7 +78,7 @@ class CollectionTile extends ConsumerWidget {
                     //   crossAxisAlignment: CrossAxisAlignment.start,
                     //   children: [
                     Text(
-                      "${collection.name ?? 'NONE'}",
+                      collection.name ?? 'NONE',
                       style: Theme.of(context).textTheme.headlineSmall,
 
                       // ),
