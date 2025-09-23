@@ -40,7 +40,7 @@ class PokeapiService {
 
     final assetResponse = await http.get(Uri.parse(assetUrl));
     if (assetResponse.statusCode != 200) {
-      throw Exception("Errore nel download dell’asset: ${assetResponse.body}");
+      throw Exception("Errore nel download del asset: ${assetResponse.body}");
     }
 
     List<dynamic> data = jsonDecode(assetResponse.body);
