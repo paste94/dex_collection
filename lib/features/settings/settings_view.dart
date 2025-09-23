@@ -1,5 +1,6 @@
 import 'package:dex_collection/Hive/collection/provider/collection_provider.dart';
 import 'package:dex_collection/Hive/pokemon/provider/db_pokemon_provider.dart';
+import 'package:dex_collection/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -67,14 +68,38 @@ class _SettingsViewState extends ConsumerState<SettingsView>
                                     ),
                                     TextButton(
                                       onPressed: () {
-                                        ref
-                                            .read(dbPokemonProvider.notifier)
-                                            .clearCollection();
-                                        ref
-                                            .read(
-                                              collectionListProvider.notifier,
-                                            )
-                                            .clearCollection();
+                                        try {
+                                          ref
+                                              .read(dbPokemonProvider.notifier)
+                                              .clearCollection();
+                                          ref
+                                              .read(
+                                                collectionListProvider.notifier,
+                                              )
+                                              .clearCollection();
+                                          ScaffoldMessenger.of(
+                                            context,
+                                          ).showSnackBar(
+                                            SnackBar(
+                                              content: Text(
+                                                'DB Deleted correctly',
+                                              ),
+                                            ),
+                                          );
+                                        } catch (e) {
+                                          ScaffoldMessenger.of(
+                                            context,
+                                          ).showSnackBar(
+                                            SnackBar(
+                                              content: Text(
+                                                'Error clearing data: $e',
+                                              ),
+                                            ),
+                                          );
+                                          logger.e("Error clearing data: $e");
+                                        } finally {
+                                          Navigator.of(context).pop();
+                                        }
                                       },
                                       child: const Text('Conferma'),
                                     ),

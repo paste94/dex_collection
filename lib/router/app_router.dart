@@ -6,7 +6,7 @@ import 'package:dex_collection/features/download_screen/download_screen.dart';
 import 'package:dex_collection/features/error_screen/error_screen.dart';
 import 'package:dex_collection/features/settings/settings_view.dart';
 import 'package:dex_collection/main.dart';
-import 'package:dex_collection/utility/router_observer.dart';
+import 'package:dex_collection/router/router_observer.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -63,12 +63,12 @@ final routerProvider = Provider<GoRouter>((ref) {
     errorBuilder: (context, state) =>
         ErrorScreen(message: state.error.toString()),
     redirect: (context, state) {
-      if (ref.read(dbPokemonProvider).isEmpty &&
-          state.fullPath != ROUTES.download) {
+      logger.w('REDIRECT: ${state.fullPath}');
+      if (ref.read(dbPokemonProvider).isEmpty) {
         logger.w("No pokemon in database");
         return ROUTES.download;
       }
-      return state.fullPath;
+      return null;
     },
   );
 });

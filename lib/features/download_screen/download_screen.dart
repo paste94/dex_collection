@@ -4,6 +4,7 @@ import 'package:dex_collection/main.dart' show logger;
 import 'package:dex_collection/router/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class DownloadScreen extends ConsumerStatefulWidget {
   const DownloadScreen({super.key});
@@ -27,7 +28,7 @@ class _DownloadScreenState extends ConsumerState<DownloadScreen> {
       final pokemonList = await PokeapiService.getAllPokemons();
       ref.read(dbPokemonProvider.notifier).addAllPokemons(pokemonList);
       if (mounted) {
-        Navigator.of(context).pushReplacementNamed(ROUTES.home);
+        context.go(ROUTES.home);
       }
     } catch (e) {
       setState(() {
@@ -41,7 +42,7 @@ class _DownloadScreenState extends ConsumerState<DownloadScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(automaticallyImplyLeading: false),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
