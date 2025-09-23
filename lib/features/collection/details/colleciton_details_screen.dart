@@ -40,7 +40,7 @@ class _CollectionDetailsScreenState
       ScaffoldMessenger.of(context)
           .showSnackBar(
             SnackBar(
-              content: Text('Collection ${collection.name} deleted'),
+              content: Text('Collections ${collection.name} deleted'),
               action: SnackBarAction(
                 label: 'Undo',
                 onPressed: () {
