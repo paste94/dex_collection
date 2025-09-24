@@ -1,4 +1,5 @@
 import 'package:dex_collection/Hive/collection/provider/collection_provider.dart';
+import 'package:dex_collection/features/collection/collection_list/const/scaffold_actions.dart';
 import 'package:dex_collection/features/collection/collection_list/widgets/collection_tile.dart';
 import 'package:dex_collection/Hive/collection/model/collection.dart';
 import 'package:dex_collection/main.dart';
@@ -32,10 +33,25 @@ class _CollectionListScreenState extends ConsumerState<CollectionListScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Collections'),
-        actions: [
-          IconButton(
-            onPressed: () => context.push('/settings'),
-            icon: Icon(Icons.settings),
+        actions: <Widget>[
+          PopupMenuButton<String>(
+            onSelected: context.push,
+            itemBuilder: (BuildContext context) {
+              return SCAFFOLD_ACTIONS
+                  .map(
+                    (e) => PopupMenuItem<String>(
+                      value: e['route'] as String,
+                      child: Row(
+                        children: [
+                          Icon(e['icon'] as IconData),
+                          SizedBox(width: 8),
+                          Text(e['name'] as String),
+                        ],
+                      ),
+                    ),
+                  )
+                  .toList();
+            },
           ),
         ],
       ),
