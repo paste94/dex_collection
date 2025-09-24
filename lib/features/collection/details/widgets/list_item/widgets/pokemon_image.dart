@@ -1,7 +1,8 @@
 import 'package:dex_collection/Hive/collected_pokemon/model/collected_pokemon.dart';
+import 'package:dex_collection/main.dart';
+import 'package:dex_collection/utility/widgets/retry_cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 
 class PokemonImage extends ConsumerWidget {
   final CollectedPokemon pokemon;
@@ -19,6 +20,8 @@ class PokemonImage extends ConsumerWidget {
         ? pokemon.pokemon?.shinyImg ?? ''
         : pokemon.pokemon?.img ?? '';
 
+    logger.d('Image URL: ${imageFromPokemon()}');
+
     return ColorFiltered(
       colorFilter: ColorFilter.mode(iconColorFromPokemon(), BlendMode.srcATop),
       child: AnimatedSwitcher(
@@ -26,7 +29,7 @@ class PokemonImage extends ConsumerWidget {
         transitionBuilder: (Widget child, Animation<double> animation) {
           return FadeTransition(opacity: animation, child: child);
         },
-        child: CachedNetworkImage(
+        child: RetryCachedNetworkImage(
           key: ValueKey<String>(imageFromPokemon()),
           height: imageSize.toDouble(),
           width: imageSize.toDouble(),
@@ -36,7 +39,9 @@ class PokemonImage extends ConsumerWidget {
             padding: const EdgeInsets.all(48.0),
             child: CircularProgressIndicator(),
           ),
-          errorWidget: (context, url, error) => Icon(Icons.error),
+          errorWidget: (context, url, error) {
+            return Icon(Icons.error);
+          },
         ),
       ),
     );

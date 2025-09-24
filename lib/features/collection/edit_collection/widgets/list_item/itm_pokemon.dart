@@ -1,9 +1,9 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dex_collection/Hive/pokemon/model/pokemon.dart';
 import 'package:dex_collection/features/collection/edit_collection/provider/UIModel/ui_search_model.dart';
 import 'package:dex_collection/features/collection/edit_collection/provider/pokemon_list.dart';
 import 'package:dex_collection/features/collection/edit_collection/widgets/list_item/widgets/icn_selected.dart';
 import 'package:dex_collection/utility/common_funcions.dart';
+import 'package:dex_collection/utility/widgets/retry_cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -26,7 +26,7 @@ class ItemPokemon extends ConsumerWidget {
             padding: const EdgeInsets.all(8.0),
             child: Row(
               children: [
-                CachedNetworkImage(
+                RetryCachedNetworkImage(
                   imageUrl: uiPokemon.item.img ?? '',
                   placeholder: (context, url) => CircularProgressIndicator(),
                   errorWidget: (context, url, error) => Icon(Icons.error),
