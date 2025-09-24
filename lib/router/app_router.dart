@@ -4,22 +4,14 @@ import 'package:dex_collection/features/collection/collection_list/collection_li
 import 'package:dex_collection/features/collection/edit_collection/edit_collection_screen.dart';
 import 'package:dex_collection/features/download_screen/download_screen.dart';
 import 'package:dex_collection/features/error_screen/error_screen.dart';
+import 'package:dex_collection/features/about/about_screen.dart';
 import 'package:dex_collection/features/settings/settings_view.dart';
 import 'package:dex_collection/main.dart';
+import 'package:dex_collection/router/const/routes.dart' show ROUTES;
 import 'package:dex_collection/router/go_router_refresh_notifier.dart';
 import 'package:dex_collection/router/router_observer.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-
-class ROUTES {
-  static const String home = '/';
-  static const String createCollection = '/create-collection';
-  static const String collectionDetails = '/collection';
-  static const String editCollection = '/collection/edit';
-  static const String settings = '/settings';
-  static const String error = '/error';
-  static const String download = '/download';
-}
 
 /// Router Provider che può reagire allo stato
 final routerProvider = Provider<GoRouter>((ref) {
@@ -28,46 +20,36 @@ final routerProvider = Provider<GoRouter>((ref) {
     observers: [RouterObserver()],
     refreshListenable: dbPokemon,
     routes: [
-      GoRoute(
-        path: ROUTES.home,
-        builder: (context, state) {
-          return CollectionListScreen();
-        },
-      ),
+      GoRoute(path: ROUTES.home, builder: (_, __) => CollectionListScreen()),
 
       GoRoute(
         path: ROUTES.createCollection,
-        builder: (context, state) => EditCollectionScreen(),
+        builder: (_, __) => EditCollectionScreen(),
       ),
+
       GoRoute(
         path: ROUTES.collectionDetails,
-        builder: (context, state) {
-          return CollectionDetailsScreen();
-        },
+        builder: (_, __) => CollectionDetailsScreen(),
         routes: [
-          GoRoute(
-            path: 'edit',
-            builder: (context, state) {
-              return EditCollectionScreen();
-            },
-          ),
+          GoRoute(path: 'edit', builder: (_, __) => EditCollectionScreen()),
         ],
       ),
-      GoRoute(
-        path: ROUTES.settings,
-        builder: (context, state) => SettingsView(),
-      ),
-      GoRoute(
-        path: ROUTES.download,
-        builder: (context, state) => DownloadScreen(),
-      ),
-      GoRoute(path: ROUTES.error, builder: (context, state) => ErrorScreen()),
+
+      GoRoute(path: ROUTES.settings, builder: (_, __) => SettingsView()),
+
+      GoRoute(path: ROUTES.download, builder: (_, __) => DownloadScreen()),
+
+      GoRoute(path: ROUTES.about, builder: (_, __) => AboutScreen()),
+
+      GoRoute(path: ROUTES.error, builder: (_, __) => ErrorScreen()),
     ],
-    errorBuilder: (context, state) =>
-        ErrorScreen(message: state.error.toString()),
-    redirect: (context, state) {
+
+    errorBuilder: (_, state) => ErrorScreen(message: state.error.toString()),
+
+    redirect: (_, state) {
       logger.i('REDIRECT: ${state.fullPath}');
-      if (ref.read(dbPokemonProvider).isEmpty) {
+      final db = ref.read(dbPokemonProvider);
+      if (db.isEmpty) {
         logger.w("No pokemon in database");
         return ROUTES.download;
       }

@@ -71,5 +71,41 @@
     "description": "Search hint for Pokémon details screen",
     "type": "text",
     "placeholders": {}
+  },
+  "about": "About",
+  "@about": {
+    "description": "About screen title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "disclaimer_title": "Disclaimer",
+  "@disclaimer_title": {
+    "description": "Disclaimer section title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "disclaimer_intro": "This is a non-official application, created as a personal and educational project by a Pokémon fan, using Flutter and open source resources.",
+  "@disclaimer_intro": {
+    "description": "Discmlaimer text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "disclaimer_sources": "Data and images of Pokémon are provided by PokéAPI (https: pokeapi.co/), while some icons and graphics are from Sora and Favicon.io.",
+  "@disclaimer_sources": {
+    "description": "Discmlaimer text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "disclaimer_rights": "Pokémon names, images, and trademarks are the property of their respective owners (Nintendo, Game Freak, Creatures Inc., The Pokémon Company). This app is not affiliated with, endorsed, or sponsored by these entities in any way.",
+  "@disclaimer_rights": {
+    "description": "Discmlaimer text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "disclaimer_open_source": "The project is open source and not-for-profit. If you find the app useful, you’re welcome to support it through donations.",
+  "@disclaimer_open_source": {
+    "description": "Discmlaimer text",
+    "type": "text",
+    "placeholders": {}
   }
 }

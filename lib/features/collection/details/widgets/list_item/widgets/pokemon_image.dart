@@ -6,7 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class PokemonImage extends ConsumerWidget {
   final CollectedPokemon pokemon;
-  final int imageSize = 150;
+  final int imageSize = 135;
 
   const PokemonImage({super.key, required this.pokemon});
 

@@ -1,7 +1,7 @@
 name: dex_collection
-description: "A new Flutter project."
+description: "Personal pokemon collection manager"
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-version: 1.0.0+1
+version: 1.0.0
 
 environment:
   sdk: ^3.9.0
@@ -29,6 +29,7 @@ dependencies:
   flutter_download_manager: ^0.5.5
   flutter_svg: ^2.2.0
   hive_ce_flutter: ^2.3.1
+  package_info_plus: ^9.0.0
   
 
 dev_dependencies:

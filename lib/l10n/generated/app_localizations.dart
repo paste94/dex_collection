@@ -169,6 +169,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Search...'**
   String get pokemon_details_search_hint;
+
+  /// About screen title
+  ///
+  /// In en, this message translates to:
+  /// **'About'**
+  String get about;
+
+  /// Disclaimer section title
+  ///
+  /// In en, this message translates to:
+  /// **'Disclaimer'**
+  String get disclaimer_title;
+
+  /// Discmlaimer text
+  ///
+  /// In en, this message translates to:
+  /// **'This is a non-official application, created as a personal and educational project by a Pokémon fan, using Flutter and open source resources.'**
+  String get disclaimer_intro;
+
+  /// Discmlaimer text
+  ///
+  /// In en, this message translates to:
+  /// **'Data and images of Pokémon are provided by PokéAPI (https: pokeapi.co/), while some icons and graphics are from Sora and Favicon.io.'**
+  String get disclaimer_sources;
+
+  /// Discmlaimer text
+  ///
+  /// In en, this message translates to:
+  /// **'Pokémon names, images, and trademarks are the property of their respective owners (Nintendo, Game Freak, Creatures Inc., The Pokémon Company). This app is not affiliated with, endorsed, or sponsored by these entities in any way.'**
+  String get disclaimer_rights;
+
+  /// Discmlaimer text
+  ///
+  /// In en, this message translates to:
+  /// **'The project is open source and not-for-profit. If you find the app useful, you’re welcome to support it through donations.'**
+  String get disclaimer_open_source;
 }
 
 class _AppLocalizationsDelegate

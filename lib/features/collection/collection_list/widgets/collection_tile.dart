@@ -2,6 +2,7 @@ import 'package:dex_collection/Hive/collection/model/collection.dart';
 import 'package:dex_collection/features/collection/collection_list/widgets/svg_icon_with_halo.dart';
 import 'package:dex_collection/features/collection/details/provider/index_provider.dart';
 import 'package:dex_collection/router/app_router.dart';
+import 'package:dex_collection/router/const/routes.dart';
 import 'package:dex_collection/utility/common_funcions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

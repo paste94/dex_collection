@@ -43,4 +43,26 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get pokemon_details_search_hint => 'Search...';
+
+  @override
+  String get about => 'About';
+
+  @override
+  String get disclaimer_title => 'Disclaimer';
+
+  @override
+  String get disclaimer_intro =>
+      'This is a non-official application, created as a personal and educational project by a Pokémon fan, using Flutter and open source resources.';
+
+  @override
+  String get disclaimer_sources =>
+      'Data and images of Pokémon are provided by PokéAPI (https: pokeapi.co/), while some icons and graphics are from Sora and Favicon.io.';
+
+  @override
+  String get disclaimer_rights =>
+      'Pokémon names, images, and trademarks are the property of their respective owners (Nintendo, Game Freak, Creatures Inc., The Pokémon Company). This app is not affiliated with, endorsed, or sponsored by these entities in any way.';
+
+  @override
+  String get disclaimer_open_source =>
+      'The project is open source and not-for-profit. If you find the app useful, you’re welcome to support it through donations.';
 }

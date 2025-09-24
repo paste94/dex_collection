@@ -73,6 +73,13 @@ class ListItem extends ConsumerWidget {
                 ),
               ),
 
+              /// IMAGE
+              Positioned(
+                bottom: 0,
+                right: 0,
+                child: PokemonImage(pokemon: cPokemon),
+              ),
+
               /// BTN SHINY
               Positioned(
                 bottom: 0,
@@ -90,13 +97,6 @@ class ListItem extends ConsumerWidget {
                   collectedPokemon: cPokemon,
                   onTap: onCapturedTap,
                 ),
-              ),
-
-              /// IMAGE
-              Positioned(
-                bottom: 0,
-                right: 0,
-                child: PokemonImage(pokemon: cPokemon),
               ),
             ],
           ),
