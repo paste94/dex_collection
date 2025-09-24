@@ -205,6 +205,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The project is open source and not-for-profit. If you find the app useful, you’re welcome to support it through donations.'**
   String get disclaimer_open_source;
+
+  /// Links title
+  ///
+  /// In en, this message translates to:
+  /// **'Links'**
+  String get links;
+
+  /// GitHub Repo btn text
+  ///
+  /// In en, this message translates to:
+  /// **'GitHub repo'**
+  String get github_repo;
+
+  /// Buy me a beer button
+  ///
+  /// In en, this message translates to:
+  /// **'Buy me a beer!'**
+  String get paypal_donation_button;
 }
 
 class _AppLocalizationsDelegate

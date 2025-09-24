@@ -107,5 +107,23 @@
     "description": "Discmlaimer text",
     "type": "text",
     "placeholders": {}
+  },
+  "links": "Links",
+  "@links": {
+    "description": "Links title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "github_repo": "GitHub repo",
+  "@github_repo": {
+    "description": "GitHub Repo btn text",
+    "type": "text",
+    "placeholders": {}
+  },
+  "paypal_donation_button": "Buy me a beer!",
+  "@paypal_donation_button": {
+    "description": "Buy me a beer button",
+    "type": "text",
+    "placeholders": {}
   }
 }

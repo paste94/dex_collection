@@ -65,4 +65,13 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get disclaimer_open_source =>
       'The project is open source and not-for-profit. If you find the app useful, you’re welcome to support it through donations.';
+
+  @override
+  String get links => 'Links';
+
+  @override
+  String get github_repo => 'GitHub repo';
+
+  @override
+  String get paypal_donation_button => 'Buy me a beer!';
 }
