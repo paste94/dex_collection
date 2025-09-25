@@ -39,9 +39,13 @@ class _CollectionDetailsScreenState
       ScaffoldMessenger.of(context)
           .showSnackBar(
             SnackBar(
-              content: Text('Collections ${collection.name} deleted'),
+              content: Text(
+                AppLocalizations.of(
+                  context,
+                )!.collection_deleted(collection.name ?? 'NULL'),
+              ),
               action: SnackBarAction(
-                label: 'Undo',
+                label: AppLocalizations.of(context)!.undo,
                 onPressed: () {
                   collectionNotifier.unhideCollectionById(collection.id);
                 },
@@ -57,35 +61,35 @@ class _CollectionDetailsScreenState
       context.pop();
     }
 
-    handleEditIDs() {
-      showDialog(
-        context: context,
-        builder: (context) => Dialog(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  AppLocalizations.of(context)!.edit_ids,
-                  style: Theme.of(context).textTheme.headlineSmall,
-                ),
-                SizedBox(height: 16),
-                Text(
-                  'Feature not implemented yet',
-                  style: Theme.of(context).textTheme.bodyMedium,
-                ),
-                SizedBox(height: 24),
-                ElevatedButton(
-                  onPressed: () => Navigator.of(context).pop(),
-                  child: Text('Close'),
-                ),
-              ],
-            ),
-          ),
-        ),
-      );
-    }
+    // handleEditIDs() {
+    //   showDialog(
+    //     context: context,
+    //     builder: (context) => Dialog(
+    //       child: Padding(
+    //         padding: const EdgeInsets.all(16.0),
+    //         child: Column(
+    //           mainAxisSize: MainAxisSize.min,
+    //           children: [
+    //             Text(
+    //               AppLocalizations.of(context)!.edit_ids,
+    //               style: Theme.of(context).textTheme.headlineSmall,
+    //             ),
+    //             SizedBox(height: 16),
+    //             Text(
+    //               'Feature not implemented yet',
+    //               style: Theme.of(context).textTheme.bodyMedium,
+    //             ),
+    //             SizedBox(height: 24),
+    //             ElevatedButton(
+    //               onPressed: () => Navigator.of(context).pop(),
+    //               child: Text('Close'),
+    //             ),
+    //           ],
+    //         ),
+    //       ),
+    //     ),
+    //   );
+    // }
 
     return PopScope(
       onPopInvokedWithResult: (context, result) {
@@ -113,16 +117,16 @@ class _CollectionDetailsScreenState
                       ],
                     ),
                   ),
-                  PopupMenuItem<String>(
-                    onTap: handleEditIDs,
-                    child: Row(
-                      children: [
-                        Icon(Icons.numbers),
-                        SizedBox(width: 8),
-                        Text(AppLocalizations.of(context)!.edit_ids),
-                      ],
-                    ),
-                  ),
+                  // PopupMenuItem<String>(
+                  //   onTap: handleEditIDs,
+                  //   child: Row(
+                  //     children: [
+                  //       Icon(Icons.numbers),
+                  //       SizedBox(width: 8),
+                  //       Text(AppLocalizations.of(context)!.edit_ids),
+                  //     ],
+                  //   ),
+                  // ),
                   PopupMenuItem<String>(
                     onTap: handleDelete,
                     child: Row(

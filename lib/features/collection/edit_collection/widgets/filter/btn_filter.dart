@@ -21,49 +21,6 @@ class BtnFilter extends ConsumerWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [GenFilter(), RegFilter()],
               );
-              // return Column(
-              //   children: [
-              //     Flexible(flex: 1, child: GenFilter()),
-              //     // Text('Generation'),
-              //     // Expanded(
-              //     //   child: GridView.count(
-              //     //     crossAxisCount: 2,
-              //     //     children:
-              //     //         generations
-              //     //             .map(
-              //     //               (gen) => ChoiceChip(
-              //     //                 label: Text(gen.name),
-              //     //                 selected: gen.isSelected,
-              //     //                 onSelected:
-              //     //                     (selected) => handleGenerationTap(
-              //     //                       gen,
-              //     //                       selected,
-              //     //                     ),
-              //     //               ),
-              //     //             )
-              //     //             .toList(),
-              //     //   ),
-              //     // ),
-              //     Text('Regional'),
-              //     Expanded(
-              //       child: GridView.count(
-              //         crossAxisCount: 2,
-              //         children:
-              //             regions
-              //                 .map(
-              //                   (reg) => ChoiceChip(
-              //                     label: Text(reg.name),
-              //                     selected: reg.isSelected,
-              //                     onSelected:
-              //                         (selected) =>
-              //                             handleRegionTap(reg, selected),
-              //                   ),
-              //                 )
-              //                 .toList(),
-              //       ),
-              //     ),
-              //   ],
-              // );
             },
           );
         },

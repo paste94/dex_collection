@@ -1,6 +1,7 @@
 import 'package:dex_collection/Hive/collected_pokemon/model/collected_pokemon.dart';
 import 'package:dex_collection/Hive/collection/provider/collection_provider.dart';
 import 'package:dex_collection/features/collection/details/provider/index_provider.dart';
+import 'package:dex_collection/l10n/generated/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -30,20 +31,22 @@ class _DialogEditIdState extends ConsumerState<DialogEditId> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text("Personalizza ID"),
+      title: Text(AppLocalizations.of(context)!.edit_id_title),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           TextField(
             controller: controller,
-            decoration: InputDecoration(labelText: "New ID"),
+            decoration: InputDecoration(
+              labelText: AppLocalizations.of(context)!.new_id_label,
+            ),
           ),
         ],
       ),
       actions: [
         TextButton(
           onPressed: () => Navigator.pop(context),
-          child: Text("Annulla"),
+          child: Text(AppLocalizations.of(context)!.cancel),
         ),
         TextButton(
           onPressed: () {
@@ -59,7 +62,7 @@ class _DialogEditIdState extends ConsumerState<DialogEditId> {
             });
             Navigator.pop(context);
           },
-          child: Text("Applica"),
+          child: Text(AppLocalizations.of(context)!.ok),
         ),
       ],
     );

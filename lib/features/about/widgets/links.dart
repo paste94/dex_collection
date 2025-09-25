@@ -1,13 +1,22 @@
+import 'package:dex_collection/config/config.dart';
 import 'package:dex_collection/l10n/generated/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Links extends ConsumerWidget {
   const Links({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    Future<void> _launchUrl(String urlStr) async {
+      final Uri url = Uri.parse(urlStr);
+      if (!await launchUrl(url)) {
+        throw Exception('Could not launch $url');
+      }
+    }
+
     return Card.outlined(
       child: Center(
         child: Padding(
@@ -24,7 +33,7 @@ class Links extends ConsumerWidget {
 
               /// GITHUB BUTTON
               OutlinedButton(
-                onPressed: () {},
+                onPressed: () => _launchUrl(GITHUB_ULR),
                 child: Row(
                   children: [
                     SizedBox(
@@ -45,7 +54,7 @@ class Links extends ConsumerWidget {
 
               /// PAYPAL DONATIONS
               OutlinedButton(
-                onPressed: () {},
+                onPressed: () => _launchUrl(PAYPAL_DONATION_URL),
                 child: Row(
                   children: [
                     SizedBox(

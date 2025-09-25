@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class BtnCaptured extends ConsumerWidget {
-  // final bool isCaptured;
   final CollectedPokemon collectedPokemon;
   final Function() onTap;
   const BtnCaptured({
@@ -15,12 +14,9 @@ class BtnCaptured extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // color() => isCaptured ? Colors.black54 : Colors.grey;
-
     return AnimatedSwitcher(
       duration: Duration(milliseconds: 350),
       transitionBuilder: (child, anim) => RotationTransition(
-        // turns: child.key == ValueKey('true')
         turns: collectedPokemon.isCaptured == true
             ? Tween<double>(begin: 0, end: 1).animate(anim)
             : Tween<double>(begin: 1, end: 0).animate(anim),

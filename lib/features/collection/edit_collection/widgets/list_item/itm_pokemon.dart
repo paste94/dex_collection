@@ -16,9 +16,6 @@ class ItemPokemon extends ConsumerWidget {
     return SizedBox(
       height: 90,
       child: Card.outlined(
-        // color: Color(
-        //   uiPokemon.item.color ?? 0,
-        // ).withAlpha(uiPokemon.isSelected ? 255 : 180),
         child: InkWell(
           onTap: () => ref.read(pokemonListProvider.notifier).toggle(uiPokemon),
           borderRadius: BorderRadius.circular(getCardCornerRadius(context)),

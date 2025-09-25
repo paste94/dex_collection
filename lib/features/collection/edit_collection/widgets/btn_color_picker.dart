@@ -1,3 +1,4 @@
+import 'package:dex_collection/l10n/generated/app_localizations.dart';
 import 'package:flex_color_picker/flex_color_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -24,8 +25,10 @@ class BtnColorPicker extends ConsumerWidget {
         borderRadius: 20,
         spacing: 10,
         runSpacing: 10,
-        heading: const Text('Pick a color'),
-        subheading: const Text('Select a color for your widget'),
+        heading: Text(AppLocalizations.of(context)!.color_picker_title),
+        subheading: Text(
+          AppLocalizations.of(context)!.color_picker_description,
+        ),
         wheelDiameter: 200,
         wheelWidth: 20,
       ).showPickerDialog(

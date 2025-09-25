@@ -75,4 +75,56 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get paypal_donation_button => 'Offrimi una birrra!';
+
+  @override
+  String get settings_title => 'Impostazioni';
+
+  @override
+  String get settings_database_section => 'Database';
+
+  @override
+  String get settings_download_new_db => 'Aggiorna database';
+
+  @override
+  String get fetch_error =>
+      'Errore nel download, controlla la connessione internet e riprova.';
+
+  @override
+  String get downloading => 'Download in corso, attendere...';
+
+  @override
+  String get retry => 'Riprova';
+
+  @override
+  String get color_picker_title => 'Scegli un colore';
+
+  @override
+  String get color_picker_description => 'Scegli un coloper per la collezione';
+
+  @override
+  String collection_deleted(String name) {
+    return 'Collezione $name eliminata';
+  }
+
+  @override
+  String get undo => 'Annulla';
+
+  @override
+  String get edit_id_title => 'Personalizza ID';
+
+  @override
+  String get new_id_label => 'Nuovo ID';
+
+  @override
+  String get cancel => 'Annulla';
+
+  @override
+  String get ok => 'Ok';
+
+  @override
+  String get no_collections_yet =>
+      'Non ci sono ancora collezioni.\nPremi + per iniziare!';
+
+  @override
+  String get new_collection_tooltip => 'Nuova collezione';
 }

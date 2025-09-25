@@ -2,6 +2,7 @@ import 'package:dex_collection/Hive/collection/provider/collection_provider.dart
 import 'package:dex_collection/features/collection/collection_list/const/scaffold_actions.dart';
 import 'package:dex_collection/features/collection/collection_list/widgets/collection_tile.dart';
 import 'package:dex_collection/Hive/collection/model/collection.dart';
+import 'package:dex_collection/l10n/generated/app_localizations.dart';
 import 'package:dex_collection/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -69,7 +70,7 @@ class _CollectionListScreenState extends ConsumerState<CollectionListScreen> {
                 itemCount: collectionListToShow.length,
                 onReorder: (int oldIndex, int newIndex) {
                   if (oldIndex < newIndex) newIndex--;
-                  logger.d('OLD INDEX: $oldIndex\nNEW INDEX: $newIndex');
+                  // logger.d('OLD INDEX: $oldIndex\nNEW INDEX: $newIndex');
                   final item = collectionListToShow.removeAt(oldIndex);
                   collectionListToShow.insert(newIndex, item);
 
@@ -96,7 +97,7 @@ class _CollectionListScreenState extends ConsumerState<CollectionListScreen> {
                     ),
                     SizedBox(height: 16),
                     Text(
-                      'No collections yet.\nTap the + button to create your first collection!',
+                      AppLocalizations.of(context)!.no_collections_yet,
                       textAlign: TextAlign.center,
                     ),
                   ],
@@ -109,7 +110,7 @@ class _CollectionListScreenState extends ConsumerState<CollectionListScreen> {
           // Naviga alla schermata di ricerca
           context.push('/create-collection');
         },
-        tooltip: 'Add new collection',
+        tooltip: AppLocalizations.of(context)!.new_collection_tooltip,
         child: Icon(Icons.add),
       ),
     );

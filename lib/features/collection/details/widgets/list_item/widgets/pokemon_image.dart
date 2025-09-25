@@ -20,8 +20,6 @@ class PokemonImage extends ConsumerWidget {
         ? pokemon.pokemon?.shinyImg ?? ''
         : pokemon.pokemon?.img ?? '';
 
-    logger.d('Image URL: ${imageFromPokemon()}');
-
     return ColorFiltered(
       colorFilter: ColorFilter.mode(iconColorFromPokemon(), BlendMode.srcATop),
       child: AnimatedSwitcher(

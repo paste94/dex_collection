@@ -125,5 +125,91 @@
     "description": "Buy me a beer button",
     "type": "text",
     "placeholders": {}
+  },
+  "settings_title": "Settings",
+  "@settings_title": {
+    "description": "Settings title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "settings_database_section": "Database",
+  "@settings_database_section": {
+    "description": "Settings Database section",
+    "type": "text",
+    "placeholders": {}
+  },
+  "settings_download_new_db": "Update database",
+  "@settings_download_new_db": {
+    "description": "Download new DB settings button",
+    "type": "text",
+    "placeholders": {}
+  },
+  "fetch_error": "Error fetching data, please check your internet connection and try again.",
+  "@fetch_error": {
+    "description": "Error shown when download new BD fails",
+    "type": "text",
+    "placeholders": {}
+  },
+  "downloading": "Downloading, please wait...",
+  "@downloading": {
+    "description": "Downloading",
+    "type": "text",
+    "placeholders": {}
+  },
+  "retry": "Retry",
+  "@retry": {
+    "description": "Retry button label",
+    "type": "text",
+    "placeholders": {}
+  },
+  "color_picker_title": "Pick a color",
+  "@color_picker_title": {
+    "description": "Color picker dialg title",
+    "type": "text",
+    "placeholders": {}
+  },
+  "color_picker_description": "Select a color for your colletion",
+  "@color_picker_description": {
+    "description": "Color picker dialg description",
+    "type": "text",
+    "placeholders": {}
+  },
+  "collection_deleted": "Collection {name} deleted",
+  "@collection_deleted": {
+    "description": "Collection deleted label",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Collection"
+      }
+    }
+  },
+  "undo": "Undo",
+  "@undo": {
+    "description": "Collection deleted label"
+  },
+  "edit_id_title": "Edit ID",
+  "@edit_id_title": {
+    "description": "Edit ID dialog title"
+  },
+  "new_id_label": "New ID",
+  "@new_id_label": {
+    "description": "New ID label"
+  },
+  "cancel": "Cancel",
+  "@cancel": {
+    "description": "Cancel label"
+  },
+  "ok": "Ok",
+  "@ok": {
+    "description": "OK"
+  },
+  "no_collections_yet": "No collections yet.\nTap the + button to create your first collection!",
+  "@no_collections_yet": {
+    "description": "No collection yet label"
+  },
+  "new_collection_tooltip": "Add new collection",
+  "@new_collection_tooltip": {
+    "description": "New collection tooltip"
   }
 }

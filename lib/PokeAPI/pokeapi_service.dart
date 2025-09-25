@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 
 class PokeapiService {
   static Future<String> getUrl() async {
-    final urlLatest = Uri.parse(URL_REPO);
+    final urlLatest = Uri.parse(URL_REPO_DOWNLOAD);
 
     // 1. Ottieni la release più recente
     final response = await http.get(urlLatest);

@@ -223,6 +223,102 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Buy me a beer!'**
   String get paypal_donation_button;
+
+  /// Settings title
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get settings_title;
+
+  /// Settings Database section
+  ///
+  /// In en, this message translates to:
+  /// **'Database'**
+  String get settings_database_section;
+
+  /// Download new DB settings button
+  ///
+  /// In en, this message translates to:
+  /// **'Update database'**
+  String get settings_download_new_db;
+
+  /// Error shown when download new BD fails
+  ///
+  /// In en, this message translates to:
+  /// **'Error fetching data, please check your internet connection and try again.'**
+  String get fetch_error;
+
+  /// Downloading
+  ///
+  /// In en, this message translates to:
+  /// **'Downloading, please wait...'**
+  String get downloading;
+
+  /// Retry button label
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get retry;
+
+  /// Color picker dialg title
+  ///
+  /// In en, this message translates to:
+  /// **'Pick a color'**
+  String get color_picker_title;
+
+  /// Color picker dialg description
+  ///
+  /// In en, this message translates to:
+  /// **'Select a color for your colletion'**
+  String get color_picker_description;
+
+  /// Collection deleted label
+  ///
+  /// In en, this message translates to:
+  /// **'Collection {name} deleted'**
+  String collection_deleted(String name);
+
+  /// Collection deleted label
+  ///
+  /// In en, this message translates to:
+  /// **'Undo'**
+  String get undo;
+
+  /// Edit ID dialog title
+  ///
+  /// In en, this message translates to:
+  /// **'Edit ID'**
+  String get edit_id_title;
+
+  /// New ID label
+  ///
+  /// In en, this message translates to:
+  /// **'New ID'**
+  String get new_id_label;
+
+  /// Cancel label
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// OK
+  ///
+  /// In en, this message translates to:
+  /// **'Ok'**
+  String get ok;
+
+  /// No collection yet label
+  ///
+  /// In en, this message translates to:
+  /// **'No collections yet.\nTap the + button to create your first collection!'**
+  String get no_collections_yet;
+
+  /// New collection tooltip
+  ///
+  /// In en, this message translates to:
+  /// **'Add new collection'**
+  String get new_collection_tooltip;
 }
 
 class _AppLocalizationsDelegate

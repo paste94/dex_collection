@@ -75,15 +75,9 @@ class CollectionTile extends ConsumerWidget {
                       iconColor: Colors.black54,
                     ),
                     SizedBox(width: 16),
-                    // Column(
-                    //   crossAxisAlignment: CrossAxisAlignment.start,
-                    //   children: [
                     Text(
                       collection.name ?? 'NONE',
                       style: Theme.of(context).textTheme.headlineSmall,
-
-                      // ),
-                      // ],
                     ),
                     Spacer(),
                     Text('${collection.order} - '),

@@ -9,7 +9,6 @@ class BtnShiny extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // final collectionIndex = ref.watch(collectionIndexProvider)!;
     colorFromShiny() => isShiny ? Colors.yellow : Colors.black54;
 
     return AnimatedSwitcher(

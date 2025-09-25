@@ -1,5 +1,6 @@
 import 'package:dex_collection/Hive/pokemon/provider/db_pokemon_provider.dart';
 import 'package:dex_collection/PokeAPI/pokeapi_service.dart';
+import 'package:dex_collection/l10n/generated/app_localizations.dart';
 import 'package:dex_collection/main.dart' show logger;
 import 'package:dex_collection/router/const/routes.dart';
 import 'package:flutter/material.dart';
@@ -32,8 +33,7 @@ class _DownloadScreenState extends ConsumerState<DownloadScreen> {
       }
     } catch (e) {
       setState(() {
-        errorState =
-            "Error fetching data, please check your internet connection and try again.";
+        errorState = AppLocalizations.of(context)!.fetch_error;
       });
       logger.e("Error fetching data: $e");
     }
@@ -64,7 +64,7 @@ class _DownloadScreenState extends ConsumerState<DownloadScreen> {
               Expanded(
                 flex: 1,
                 child: Text(
-                  errorState ?? 'Downloading, please wait...',
+                  errorState ?? AppLocalizations.of(context)!.downloading,
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -81,7 +81,7 @@ class _DownloadScreenState extends ConsumerState<DownloadScreen> {
                             });
                             _fetchData();
                           },
-                          child: Text('Retry'),
+                          child: Text(AppLocalizations.of(context)!.retry),
                         ),
                 ),
               ),

@@ -18,5 +18,21 @@
   "disclaimer_open_source": "Il progetto è open source e senza fini di lucro. Se l’app ti è utile, sono aperto a eventuali donazioni per supportarne lo sviluppo.",
   "links": "Links",
   "github_repo": "Repository GitHub",
-  "paypal_donation_button": "Offrimi una birrra!"
+  "paypal_donation_button": "Offrimi una birrra!",
+  "settings_title": "Impostazioni",
+  "settings_database_section": "Database",
+  "settings_download_new_db": "Aggiorna database",
+  "fetch_error": "Errore nel download, controlla la connessione internet e riprova.",
+  "downloading": "Download in corso, attendere...",
+  "retry": "Riprova",
+  "color_picker_title": "Scegli un colore",
+  "color_picker_description": "Scegli un coloper per la collezione",
+  "collection_deleted": "Collezione {name} eliminata",
+  "undo": "Annulla",
+  "edit_id_title": "Personalizza ID",
+  "new_id_label": "Nuovo ID",
+  "cancel": "Annulla",
+  "ok": "Ok",
+  "no_collections_yet": "Non ci sono ancora collezioni.\nPremi + per iniziare!",
+  "new_collection_tooltip": "Nuova collezione"
 }

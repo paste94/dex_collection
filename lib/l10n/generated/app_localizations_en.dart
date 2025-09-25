@@ -74,4 +74,56 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get paypal_donation_button => 'Buy me a beer!';
+
+  @override
+  String get settings_title => 'Settings';
+
+  @override
+  String get settings_database_section => 'Database';
+
+  @override
+  String get settings_download_new_db => 'Update database';
+
+  @override
+  String get fetch_error =>
+      'Error fetching data, please check your internet connection and try again.';
+
+  @override
+  String get downloading => 'Downloading, please wait...';
+
+  @override
+  String get retry => 'Retry';
+
+  @override
+  String get color_picker_title => 'Pick a color';
+
+  @override
+  String get color_picker_description => 'Select a color for your colletion';
+
+  @override
+  String collection_deleted(String name) {
+    return 'Collection $name deleted';
+  }
+
+  @override
+  String get undo => 'Undo';
+
+  @override
+  String get edit_id_title => 'Edit ID';
+
+  @override
+  String get new_id_label => 'New ID';
+
+  @override
+  String get cancel => 'Cancel';
+
+  @override
+  String get ok => 'Ok';
+
+  @override
+  String get no_collections_yet =>
+      'No collections yet.\nTap the + button to create your first collection!';
+
+  @override
+  String get new_collection_tooltip => 'Add new collection';
 }

@@ -1,4 +1,5 @@
 import 'package:dex_collection/Hive/pokemon/provider/db_pokemon_provider.dart';
+import 'package:dex_collection/l10n/generated/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -19,7 +20,7 @@ class _SettingsViewState extends ConsumerState<SettingsView>
       color: Theme.of(context).colorScheme.primary,
     );
     return Scaffold(
-      appBar: AppBar(title: const Text('Settings')),
+      appBar: AppBar(title: Text(AppLocalizations.of(context)!.settings_title)),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -31,13 +32,18 @@ class _SettingsViewState extends ConsumerState<SettingsView>
                 children: [
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                    child: Text('Database', style: sectionStyle),
+                    child: Text(
+                      AppLocalizations.of(context)!.settings_database_section,
+                      style: sectionStyle,
+                    ),
                   ),
                   const SizedBox(height: 8),
 
                   ListTile(
                     leading: const Icon(Icons.update),
-                    title: const Text('Scarica nuovo DB Pokémon'),
+                    title: Text(
+                      AppLocalizations.of(context)!.settings_download_new_db,
+                    ),
                     onTap: () =>
                         ref.read(dbPokemonProvider.notifier).clearCollection(),
                   ),
