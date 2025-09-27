@@ -1,4 +1,4 @@
-package com.example.dex_collection
+package com.paste94.dex_collection
 
 import io.flutter.embedding.android.FlutterActivity
 
