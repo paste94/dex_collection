@@ -4,14 +4,16 @@ import 'package:dex_collection/Hive/pokemon/provider/db_pokemon_provider.dart';
 import 'package:dex_collection/features/collection/details/provider/UIModels/UI_collection.dart';
 import 'package:dex_collection/features/collection/details/provider/details_search_provider.dart';
 import 'package:dex_collection/features/collection/details/provider/index_provider.dart';
+import 'package:dex_collection/main.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'ui_collection_provider.g.dart';
 
-@riverpod
+@Riverpod()
 class UICollectionList extends _$UICollectionList {
   @override
   List<UICollection<CollectedPokemon>> build() {
+    logger.d('[uICollectionListProvider] BUILD');
     ref.listen(detailsSearchProvider, (oldValue, newValue) => filter(newValue));
 
     List<CollectedPokemon>? pokemons = ref.watch(
@@ -20,7 +22,8 @@ class UICollectionList extends _$UICollectionList {
       ).select((c) => c.pokemons),
     );
 
-    return pokemons?.map((CollectedPokemon e) {
+    List<UICollection<CollectedPokemon>> list =
+        pokemons?.map((CollectedPokemon e) {
           final pokemon = e.copyWith(
             pokemon: ref
                 .read(dbPokemonProvider)
@@ -29,6 +32,23 @@ class UICollectionList extends _$UICollectionList {
           return UICollection(item: pokemon);
         }).toList() ??
         [];
+
+    /// Apply filter
+    final filterStr = ref.read(detailsSearchProvider);
+    if (filterStr.isNotEmpty) {
+      final query = filterStr.trim().toLowerCase();
+
+      list = [
+        for (final element in list)
+          element.copyWith(
+            isVisible: query.isEmpty
+                ? true
+                : (element.item.pokemon?.name.toLowerCase().contains(query) ??
+                      true),
+          ),
+      ];
+    }
+    return list;
   }
 
   void filter(String value) {

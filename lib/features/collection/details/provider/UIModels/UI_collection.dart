@@ -1,5 +1,4 @@
 // ignore_for_file: file_names
-
 class UICollection<T> {
   final T item;
   bool isVisible;
@@ -8,5 +7,10 @@ class UICollection<T> {
 
   UICollection<T> copyWith({bool? isSelected, bool? isVisible}) {
     return UICollection<T>(item: item, isVisible: isVisible ?? this.isVisible);
+  }
+
+  @override
+  String toString() {
+    return "$item visibility: $isVisible";
   }
 }

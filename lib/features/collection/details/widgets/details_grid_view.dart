@@ -17,7 +17,7 @@ class DetailsGridView extends ConsumerWidget {
         .where((p) => p.isVisible)
         .toList();
 
-    logger.i(pokemonCollection);
+    logger.d('[DetailsGridView] pokemonCollection: $pokemonCollection');
 
     return pokemonCollection.isNotEmpty
         ? GridView.count(
