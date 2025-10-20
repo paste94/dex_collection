@@ -80,7 +80,7 @@ class CollectionTile extends ConsumerWidget {
                       style: Theme.of(context).textTheme.headlineSmall,
                     ),
                     Spacer(),
-                    Text('${collection.order} - '),
+                    // Text('${collection.order} - '),
                     Text(
                       '${collection.pokemons?.where((pokemon) => pokemon.isCaptured).length}/${collection.pokemons?.length ?? 0}',
                     ),

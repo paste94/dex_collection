@@ -1,29 +1,22 @@
-# dex_collection
+# Dex Collection
 
-A new Flutter project.
+## Italiano
 
-## Getting Started
+Crea il tuo Pokédex personale e inizia a collezionare Pokémon!
 
-This project is a starting point for a Flutter application.
+Questa app è pensata per chi vuole dare vita alla propria collezione ideale: puoi creare Pokédex personalizzati in base alle tue passioni e ai tuoi obiettivi.
 
-A few resources to get you started if this is your first Flutter project:
+Vuoi completare solo la prima generazione? Preferisci concentrarti sulla regione di Alola? Oppure vuoi collezionare solo i Pokémon di un colore specifico? Con questa app hai totale libertà: genera il tuo Pokédex, inizia a collezionare e guarda crescere la tua raccolta!
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## English
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Build your very own Pokédex and start collecting Pokémon!
 
-# TODO
-- Add search on collection details
-- Add custom ID on details
-- Sort collections
-- Change color to bkìlack pokemons (sneasel)
+This app is designed for trainers who want to create their own unique collections. Customize your Pokédex based on your goals and preferences, and bring your personal collection to life.
+
+Want to catch only the first-generation Pokémon? Focus on the Alola region? Or maybe collect only green Pokémon? The choice is yours—generate your Pokédex, start collecting, and watch your collection grow!
 
 # Icon
-flutter pub run flutter_launcher_icons:main
-
 Special Thanks
 
 
