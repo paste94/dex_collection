@@ -12,6 +12,7 @@ extension HiveRegistrar on HiveInterface {
     registerAdapter(CollectedPokemonAdapter());
     registerAdapter(CollectionAdapter());
     registerAdapter(PokemonAdapter());
+    registerAdapter(VisualizationModeAdapter());
   }
 }
 
@@ -20,5 +21,6 @@ extension IsolatedHiveRegistrar on IsolatedHiveInterface {
     registerAdapter(CollectedPokemonAdapter());
     registerAdapter(CollectionAdapter());
     registerAdapter(PokemonAdapter());
+    registerAdapter(VisualizationModeAdapter());
   }
 }

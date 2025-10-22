@@ -21,6 +21,9 @@ void main() async {
   if (!Hive.isAdapterRegistered(2)) {
     Hive.registerAdapter(CollectedPokemonAdapter());
   }
+  if (!Hive.isAdapterRegistered(3)) {
+    Hive.registerAdapter(VisualizationModeAdapter());
+  }
 
   await Hive.openBox<Collection>(COLLECTION_BOX);
   await Hive.openBox<Pokemon>(POKEMON_BOX);

@@ -26,7 +26,9 @@ class CollectionAdapter extends TypeAdapter<Collection> {
       ..id = fields[0] as String
       ..isHidden = fields[4] as bool?
       ..order = fields[5] == null ? 0 : (fields[5] as num?)?.toInt()
-      ..visualizationMode = fields[6] as VisualizationMode?;
+      ..visualizationMode = fields[6] == null
+          ? VisualizationMode.grid2
+          : fields[6] as VisualizationMode?;
   }
 
   @override
@@ -56,6 +58,43 @@ class CollectionAdapter extends TypeAdapter<Collection> {
   bool operator ==(Object other) =>
       identical(this, other) ||
       other is CollectionAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
+}
+
+class VisualizationModeAdapter extends TypeAdapter<VisualizationMode> {
+  @override
+  final typeId = 3;
+
+  @override
+  VisualizationMode read(BinaryReader reader) {
+    switch (reader.readByte()) {
+      case 0:
+        return VisualizationMode.list;
+      case 1:
+        return VisualizationMode.grid2;
+      default:
+        return VisualizationMode.list;
+    }
+  }
+
+  @override
+  void write(BinaryWriter writer, VisualizationMode obj) {
+    switch (obj) {
+      case VisualizationMode.list:
+        writer.writeByte(0);
+      case VisualizationMode.grid2:
+        writer.writeByte(1);
+    }
+  }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is VisualizationModeAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

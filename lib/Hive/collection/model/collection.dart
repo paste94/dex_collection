@@ -4,7 +4,13 @@ import 'package:uuid/uuid.dart';
 
 part 'collection.g.dart';
 
-enum VisualizationMode { list, grid2 }
+@HiveType(typeId: 3)
+enum VisualizationMode {
+  @HiveField(0)
+  list,
+  @HiveField(1)
+  grid2,
+}
 
 @HiveType(typeId: 0)
 class Collection extends HiveObject {
@@ -47,7 +53,8 @@ class Collection extends HiveObject {
   });
 
   @override
-  String toString() => 'Collection - id: $id, name: $name, order: $order';
+  String toString() =>
+      'Collection - id: $id, name: $name, vm: $visualizationMode';
 
   Collection copyWith({
     String? name,

@@ -1,5 +1,6 @@
 import 'package:dex_collection/Hive/collection/collection_repo.dart';
 import 'package:dex_collection/Hive/collection/model/collection.dart';
+import 'package:dex_collection/main.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'collection_provider.g.dart';
@@ -11,6 +12,7 @@ class CollectionList extends _$CollectionList {
   @override
   List<Collection> build() {
     repo = CollectionRepo();
+    logger.d(repo.getCollections());
     return repo.getCollections();
   }
 

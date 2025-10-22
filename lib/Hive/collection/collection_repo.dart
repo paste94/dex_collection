@@ -1,5 +1,6 @@
 import 'package:dex_collection/Hive/box_const.dart';
 import 'package:dex_collection/Hive/collection/model/collection.dart';
+import 'package:dex_collection/main.dart';
 import 'package:hive_ce/hive.dart';
 
 class CollectionRepo {
@@ -16,6 +17,7 @@ class CollectionRepo {
   // CREATE, UPDATE
   List<Collection> putCollection(Collection collection) {
     _box.put(collection.id, collection);
+    logger.d('ADDED TO HIVE: $collection');
     return _box.values.toList();
   }
 

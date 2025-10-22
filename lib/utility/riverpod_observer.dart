@@ -8,7 +8,11 @@ class RiverpodLogger extends ProviderObserver {
     Object? previousValue,
     Object? newValue,
     ProviderContainer container,
-  ) {}
+  ) {
+    logger.i(
+      'Provider ${provider.name ?? provider} updated ${previousValue} --> ${newValue}',
+    );
+  }
 
   @override
   void didAddProvider(
