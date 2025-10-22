@@ -69,7 +69,6 @@ class _CollectionListScreenState extends ConsumerState<CollectionListScreen> {
                 itemCount: collectionListToShow.length,
                 onReorder: (int oldIndex, int newIndex) {
                   if (oldIndex < newIndex) newIndex--;
-                  // logger.d('OLD INDEX: $oldIndex\nNEW INDEX: $newIndex');
                   final item = collectionListToShow.removeAt(oldIndex);
                   collectionListToShow.insert(newIndex, item);
 

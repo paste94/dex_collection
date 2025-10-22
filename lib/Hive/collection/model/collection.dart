@@ -4,6 +4,8 @@ import 'package:uuid/uuid.dart';
 
 part 'collection.g.dart';
 
+enum VisualizationMode { list, grid2 }
+
 @HiveType(typeId: 0)
 class Collection extends HiveObject {
   @HiveField(0)
@@ -24,6 +26,9 @@ class Collection extends HiveObject {
   @HiveField(5, defaultValue: 0)
   int? order;
 
+  @HiveField(6, defaultValue: VisualizationMode.grid2)
+  VisualizationMode? visualizationMode;
+
   Collection({
     required this.name,
     this.color = 0xff03a9f4,
@@ -38,6 +43,7 @@ class Collection extends HiveObject {
     this.pokemons = const [],
     this.isHidden = false,
     this.order,
+    this.visualizationMode,
   });
 
   @override
@@ -49,6 +55,7 @@ class Collection extends HiveObject {
     List<CollectedPokemon>? pokemons,
     bool? isHidden,
     int? order,
+    VisualizationMode? visualizationMode,
   }) {
     return Collection._(
       id: id,
@@ -57,6 +64,7 @@ class Collection extends HiveObject {
       pokemons: pokemons ?? this.pokemons,
       isHidden: isHidden ?? this.isHidden,
       order: order ?? this.order,
+      visualizationMode: visualizationMode ?? this.visualizationMode,
     );
   }
 }

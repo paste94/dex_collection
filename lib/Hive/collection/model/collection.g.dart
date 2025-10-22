@@ -25,13 +25,14 @@ class CollectionAdapter extends TypeAdapter<Collection> {
       )
       ..id = fields[0] as String
       ..isHidden = fields[4] as bool?
-      ..order = fields[5] == null ? 0 : (fields[5] as num?)?.toInt();
+      ..order = fields[5] == null ? 0 : (fields[5] as num?)?.toInt()
+      ..visualizationMode = fields[6] as VisualizationMode?;
   }
 
   @override
   void write(BinaryWriter writer, Collection obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(7)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -43,7 +44,9 @@ class CollectionAdapter extends TypeAdapter<Collection> {
       ..writeByte(4)
       ..write(obj.isHidden)
       ..writeByte(5)
-      ..write(obj.order);
+      ..write(obj.order)
+      ..writeByte(6)
+      ..write(obj.visualizationMode);
   }
 
   @override

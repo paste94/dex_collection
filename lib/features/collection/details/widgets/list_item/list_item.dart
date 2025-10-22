@@ -1,4 +1,5 @@
 import 'package:dex_collection/Hive/collected_pokemon/model/collected_pokemon.dart';
+import 'package:dex_collection/Hive/collection/model/collection.dart';
 import 'package:dex_collection/Hive/collection/provider/collection_provider.dart';
 import 'package:dex_collection/features/collection/details/provider/index_provider.dart';
 import 'package:dex_collection/features/collection/details/widgets/dialog_edit_id.dart';
@@ -16,9 +17,13 @@ class ListItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    /// Providers
-    // final collectionIndex = ref.watch(collectionIndexProvider)!;
+    /// PROVIDERS
     String? collectionId = ref.watch(collectionIdProvider)!;
+    final visualizationMode = ref
+        .watch(collectionListProvider)
+        .where((element) => element.id == collectionId)
+        .first
+        .visualizationMode;
 
     /// Functions
     Color? cardColorFromPokemon() => cPokemon.isCaptured
@@ -34,14 +39,11 @@ class ListItem extends ConsumerWidget {
         .read(collectionListProvider.notifier)
         .toggleShiny(collectionId, cPokemon.id);
 
-    logger.d(cPokemon.pokemon);
-
     return AnimatedSwitcher(
       duration: Duration(milliseconds: 600),
       transitionBuilder: (child, anim) =>
           FadeTransition(opacity: anim, child: child),
       child: Card(
-        // key: ValueKey<String>  (cardColorFromPokemon().toString()),
         color: cardColorFromPokemon(),
         child: InkWell(
           borderRadius: BorderRadius.circular(getCardCornerRadius(context)),
@@ -79,7 +81,7 @@ class ListItem extends ConsumerWidget {
               /// IMAGE
               Positioned(
                 bottom: 0,
-                right: 0,
+                right: visualizationMode == VisualizationMode.grid2 ? 0 : 50,
                 child: PokemonImage(pokemon: cPokemon),
               ),
 

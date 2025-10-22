@@ -38,9 +38,6 @@ class _TxtSearchBarState extends ConsumerState<TxtSearchBar> {
   @override
   Widget build(BuildContext context) {
     final searchString = ref.watch(detailsSearchProvider);
-
-    logger.d('searchString: ${searchString}');
-
     return TextField(
       controller: controller,
       decoration: InputDecoration(

@@ -4,7 +4,6 @@ import 'package:dex_collection/Hive/pokemon/provider/db_pokemon_provider.dart';
 import 'package:dex_collection/features/collection/details/provider/UIModels/UI_collection.dart';
 import 'package:dex_collection/features/collection/details/provider/details_search_provider.dart';
 import 'package:dex_collection/features/collection/details/provider/index_provider.dart';
-import 'package:dex_collection/main.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'ui_collection_provider.g.dart';
@@ -13,7 +12,6 @@ part 'ui_collection_provider.g.dart';
 class UICollectionList extends _$UICollectionList {
   @override
   List<UICollection<CollectedPokemon>> build() {
-    logger.d('[uICollectionListProvider] BUILD');
     ref.listen(detailsSearchProvider, (oldValue, newValue) => filter(newValue));
 
     List<CollectedPokemon>? pokemons = ref.watch(

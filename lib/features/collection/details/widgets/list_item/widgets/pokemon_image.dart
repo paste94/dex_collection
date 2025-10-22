@@ -1,16 +1,29 @@
 import 'package:dex_collection/Hive/collected_pokemon/model/collected_pokemon.dart';
+import 'package:dex_collection/Hive/collection/model/collection.dart';
+import 'package:dex_collection/Hive/collection/provider/collection_provider.dart';
+import 'package:dex_collection/features/collection/details/provider/index_provider.dart';
 import 'package:dex_collection/utility/widgets/retry_cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class PokemonImage extends ConsumerWidget {
   final CollectedPokemon pokemon;
-  final int imageSize = 135;
 
   const PokemonImage({super.key, required this.pokemon});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    /// PROVIDERS
+    String? collectionId = ref.watch(collectionIdProvider)!;
+    final visualizationMode = ref
+        .watch(collectionListProvider)
+        .where((element) => element.id == collectionId)
+        .first
+        .visualizationMode;
+    final int imageSize = visualizationMode == VisualizationMode.grid2
+        ? 135
+        : 120;
+
     /// COLOR FUNTIONS
     Color iconColorFromPokemon() =>
         pokemon.isCaptured ? Colors.transparent : Colors.grey;

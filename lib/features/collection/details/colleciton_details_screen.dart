@@ -61,36 +61,6 @@ class _CollectionDetailsScreenState
       context.pop();
     }
 
-    // handleEditIDs() {
-    //   showDialog(
-    //     context: context,
-    //     builder: (context) => Dialog(
-    //       child: Padding(
-    //         padding: const EdgeInsets.all(16.0),
-    //         child: Column(
-    //           mainAxisSize: MainAxisSize.min,
-    //           children: [
-    //             Text(
-    //               AppLocalizations.of(context)!.edit_ids,
-    //               style: Theme.of(context).textTheme.headlineSmall,
-    //             ),
-    //             SizedBox(height: 16),
-    //             Text(
-    //               'Feature not implemented yet',
-    //               style: Theme.of(context).textTheme.bodyMedium,
-    //             ),
-    //             SizedBox(height: 24),
-    //             ElevatedButton(
-    //               onPressed: () => Navigator.of(context).pop(),
-    //               child: Text('Close'),
-    //             ),
-    //           ],
-    //         ),
-    //       ),
-    //     ),
-    //   );
-    // }
-
     return PopScope(
       onPopInvokedWithResult: (context, result) {
         Future.delayed(
@@ -98,7 +68,6 @@ class _CollectionDetailsScreenState
           () => ref.read(collectionIdProvider.notifier).state = null,
         );
       },
-      // canPop: false,
       child: Scaffold(
         appBar: AppBar(
           title: Text('${collection.name}'),
@@ -117,16 +86,6 @@ class _CollectionDetailsScreenState
                       ],
                     ),
                   ),
-                  // PopupMenuItem<String>(
-                  //   onTap: handleEditIDs,
-                  //   child: Row(
-                  //     children: [
-                  //       Icon(Icons.numbers),
-                  //       SizedBox(width: 8),
-                  //       Text(AppLocalizations.of(context)!.edit_ids),
-                  //     ],
-                  //   ),
-                  // ),
                   PopupMenuItem<String>(
                     onTap: handleDelete,
                     child: Row(
@@ -146,8 +105,36 @@ class _CollectionDetailsScreenState
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
-              TxtSearchBar(),
+              Row(
+                children: [
+                  /// SEARCH BAR
+                  Expanded(child: TxtSearchBar()),
+
+                  /// BUTTON CHANGE VISUALIZATION MODE
+                  IconButton(
+                    onPressed: () {
+                      ref
+                          .read(collectionListProvider.notifier)
+                          .updateVisualizationMode(
+                            collectionId,
+                            collection.visualizationMode ==
+                                    VisualizationMode.grid2
+                                ? VisualizationMode.list
+                                : VisualizationMode.grid2,
+                          );
+                    },
+                    icon: Icon(
+                      collection.visualizationMode == VisualizationMode.list
+                          ? Icons.grid_view_sharp
+                          : Icons.list,
+                    ),
+                  ),
+                ],
+              ),
+
               SizedBox(height: 8),
+
+              /// DETAILS GRID
               Expanded(child: DetailsGridView()),
             ],
           ),

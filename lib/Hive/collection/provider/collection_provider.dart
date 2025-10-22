@@ -96,6 +96,11 @@ class CollectionList extends _$CollectionList {
     });
     state = repo.getCollections();
   }
+
+  void updateVisualizationMode(String collectionId, VisualizationMode vm) {
+    Collection collection = _getCollectionById(collectionId);
+    addOrUpdateCollection(collection.copyWith(visualizationMode: vm));
+  }
 }
 
 final collectionItemProvider = Provider.family<Collection, String?>((ref, id) {
