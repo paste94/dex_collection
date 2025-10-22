@@ -5,6 +5,7 @@ import 'package:dex_collection/features/collection/details/widgets/dialog_edit_i
 import 'package:dex_collection/features/collection/details/widgets/list_item/widgets/btn_captured.dart';
 import 'package:dex_collection/features/collection/details/widgets/list_item/widgets/btn_shiny.dart';
 import 'package:dex_collection/features/collection/details/widgets/list_item/widgets/pokemon_image.dart';
+import 'package:dex_collection/main.dart';
 import 'package:dex_collection/utility/common_funcions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -32,6 +33,8 @@ class ListItem extends ConsumerWidget {
     onShinyTap() => ref
         .read(collectionListProvider.notifier)
         .toggleShiny(collectionId, cPokemon.id);
+
+    logger.d(cPokemon.pokemon);
 
     return AnimatedSwitcher(
       duration: Duration(milliseconds: 600),

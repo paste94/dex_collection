@@ -11,15 +11,15 @@ const List<String> NON_VALID_REGIONAL_FORM = ['totem', 'cap'];
 
 /// List of allowed colors
 final Map<String, Color> POKEAPI_COLORS = {
-  'black': Colors.black,
+  'black': Colors.blueGrey,
   'blue': Colors.blue.shade300,
   'brown': Colors.brown.shade300,
-  'gray': Colors.black54,
+  'gray': Colors.grey,
   'green': Colors.green.shade300,
   'pink': Colors.pink.shade300,
   'purple': Colors.purple.shade300,
   'red': Colors.red.shade300,
-  'white': Colors.white,
+  'white': Colors.amber[50]!,
   'yellow': Colors.yellow.shade300,
 };
 

@@ -61,5 +61,5 @@ class Pokemon {
 
   @override
   String toString() =>
-      'id: $id, name: $name, img: $img, generation: $generation';
+      'id: $id, name: $name, img: $img, generation: $generation, color: $color';
 }

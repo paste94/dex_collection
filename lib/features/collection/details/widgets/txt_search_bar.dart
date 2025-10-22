@@ -23,8 +23,15 @@ class _TxtSearchBarState extends ConsumerState<TxtSearchBar> {
   }
 
   @override
+  void deactivate() {
+    super.deactivate();
+  }
+
+  @override
   void dispose() {
+    // ref.read(detailsSearchProvider.notifier).state = '';
     controller.dispose();
+    // ref.read(detailsSearchProvider.notifier).state = '';
     super.dispose();
   }
 
